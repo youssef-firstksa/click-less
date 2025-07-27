@@ -2,15 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+Route::prefix(LaravelLocalization::setLocale())
+    ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localize'])
+    ->group(function () {
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
-
-Route::get('admin', function () {
-    return view('admin.index');
-})->name('admin.dashboard');
+        Route::middleware(['auth'])->group(function () {
+            Route::get('/', function () {
+                return view('index');
+            })->name('home');
+        });
+    });
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

@@ -10,7 +10,7 @@ Dribbble: www.dribbble.com/keenthemes
 Like: www.facebook.com/keenthemes
 License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
 -->
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <!--begin::Head-->
 
 <!-- Mirrored from preview.keenthemes.com/metronic8/demo1/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 02 Dec 2024 09:09:57 GMT -->
@@ -149,8 +149,9 @@ License: For each use you must have a valid license purchased only from above li
 										<!--begin::Menu item-->
 										<div class="menu-item">
 											<!--begin::Menu link-->
-											<a class="menu-link nav-link active py-3 px-4 px-xxl-6" href="#kt_body"
-												data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
+											<a class="menu-link nav-link active py-3 px-4 px-xxl-6"
+												href="{{ route("home") }}" data-kt-scroll-toggle="true"
+												data-kt-drawer-dismiss="true">
 												Home </a>
 											<!--end::Menu link-->
 										</div>
@@ -158,48 +159,15 @@ License: For each use you must have a valid license purchased only from above li
 										<!--begin::Menu item-->
 										<div class="menu-item">
 											<!--begin::Menu link-->
-											<a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#how-it-works"
-												data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
-												How it Works </a>
+											<a class="menu-link nav-link  py-3 px-4 px-xxl-6"
+												href="{{ route("settings.profile") }}" data-kt-scroll-toggle="true"
+												data-kt-drawer-dismiss="true">
+												My Profile
+											</a>
 											<!--end::Menu link-->
 										</div>
 										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item">
-											<!--begin::Menu link-->
-											<a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#achievements"
-												data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
-												Achievements </a>
-											<!--end::Menu link-->
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item">
-											<!--begin::Menu link-->
-											<a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#team"
-												data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
-												Team </a>
-											<!--end::Menu link-->
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item">
-											<!--begin::Menu link-->
-											<a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#portfolio"
-												data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
-												Portfolio </a>
-											<!--end::Menu link-->
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item">
-											<!--begin::Menu link-->
-											<a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#pricing"
-												data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
-												Pricing </a>
-											<!--end::Menu link-->
-										</div>
-										<!--end::Menu item-->
+
 									</div>
 									<!--end::Menu-->
 								</div>
@@ -207,9 +175,27 @@ License: For each use you must have a valid license purchased only from above li
 							<!--end::Menu wrapper-->
 
 							<!--begin::Toolbar-->
-							<div class="flex-equal text-end ms-1">
-								<a href="authentication/layouts/corporate/sign-in.html" class="btn btn-success">Sign
-									In</a>
+							<div class="flex-equal text-end ms-1 d-flex align-items-center justify-content-end gap-2">
+								<form method="POST" action="{{ route('logout') }}" class="w-full">
+									@csrf
+
+									<button type="submit" class="btn btn-sm btn-danger">
+										Logout
+									</button>
+								</form>
+
+								@if (app()->getLocale() == 'en')
+									<a href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"
+										class="btn btn-sm btn-primary">
+										AR
+									</a>
+								@else
+									<a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"
+										class="btn btn-sm btn-primary">
+										EN
+									</a>
+								@endif
+
 							</div>
 							<!--end::Toolbar-->
 						</div>
