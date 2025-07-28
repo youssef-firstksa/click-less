@@ -50,6 +50,12 @@ License: For each use you must have a valid license purchased only from above li
 	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
 	<link href="{{ asset('assets/frontend/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/frontend/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('assets/frontend/css/custom.css') }}" rel="stylesheet" type="text/css" />
+
+	@if (app()->getLocale() == 'ar')
+		<link href="{{asset('assets/frontend/css/style.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('assets/frontend/css/custom.rtl.css') }}" rel="stylesheet" type="text/css" />
+	@endif
 	<!--end::Global Stylesheets Bundle-->
 
 	<!-- Google tag (gtag.js) -->
@@ -150,7 +156,7 @@ License: For each use you must have a valid license purchased only from above li
 										<div class="menu-item">
 											<!--begin::Menu link-->
 											<a class="menu-link nav-link active py-3 px-4 px-xxl-6"
-												href="{{ route("home") }}" data-kt-scroll-toggle="true"
+												href="{{ route('frontend.index') }}" data-kt-scroll-toggle="true"
 												data-kt-drawer-dismiss="true">
 												Home </a>
 											<!--end::Menu link-->

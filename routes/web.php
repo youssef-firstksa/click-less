@@ -10,8 +10,8 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::middleware(['auth'])->group(function () {
             Route::get('/', function () {
-                return view('index');
-            })->name('home');
+                return view('frontend.index');
+            })->name('frontend.index');
         });
     });
 

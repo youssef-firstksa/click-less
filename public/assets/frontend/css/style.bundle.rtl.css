@@ -56489,3 +56489,8 @@ html:not([data-theme=dark]) {
 .input-group-prepend {
     margin-left: -1px;
 }
+
+  .auth-lang {
+            right: 10px;
+            left:initial;
+        }

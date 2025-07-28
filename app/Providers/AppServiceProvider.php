@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post(LaravelLocalization::setLocale() . '/livewire/update', $handle)
+                ->middleware([
+                    'web',
+                    'localeSessionRedirect',
+                    'localizationRedirect',
+                    'localeViewPath',
+                    'localize'
+                ]);
+        });
     }
 }

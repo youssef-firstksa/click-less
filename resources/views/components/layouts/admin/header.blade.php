@@ -261,9 +261,15 @@
 
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="authentication/layouts/corporate/sign-in.html" class="menu-link px-5">
-                                Sign Out
-                            </a>
+
+
+                            <form method="POST" action="{{ route('admin.auth.logout') }}">
+                                @csrf
+
+                                <button type="submit" class="menu-link px-5">
+                                    Sign Out
+                                </button>
+                            </form>
                         </div>
                         <!--end::Menu item-->
                     </div>
