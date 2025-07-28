@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
@@ -32,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
                     'localize'
                 ]);
         });
+
+        Paginator::useBootstrapFive();
     }
 }

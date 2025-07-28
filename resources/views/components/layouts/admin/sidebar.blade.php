@@ -13,6 +13,7 @@
             <img alt="Logo" src="{{ asset('assets/admin/media/logos/default-small.svg') }}"
                 class="h-20px app-sidebar-logo-minimize" />
         </a>
+
         <div id="kt_app_sidebar_toggle"
             class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate "
             data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
@@ -58,53 +59,37 @@
                     </div>
                     <!--end:Menu item-->
 
-                    <div class="menu-item pt-5">
-                        <!--begin:Menu content-->
-                        <div class="menu-content"><span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
-                        </div>
-                        <!--end:Menu content-->
-                    </div>
-                    <!--end:Menu item-->
-
                     <!--begin:Menu item-->
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                        <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i
-                                    class="ki-duotone ki-address-book fs-2"><span class="path1"></span><span
-                                        class="path2"></span><span class="path3"></span></i></span><span
-                                class="menu-title">User
-                                Profile</span><span
-                                class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
-                        <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="pages/user-profile/overview.html"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Overview</span></a><!--end:Menu link--></div>
-                            <!--end:Menu item--><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="pages/user-profile/projects.html"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Projects</span></a><!--end:Menu link--></div>
-                            <!--end:Menu item--><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="pages/user-profile/campaigns.html"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Campaigns</span></a><!--end:Menu link-->
-                            </div><!--end:Menu item--><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="pages/user-profile/documents.html"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Documents</span></a><!--end:Menu link-->
-                            </div><!--end:Menu item--><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="pages/user-profile/followers.html"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Followers</span></a><!--end:Menu link-->
-                            </div><!--end:Menu item--><!--begin:Menu item-->
-                            <div class="menu-item"><!--begin:Menu link--><a class="menu-link"
-                                    href="pages/user-profile/activity.html"><span class="menu-bullet"><span
-                                            class="bullet bullet-dot"></span></span><span
-                                        class="menu-title">Activity</span></a><!--end:Menu link--></div>
+                        <!--begin:Menu link-->
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="fas fa-building"></i>
+                            </span>
+
+                            <span class="menu-title">
+                                Bank Components
+                            </span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <!--end:Menu link-->
+
+                        <!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion">
+
+                            <!--begin:Menu item-->
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ route('admin.banks.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Banks List</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
                             <!--end:Menu item-->
+
                         </div><!--end:Menu sub-->
                     </div><!--end:Menu item-->
                 </div>
