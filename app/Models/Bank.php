@@ -11,5 +11,5 @@ class Bank extends Model
     use HasFactory, Translatable;
 
     public $translatedAttributes = ['title', 'slug', 'details'];
-    protected $fillable = ['color', 'logo', 'img', 'ai_key'];
+    protected $fillable = ['color', 'logo', 'img', 'ai_key', 'status'];
 }

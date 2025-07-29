@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('gender');
             $table->integer('points')->nullable();
             $table->foreignId('active_bank_id')->nullable()->constrained('banks', 'id')->cascadeOnUpdate()->nullOnDelete();
-            $table->string('account_status')->default('active');
-            $table->string('login_status')->default('active');
+            $table->string('account_status')->default('activated');
+            $table->string('login_status')->default('online');
             $table->rememberToken();
             $table->timestamps();
         });

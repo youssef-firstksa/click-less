@@ -48,23 +48,15 @@
                     <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
                     <span>Manage Bank Content</span>
                 </a>
+
                 <ul class="sidebar-submenu">
                     <li>
-                        <a href="users-list.html"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            Users List</a>
+                        <a href="{{ route('admin.banks.index') }}">
+                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            Banks List
+                        </a>
                     </li>
-                    <li>
-                        <a href="users-grid.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>
-                            Users Grid</a>
-                    </li>
-                    <li>
-                        <a href="add-user.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> Add
-                            User</a>
-                    </li>
-                    <li>
-                        <a href="view-profile.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>
-                            View Profile</a>
-                    </li>
+
                 </ul>
             </li>
         </ul>

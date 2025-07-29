@@ -19,6 +19,7 @@ class CreateBanksTable extends Migration
             $table->string('logo')->nullable();
             $table->string('img')->nullable();
             $table->string('ai_key')->nullable();
+            $table->string('status')->default('activated');
             $table->timestamps();
         });
 
