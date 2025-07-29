@@ -1,104 +1,72 @@
-<div id="kt_app_sidebar" class="app-sidebar  flex-column " data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
-    data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
-    data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-
-
-    <!--begin::Logo-->
-    <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <!--begin::Logo image-->
-        <a href="{{ route('admin.dashboard') }}">
-            <img alt="Logo" src="{{ asset('assets/admin/media/logos/default-dark.svg') }}"
-                class="h-25px app-sidebar-logo-default" />
-
-            <img alt="Logo" src="{{ asset('assets/admin/media/logos/default-small.svg') }}"
-                class="h-20px app-sidebar-logo-minimize" />
+<aside class="sidebar">
+    <button type="button" class="sidebar-close-btn">
+        <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
+    </button>
+    <div>
+        <a href="index.html" class="sidebar-logo">
+            <img src="{{ asset('assets/admin/images/logo.png') }}" alt="site logo" class="light-logo">
+            <img src="{{ asset('assets/admin/images/logo-light.png') }}" alt="site logo" class="dark-logo">
+            <img src="{{ asset('assets/admin/images/logo-icon.png') }}" alt="site logo" class="logo-icon">
         </a>
-
-        <div id="kt_app_sidebar_toggle"
-            class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate "
-            data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
-            data-kt-toggle-name="app-sidebar-minimize">
-
-            <i class="ki-duotone ki-black-left-line fs-3 rotate-180"><span class="path1"></span><span
-                    class="path2"></span></i>
-        </div>
-        <!--end::Sidebar toggle-->
     </div>
-    <!--end::Logo-->
+    <div class="sidebar-menu-area">
+        <ul class="sidebar-menu" id="sidebar-menu">
+            <li>
+                <a href="email.html">
+                    <iconify-icon icon="mage:email" class="menu-icon"></iconify-icon>
+                    <span>Email</span>
+                </a>
+            </li>
 
-    <!--begin::sidebar menu-->
-    <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
-        <!--begin::Menu wrapper-->
-        <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper">
-            <!--begin::Scroll wrapper-->
-            <div id="kt_app_sidebar_menu_scroll" class="scroll-y my-5 mx-3" data-kt-scroll="true"
-                data-kt-scroll-activate="true" data-kt-scroll-height="auto"
-                data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
-                data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px"
-                data-kt-scroll-save-state="true">
-                <!--begin::Menu-->
-                <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6" id="#kt_app_sidebar_menu"
-                    data-kt-menu="true" data-kt-menu-expand="false">
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
+                    <span>Users</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="users-list.html"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            Users List</a>
+                    </li>
+                    <li>
+                        <a href="users-grid.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>
+                            Users Grid</a>
+                    </li>
+                    <li>
+                        <a href="add-user.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> Add
+                            User</a>
+                    </li>
+                    <li>
+                        <a href="view-profile.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>
+                            View Profile</a>
+                    </li>
+                </ul>
+            </li>
 
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="{{ route('admin.dashboard')}}">
-                            <span class="menu-icon">
-                                <span class="menu-icon">
-                                    <i class="ki-duotone ki-element-11 fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                        <span class="path3"></span>
-                                        <span class="path4"></span>
-                                    </i>
-                                </span>
-                            </span>
-                            <span class="menu-title">Dashboard</span>
-                        </a><!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-
-                    <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-icon">
-                                <i class="fas fa-building"></i>
-                            </span>
-
-                            <span class="menu-title">
-                                Bank Components
-                            </span>
-                            <span class="menu-arrow"></span>
-                        </span>
-                        <!--end:Menu link-->
-
-                        <!--begin:Menu sub-->
-                        <div class="menu-sub menu-sub-accordion">
-
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="{{ route('admin.banks.index') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Banks List</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-
-                        </div><!--end:Menu sub-->
-                    </div><!--end:Menu item-->
-                </div>
-                <!--end::Menu-->
-            </div>
-            <!--end::Scroll wrapper-->
-        </div>
-        <!--end::Menu wrapper-->
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
+                    <span>Manage Bank Content</span>
+                </a>
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="users-list.html"><i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            Users List</a>
+                    </li>
+                    <li>
+                        <a href="users-grid.html"><i class="ri-circle-fill circle-icon text-warning-main w-auto"></i>
+                            Users Grid</a>
+                    </li>
+                    <li>
+                        <a href="add-user.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i> Add
+                            User</a>
+                    </li>
+                    <li>
+                        <a href="view-profile.html"><i class="ri-circle-fill circle-icon text-danger-main w-auto"></i>
+                            View Profile</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <!--end::sidebar menu-->
-
-</div>
+</aside>

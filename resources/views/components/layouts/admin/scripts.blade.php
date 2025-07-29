@@ -1,20 +1,28 @@
-<!--begin::Global Javascript Bundle(mandatory for all pages)-->
-<script src="{{ asset('assets/admin/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ asset('assets/admin/js/scripts.bundle.js') }}"></script>
-<!--end::Global Javascript Bundle-->
+<!-- jQuery library js -->
+<script src="{{ asset('assets/admin/js/lib/jquery-3.7.1.min.js') }}"></script>
+<!-- Bootstrap js -->
+<script src="{{ asset('assets/admin/js/lib/bootstrap.bundle.min.js') }}"></script>
+<!-- Apex Chart js -->
+<script src="{{ asset('assets/admin/js/lib/apexcharts.min.js') }}"></script>
+<!-- Data Table js -->
+<script src="{{ asset('assets/admin/js/lib/dataTables.min.js') }}"></script>
+<!-- Iconify Font js -->
+<script src="{{ asset('assets/admin/js/lib/iconify-icon.min.js') }}"></script>
+<!-- jQuery UI js -->
+<script src="{{ asset('assets/admin/js/lib/jquery-ui.min.js') }}"></script>
+<!-- Vector Map js -->
+<script src="{{ asset('assets/admin/js/lib/jquery-jvectormap-2.0.5.min.js') }}"></script>
+<script src="{{ asset('assets/admin/js/lib/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- Popup js -->
+<script src="{{ asset('assets/admin/js/lib/magnifc-popup.min.js') }}"></script>
+<!-- Slick Slider js -->
+<script src="{{ asset('assets/admin/js/lib/slick.min.js') }}"></script>
+<!-- prism js -->
+<script src="{{ asset('assets/admin/js/lib/prism.js') }}"></script>
+<!-- file upload js -->
+<script src="{{ asset('assets/admin/js/lib/file-upload.js') }}"></script>
+<!-- audioplayer -->
+<script src="{{ asset('assets/admin/js/lib/audioplayer.js') }}"></script>
 
-<!--begin::Vendors Javascript(used for this page only)-->
-<script src=" {{ asset('assets/admin/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
-
-<script src="{{ asset('assets/admin/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-<!--end::Vendors Javascript-->
-
-<!--begin::Custom Javascript(used for this page only)-->
-<script src="{{ asset('assets/admin/js/widgets.bundle.js') }}"></script>
-<script src="{{ asset('assets/admin/js/custom/widgets.js') }}"></script>
-<script src="{{ asset('assets/admin/js/custom/apps/chat/chat.js') }}"></script>
-<script src="{{ asset('assets/admin/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-<script src="{{ asset('assets/admin/js/custom/utilities/modals/create-app.js') }}"></script>
-<script src=" {{ asset('assets/admin/js/custom/utilities/modals/new-target.js') }}"></script>
-<script src="{{asset('assets/admin/js/custom/utilities/modals/users-search.js')}}"></script>
-<!--end::Custom Javascript-->
+<!-- main js -->
+<script src="{{ asset('assets/admin/js/app.js') }}"></script>

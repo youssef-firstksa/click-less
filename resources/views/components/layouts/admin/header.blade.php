@@ -1,291 +1,378 @@
-<div id="kt_app_header" class="app-header " data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}"
-    data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}"
-    data-kt-sticky-animation="false">
-
-    <!--begin::Header container-->
-    <div class="app-container  container-fluid d-flex align-items-stretch justify-content-between bg-white"
-        id="kt_app_header_container">
-
-        <!--begin::Sidebar mobile toggle-->
-        <div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="Show sidebar menu">
-            <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
-                <i class="ki-duotone ki-abstract-14 fs-2 fs-md-1"><span class="path1"></span><span
-                        class="path2"></span></i>
+<div class="navbar-header">
+    <div class="row align-items-center justify-content-between">
+        <div class="col-auto">
+            <div class="d-flex flex-wrap align-items-center gap-4">
+                <button type="button" class="sidebar-toggle">
+                    <iconify-icon icon="heroicons:bars-3-solid" class="icon text-2xl non-active"></iconify-icon>
+                    <iconify-icon icon="iconoir:arrow-right" class="icon text-2xl active"></iconify-icon>
+                </button>
+                <button type="button" class="sidebar-mobile-toggle">
+                    <iconify-icon icon="heroicons:bars-3-solid" class="icon"></iconify-icon>
+                </button>
+                <form class="navbar-search">
+                    <input type="text" name="search" placeholder="Search">
+                    <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
+                </form>
             </div>
         </div>
-        <!--end::Sidebar mobile toggle-->
+        <div class="col-auto">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <button type="button" data-theme-toggle
+                    class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"></button>
+                <div class="dropdown d-none d-sm-inline-block">
+                    <button
+                        class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"
+                        type="button" data-bs-toggle="dropdown">
 
-
-        <!--begin::Mobile logo-->
-        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="index-2.html" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/admin/media/logos/default-small.svg') }}" class="h-30px" />
-            </a>
-        </div>
-        <!--end::Mobile logo-->
-
-        <!--begin::Header wrapper-->
-        <div class="d-flex align-items-stretch justify-content-end flex-lg-grow-1" id="kt_app_header_wrapper">
-
-            <!--begin::Navbar-->
-            <div class="app-navbar flex-shrink-0">
-
-                <!--begin::User menu-->
-                <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
-                    <!--begin::Menu wrapper-->
-                    <div class="cursor-pointer symbol symbol-35px"
-                        data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
-                        data-kt-menu-placement="bottom-end">
-                        <img src="{{ asset('assets/admin/media/avatars/300-3.jpg') }}" class="rounded-3" alt="user" />
-                    </div>
-
-                    <!--begin::User account menu-->
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
-                        data-kt-menu="true">
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <div class="menu-content d-flex align-items-center px-3">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{ asset('assets/admin/media/avatars/300-3.jpg') }}" />
-                                </div>
-                                <!--end::Avatar-->
-
-                                <!--begin::Username-->
-                                <div class="d-flex flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-5">
-                                        {{ auth()->guard('admin')->user()->name }}
-                                        <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
-                                    </div>
-
-                                    <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">
-                                        {{ auth()->guard('admin')->user()->email }}
-                                    </a>
-                                </div>
-                                <!--end::Username-->
+                        @if (app()->getLocale() == 'en')
+                            <img src="{{ asset('assets/admin/images/lang-flag.png') }}" alt="image"
+                                class="w-24 h-24 object-fit-cover rounded-circle">
+                        @else
+                            <img src="{{ asset('assets/admin/images/lang-flag.png') }}" alt="image"
+                                class="w-24 h-24 object-fit-cover rounded-circle">
+                        @endif
+                    </button>
+                    <div class="dropdown-menu to-top dropdown-menu-sm">
+                        <div
+                            class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
+                            <div>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-0">
+                                    Choose Your Language
+                                </h6>
                             </div>
                         </div>
-                        <!--end::Menu item-->
 
-                        <!--begin::Menu separator-->
-                        <div class="separator my-2"></div>
-                        <!--end::Menu separator-->
+                        <div class="max-h-400-px overflow-y-auto scroll-sm pe-8">
 
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-                            <a href="account/overview.html" class="menu-link px-5">
-                                My Profile
-                            </a>
-                        </div>
-                        <!--end::Menu item-->
-
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-                            <a href="apps/projects/list.html" class="menu-link px-5">
-                                <span class="menu-text">My Projects</span>
-                                <span class="menu-badge">
-                                    <span class="badge badge-light-danger badge-circle fw-bold fs-7">3</span>
-                                </span>
-                            </a>
-                        </div>
-                        <!--end::Menu item-->
-
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                            data-kt-menu-placement="right-start" data-kt-menu-offset="-15px, 0">
-                            <a href="#" class="menu-link px-5">
-                                <span class="menu-title">My Subscription</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-
-                            <!--begin::Menu sub-->
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/referrals.html" class="menu-link px-5">
-                                        Referrals
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/billing.html" class="menu-link px-5">
-                                        Billing
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/statements.html" class="menu-link px-5">
-                                        Payments
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/statements.html" class="menu-link d-flex flex-stack px-5">
-                                        Statements
-
-                                        <span class="ms-2 lh-0" data-bs-toggle="tooltip" title="View your statements">
-                                            <i class="ki-duotone ki-information-5 fs-5"><span class="path1"></span><span
-                                                    class="path2"></span><span class="path3"></span></i> </span>
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu separator-->
-                                <div class="separator my-2"></div>
-                                <!--end::Menu separator-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <div class="menu-content px-3">
-                                        <label class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
-                                                checked="checked" name="notifications" />
-                                            <span class="form-check-label text-muted fs-7">
-                                                Notifications
-                                            </span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu sub-->
-                        </div>
-                        <!--end::Menu item-->
-
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-                            <a href="account/statements.html" class="menu-link px-5">
-                                My Statements
-                            </a>
-                        </div>
-                        <!--end::Menu item-->
-
-                        <!--begin::Menu separator-->
-                        <div class="separator my-2"></div>
-                        <!--end::Menu separator-->
-
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                            data-kt-menu-placement="left-start" data-kt-menu-offset="-15px, 0">
-                            <a href="#" class="menu-link px-5">
-                                <span class="menu-title position-relative">
-                                    Language
-
+                            <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
+                                <a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"
+                                    class="form-check-label line-height-1 fw-medium text-secondary-light" for="english">
                                     <span
-                                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">
-                                        English <img class="w-15px h-15px rounded-1 ms-2"
-                                            src="{{ asset('assets/admin/media/flags/united-states.svg') }}" alt="" />
+                                        class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                        <img src="{{ asset('assets/admin/images/flags/flag1.png') }}" alt=""
+                                            class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
+                                        <span class="text-md fw-semibold mb-0">English</span>
                                     </span>
-                                </span>
-                            </a>
-
-                            <!--begin::Menu sub-->
-                            <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5 active">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/united-states.svg') }}"
-                                                alt="" />
-                                        </span>
-                                        English
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/spain.svg') }}" alt="" />
-                                        </span>
-                                        Spanish
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/germany.svg') }}" alt="" />
-                                        </span>
-                                        German
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/japan.svg') }}" alt="" />
-                                        </span>
-                                        Japanese
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="account/settings.html" class="menu-link d-flex px-5">
-                                        <span class="symbol symbol-20px me-4">
-                                            <img class="rounded-1"
-                                                src="{{ asset('assets/admin/media/flags/france.svg') }}" alt="" />
-                                        </span>
-                                        French
-                                    </a>
-                                </div>
-                                <!--end::Menu item-->
+                                </a>
                             </div>
-                            <!--end::Menu sub-->
-                        </div>
-                        <!--end::Menu item-->
 
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5 my-1">
-                            <a href="account/settings.html" class="menu-link px-5">
-                                Account Settings
+                            <div class="form-check style-check d-flex align-items-center justify-content-between mb-16">
+                                <a href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}"
+                                    class="form-check-label line-height-1 fw-medium text-secondary-light" for="arabic">
+                                    <span
+                                        class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                        <img src="{{ asset('assets/admin/images/flags/flag1.png') }}" alt=""
+                                            class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
+                                        <span class="text-md fw-semibold mb-0">Arabic</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Language dropdown end -->
+
+                <div class="dropdown">
+                    <button
+                        class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"
+                        type="button" data-bs-toggle="dropdown">
+                        <iconify-icon icon="mage:email" class="text-primary-light text-xl"></iconify-icon>
+                    </button>
+                    <div class="dropdown-menu to-top dropdown-menu-lg p-0">
+                        <div
+                            class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
+                            <div>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-0">Message</h6>
+                            </div>
+                            <span
+                                class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
+                        </div>
+
+                        <div class="max-h-400-px overflow-y-auto scroll-sm pe-4">
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-3.png') }}" alt="">
+                                        <span
+                                            class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
+                                            i’m...</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="text-sm text-secondary-light flex-shrink-0">12:30 PM</span>
+                                    <span
+                                        class="mt-4 text-xs text-base w-16-px h-16-px d-flex justify-content-center align-items-center bg-warning-main rounded-circle">8</span>
+                                </div>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-4.png') }}" alt="">
+                                        <span
+                                            class="w-8-px h-8-px  bg-neutral-300 rounded-circle position-absolute end-0 bottom-0"></span>
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
+                                            i’m...</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="text-sm text-secondary-light flex-shrink-0">12:30 PM</span>
+                                    <span
+                                        class="mt-4 text-xs text-base w-16-px h-16-px d-flex justify-content-center align-items-center bg-warning-main rounded-circle">2</span>
+                                </div>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-5.png') }}" alt="">
+                                        <span
+                                            class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
+                                            i’m...</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="text-sm text-secondary-light flex-shrink-0">12:30 PM</span>
+                                    <span
+                                        class="mt-4 text-xs text-base w-16-px h-16-px d-flex justify-content-center align-items-center bg-neutral-400 rounded-circle">0</span>
+                                </div>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-6.png') }}" alt="">
+                                        <span
+                                            class="w-8-px h-8-px bg-neutral-300 rounded-circle position-absolute end-0 bottom-0"></span>
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
+                                            i’m...</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="text-sm text-secondary-light flex-shrink-0">12:30 PM</span>
+                                    <span
+                                        class="mt-4 text-xs text-base w-16-px h-16-px d-flex justify-content-center align-items-center bg-neutral-400 rounded-circle">0</span>
+                                </div>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-7.png') }}" alt="">
+                                        <span
+                                            class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
+                                            i’m...</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-end">
+                                    <span class="text-sm text-secondary-light flex-shrink-0">12:30 PM</span>
+                                    <span
+                                        class="mt-4 text-xs text-base w-16-px h-16-px d-flex justify-content-center align-items-center bg-warning-main rounded-circle">8</span>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="text-center py-12 px-16">
+                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All
+                                Message</a>
+                        </div>
+                    </div>
+                </div><!-- Message dropdown end -->
+
+                <div class="dropdown">
+                    <button
+                        class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"
+                        type="button" data-bs-toggle="dropdown">
+                        <iconify-icon icon="iconoir:bell" class="text-primary-light text-xl"></iconify-icon>
+                    </button>
+                    <div class="dropdown-menu to-top dropdown-menu-lg p-0">
+                        <div
+                            class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
+                            <div>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-0">Notifications</h6>
+                            </div>
+                            <span
+                                class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
+                        </div>
+
+                        <div class="max-h-400-px overflow-y-auto scroll-sm pe-4">
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span
+                                        class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                                        <iconify-icon icon="bitcoin-icons:verify-outline"
+                                            class="icon text-xxl"></iconify-icon>
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Congratulations</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">Your profile
+                                            has been Verified. Your profile has been Verified</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span
+                                        class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-1.png') }}" alt="">
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Ronald Richards</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">You can
+                                            stitch between artboards</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span
+                                        class="w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                                        AM
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Arlene McCoy</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to
+                                            prototyping</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span
+                                        class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                                        <img src="{{ asset('assets/admin/images/notification/profile-2.png') }}" alt="">
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Annette Black</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to
+                                            prototyping</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
+                            </a>
+
+                            <a href="javascript:void(0)"
+                                class="px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between">
+                                <div
+                                    class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
+                                    <span
+                                        class="w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
+                                        DR
+                                    </span>
+                                    <div>
+                                        <h6 class="text-md fw-semibold mb-4">Darlene Robertson</h6>
+                                        <p class="mb-0 text-sm text-secondary-light text-w-200-px">Invite you to
+                                            prototyping</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-secondary-light flex-shrink-0">23 Mins ago</span>
                             </a>
                         </div>
-                        <!--end::Menu item-->
 
-                        <!--begin::Menu item-->
-                        <div class="menu-item px-5">
-
-
-                            <form method="POST" action="{{ route('admin.auth.logout') }}">
-                                @csrf
-
-                                <button type="submit" class="menu-link px-5">
-                                    Sign Out
-                                </button>
-                            </form>
+                        <div class="text-center py-12 px-16">
+                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All
+                                Notification</a>
                         </div>
-                        <!--end::Menu item-->
+
                     </div>
-                    <!--end::User account menu-->
+                </div><!-- Notification dropdown end -->
 
-                    <!--end::Menu wrapper-->
-                </div>
-                <!--end::User menu-->
+                <div class="dropdown">
+                    <button class="d-flex justify-content-center align-items-center rounded-circle" type="button"
+                        data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/admin/images/user.png') }}" alt="image"
+                            class="w-40-px h-40-px object-fit-cover rounded-circle">
+                    </button>
+                    <div class="dropdown-menu to-top dropdown-menu-sm">
+                        <div
+                            class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
+                            <div>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-2">Shaidul Islam</h6>
+                                <span class="text-secondary-light fw-medium text-sm">Admin</span>
+                            </div>
+                            <button type="button" class="hover-text-danger">
+                                <iconify-icon icon="radix-icons:cross-1" class="icon text-xl"></iconify-icon>
+                            </button>
+                        </div>
+                        <ul class="to-top-list">
+                            <li>
+                                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
+                                    href="view-profile.html">
+                                    <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon>
+                                    My Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
+                                    href="email.html">
+                                    <iconify-icon icon="tabler:message-check" class="icon text-xl"></iconify-icon>
+                                    Inbox</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
+                                    href="company.html">
+                                    <iconify-icon icon="icon-park-outline:setting-two"
+                                        class="icon text-xl"></iconify-icon> Setting</a>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.auth.logout') }}" method="POST">
+                                    @csrf
 
-                <!--begin::Aside toggle-->
-                <!--end::Header menu toggle-->
+                                    <button
+                                        class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3">
+
+                                        <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon>
+
+                                        Log Out
+
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- Profile dropdown end -->
             </div>
-            <!--end::Navbar-->
         </div>
-        <!--end::Header wrapper-->
     </div>
-    <!--end::Header container-->
 </div>
