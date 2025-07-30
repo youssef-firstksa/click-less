@@ -13,7 +13,7 @@ class BankController extends Controller
      */
     public function index()
     {
-        $banks = Bank::paginate(1);
+        $banks = Bank::paginate(request()->get('per_page', 10));
         return view('admin.banks.index', compact('banks'));
     }
 

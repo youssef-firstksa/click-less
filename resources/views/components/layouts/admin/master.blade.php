@@ -13,7 +13,7 @@
         <x-layouts.admin.header />
 
         <div class="dashboard-main-body">
-            <x-layouts.admin.page-head />
+            <x-layouts.admin.page-head :title="$title ?? ''" />
 
             {{ $slot }}
         </div>
