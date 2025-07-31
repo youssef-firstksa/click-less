@@ -22,7 +22,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        // return view('admin.banks.create');
+        return view('admin.banks.create');
     }
 
     /**

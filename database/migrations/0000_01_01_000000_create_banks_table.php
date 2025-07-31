@@ -15,7 +15,8 @@ class CreateBanksTable extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->string('color')->nullable();
+            $table->string('font_color')->nullable();
+            $table->string('background_color')->nullable();
             $table->string('logo')->nullable();
             $table->string('img')->nullable();
             $table->string('ai_key')->nullable();
@@ -28,7 +29,7 @@ class CreateBanksTable extends Migration
             $table->foreignId('bank_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
             $table->string('slug');
-            $table->text('details');
+            $table->text('description');
             $table->string('locale')->index();
             $table->unique(['bank_id', 'locale']);
         });

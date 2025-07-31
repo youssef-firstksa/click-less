@@ -19,7 +19,7 @@ class BankTranslationFactory extends Factory
         return [
             'title' => $this->faker->company,
             'slug' => $this->faker->slug,
-            'details' => $this->faker->paragraph,
+            'description' => $this->faker->paragraph,
             'locale' => 'en',
         ];
     }

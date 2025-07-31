@@ -28,7 +28,7 @@
                     <li>
                         <a href="{{ route('admin.banks.index') }}">
                             <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('admin.bank_management.page_title') }}
+                            {{ __('admin.bank_management.index_title') }}
                         </a>
                     </li>
 

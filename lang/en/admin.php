@@ -19,12 +19,25 @@ return [
         'table_id' => '#',
         'search' => 'Search',
         'all' => 'All',
+        'select' => 'Select',
     ],
     'bank_management' => [
         'sidebar_title' => 'Bank Management',
-        'page_title' => 'Banks List',
+        'index_title' => 'Banks List',
+        'create_title' => 'Create New Bank',
+        'edit_title' => 'Edit Bank',
+        'delete_title' => 'Delete Bank',
+        'show_title' => 'Show Bank',
+
         'form' => [
             'title' => 'Title',
+            'description' => 'Description',
+            'font_color' => 'Font Color',
+            'background_color' => 'Background Color',
+            'logo' => 'Logo',
+            'image' => 'Image',
+            'ai_key' => 'Ai Key',
+            'status' => 'Status',
         ],
     ],
 ];
