@@ -26,7 +26,7 @@ return [
         'sidebar_title' => 'إدارة بنك المعرفة',
         'index_title' => 'قائمة البنوك',
         'create_title' => 'إنشاء بنك جديد',
-        'edit_title' => 'Edit Bank',
+        'edit_title' => 'تعديل بنك',
         'delete_title' => 'Delete Bank',
         'show_title' => 'Show Bank',
         'form' => [
