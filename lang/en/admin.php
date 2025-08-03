@@ -20,6 +20,7 @@ return [
         'search' => 'Search',
         'all' => 'All',
         'select' => 'Select',
+        'back' => 'Back',
     ],
     'bank_management' => [
         'sidebar_title' => 'Bank Management',

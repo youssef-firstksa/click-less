@@ -30,7 +30,7 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -46,7 +46,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        // return view('admin.banks.edit');
+        return view('admin.banks.edit', compact('bank'));
     }
 
     /**
@@ -54,7 +54,7 @@ class BankController extends Controller
      */
     public function update(Request $request, Bank $bank)
     {
-        //
+        dd($request->all());
     }
 
     /**

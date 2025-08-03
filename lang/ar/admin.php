@@ -20,6 +20,7 @@ return [
         'search' => 'بحث',
         'all' => 'الكل',
         'select' => 'اختر',
+        'back' => 'الرجوع',
     ],
     'bank_management' => [
         'sidebar_title' => 'إدارة بنك المعرفة',
