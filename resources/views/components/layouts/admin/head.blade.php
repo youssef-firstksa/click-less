@@ -32,3 +32,5 @@
 <!-- main css -->
 <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/admin/css/custom.css') }}">
+
+@stack('styles')
