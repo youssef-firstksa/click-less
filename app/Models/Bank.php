@@ -21,7 +21,7 @@ class Bank extends Model implements HasMedia
 
     public $translatedAttributes = ['title', 'slug', 'description'];
 
-    protected $fillable = ['font_color', 'background_color', 'status', 'ai_key'];
+    protected $fillable = ['sort_order', 'font_color', 'background_color', 'status', 'ai_key'];
 
     protected $casts = [
         'status' => Status::class,
