@@ -62,12 +62,17 @@
         <x-admin.form.label for="logo">{{__('admin.bank_management.form.logo')}}</x-admin.form.label>
         <x-admin.form.input type="file" name="logo" id="logo" placeholder="{{__('admin.bank_management.form.logo')}}" />
         <x-admin.form.error :messages="$errors->get('logo')" />
+
+        <div class="mt-2">
+            <img style="height: 70px" src="{{ $bank->getFirstMediaUrlSafe('logo') }}" alt="{{ $bank->title }}">
+        </div>
     </div>
 
     <div class="col-lg-6">
-        <x-admin.form.label for="img">{{__('admin.bank_management.form.image')}}</x-admin.form.label>
-        <x-admin.form.input type="file" name="img" id="img" placeholder="{{__('admin.bank_management.form.image')}}" />
-        <x-admin.form.error :messages="$errors->get('img')" />
+        <x-admin.form.label for="image">{{__('admin.bank_management.form.image')}}</x-admin.form.label>
+        <x-admin.form.input type="file" name="image" id="image"
+            placeholder="{{__('admin.bank_management.form.image')}}" />
+        <x-admin.form.error :messages="$errors->get('image')" />
     </div>
 
     <div class="col-lg-6">

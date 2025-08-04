@@ -5,7 +5,7 @@
 
     <div class="card radius-12">
         <div class="card-body">
-            <form action="{{ route('admin.banks.store') }}" method="POST">
+            <form action="{{ route('admin.banks.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 @include('admin.banks.form', ['bank' => new App\Models\Bank])

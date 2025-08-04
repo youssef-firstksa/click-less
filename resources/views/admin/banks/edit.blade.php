@@ -1,7 +1,13 @@
 <x-layouts.admin.master>
+
     <x-slot name="title">
         {{ __('admin.bank_management.edit_title') }}
     </x-slot>
+
+    <div>
+        <img class="w-100" style="height: 300px;object-fit: cover" src="{{ $bank->getFirstMediaUrlSafe('image') }}"
+            alt="">
+    </div>
 
     <div class="card radius-12">
         <div class="card-body">

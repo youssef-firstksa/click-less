@@ -37,6 +37,15 @@ class BankController extends Controller
     public function store(StoreBankRequest $request)
     {
         $bank = Bank::create($request->validated());
+
+        if ($request->hasFile('image')) {
+            $bank->addMediaFromRequest('image')->toMediaCollection('image', 'media');
+        }
+
+        if ($request->hasFile('logo')) {
+            $bank->addMediaFromRequest('logo')->toMediaCollection('logo', 'media');
+        }
+
         return redirect()->route('admin.banks.index')->with('success', __('admin.messages.success.created', ['resource' => $bank->title]));
     }
 
