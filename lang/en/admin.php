@@ -21,6 +21,28 @@ return [
         'all' => 'All',
         'select' => 'Select',
         'back' => 'Back',
+        'confirm' => 'Confirm',
+        'cancel' => 'Cancel',
+    ],
+    'messages' => [
+        'success' => [
+            'title' => 'Success!',
+            'created' => 'The :resource has been created',
+            'updated' => 'The :resource has been updated',
+            'deleted' => 'The :resource has been deleted',
+        ],
+        'error' => [
+            'title' => 'Error!',
+            'create' => 'Failed to create the :resource',
+            'update' => 'Failed to update the :resource',
+            'delete' => 'Failed to delete the :resource',
+        ],
+        'confirm' => [
+            'delete' => [
+                'title' => 'Confirm Delete Operation',
+                'description' => 'Are you sure that you want to delete this item?',
+            ],
+        ],
     ],
     'bank_management' => [
         'sidebar_title' => 'Bank Management',

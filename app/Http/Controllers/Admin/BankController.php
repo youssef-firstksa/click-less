@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBankRequest;
+use App\Http\Requests\UpdateBankRequest;
 use App\Models\Bank;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,11 @@ class BankController extends Controller
      */
     public function index()
     {
-        $banks = Bank::paginate(request()->get('per_page', 10));
+        $banks = Bank::commonFilters([
+            'search' => ['translation.title'],
+            'status' => 'status',
+        ])->commonPaginate();
+
         return view('admin.banks.index', compact('banks'));
     }
 
@@ -28,9 +34,10 @@ class BankController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBankRequest $request)
     {
-        dd($request->all());
+        $bank = Bank::create($request->validated());
+        return redirect()->route('admin.banks.index')->with('success', __('admin.messages.success.created', ['resource' => $bank->title]));
     }
 
     /**
@@ -52,9 +59,10 @@ class BankController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bank $bank)
+    public function update(UpdateBankRequest $request, Bank $bank)
     {
-        dd($request->all());
+        $bank->update($request->validated());
+        return redirect()->route('admin.banks.index')->with('success', __('admin.messages.success.updated', ['resource' => $bank->title]));
     }
 
     /**
@@ -62,6 +70,7 @@ class BankController extends Controller
      */
     public function destroy(Bank $bank)
     {
-        //
+        $bank->delete();
+        return redirect()->route('admin.banks.index');
     }
 }

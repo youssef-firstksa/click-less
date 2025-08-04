@@ -20,8 +20,6 @@ class BankFactory extends Factory
         return [
             'font_color' => $this->faker->safeHexColor(),
             'background_color' => $this->faker->safeHexColor(),
-            'logo' => $this->faker->imageUrl(200, 200, 'business', true, 'logo'),
-            'img' => $this->faker->imageUrl(600, 400, 'finance', true, 'bank'),
             'ai_key' => $this->faker->uuid(),
         ];
     }

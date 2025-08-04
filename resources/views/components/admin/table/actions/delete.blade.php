@@ -1,6 +1,6 @@
 @props(['route', 'model' => null])
 
-<form action="{{ $route }}" method="POST">
+<form action="{{ $route }}" method="POST" class="sweet-alert-delete-form">
     @csrf
     @method('DELETE')
 

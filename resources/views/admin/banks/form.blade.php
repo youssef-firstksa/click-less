@@ -74,10 +74,10 @@
         <x-admin.form.label for="status">{{__('admin.bank_management.form.status')}}</x-admin.form.label>
         <x-admin.form.select name="status" id="status">
             <option value="" disabled selected>{{__('admin.general.select')}}</option>
-            <option value="activated" @selected(old('status', $bank->status) === 'activated')>
+            <option value="activated" @selected(old('status', $bank->status?->value) === App\Enums\Status::ACTIVATED->value)>
                 {{__('admin.general.activated')}}
             </option>
-            <option value="disabled" @selected(old('status', $bank->status) === 'disabled')>
+            <option value="disabled" @selected(old('status', $bank->status?->value) === App\Enums\Status::DISABLED->value)>
                 {{__('admin.general.disabled')}}
             </option>
         </x-admin.form.select>

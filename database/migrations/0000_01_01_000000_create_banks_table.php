@@ -15,13 +15,13 @@ class CreateBanksTable extends Migration
     {
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sort_order')->default(1);
             $table->string('font_color')->nullable();
             $table->string('background_color')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('img')->nullable();
             $table->string('ai_key')->nullable();
             $table->string('status')->default('activated');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('bank_translations', function (Blueprint $table) {
@@ -31,6 +31,7 @@ class CreateBanksTable extends Migration
             $table->string('slug');
             $table->text('description');
             $table->string('locale')->index();
+            $table->unique(['locale', 'slug']);
             $table->unique(['bank_id', 'locale']);
         });
     }

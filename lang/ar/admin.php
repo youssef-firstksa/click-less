@@ -21,6 +21,28 @@ return [
         'all' => 'الكل',
         'select' => 'اختر',
         'back' => 'الرجوع',
+        'confirm' => 'تأكيد',
+        'cancel' => 'الغاء',
+    ],
+    'messages' => [
+        'success' => [
+            'title' => 'تم بنجاح!',
+            'created' => 'تم إنشاء :resource بنجاح',
+            'updated' => 'تم تحديث :resource بنجاح',
+            'deleted' => 'تم حذف :resource بنجاح',
+        ],
+        'error' => [
+            'title' => 'حدث خطأ!',
+            'create' => 'فشل في إنشاء :resource',
+            'update' => 'فشل في تحديث :resource',
+            'delete' => 'فشل في حذف :resource',
+        ],
+        'confirm' => [
+            'delete' => [
+                'title' => 'تأكيد عملية الحذف',
+                'description' => 'هل أنت متأكد أنك تريد حذف هذا العنصر؟',
+            ],
+        ],
     ],
     'bank_management' => [
         'sidebar_title' => 'إدارة بنك المعرفة',

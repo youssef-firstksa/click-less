@@ -3,6 +3,8 @@
         {{ __('admin.bank_management.index_title') }}
     </x-slot>
 
+
+
     <div class="card">
         <div
             class="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
@@ -49,10 +51,10 @@
 
                                 <td class="text-center">
 
-                                    @if ($bank->status == 'activated')
-                                        <x-admin.status status="success" :content="strtoupper(__('admin.general.' . $bank->status))" />
+                                    @if ($bank->status == App\Enums\Status::ACTIVATED)
+                                        <x-admin.status status="success" :content="strtoupper(__('admin.general.' . $bank->status->value))" />
                                     @else
-                                        <x-admin.status status="danger" :content="strtoupper(__('admin.general.' . $bank->status))" />
+                                        <x-admin.status status="danger" :content="strtoupper(__('admin.general.' . $bank->status->value))" />
                                     @endif
                                 </td>
 

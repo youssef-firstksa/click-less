@@ -27,4 +27,6 @@
 <!-- main js -->
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
 
+<x-admin.sweet-alert />
+
 @stack('scripts')
