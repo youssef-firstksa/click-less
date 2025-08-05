@@ -58,13 +58,13 @@ return [
             'status' => 'Status',
         ],
     ],
-    'admins_management' => [
-        'sidebar_title' => 'Admins Management',
-        'index_title' => 'Admins List',
-        'create_title' => 'Create New Admin',
-        'edit_title' => 'Edit Admin',
-        'delete_title' => 'Delete Admin',
-        'show_title' => 'Show Admin',
+    'users_management' => [
+        'sidebar_title' => 'Users Management',
+        'index_title' => 'Users List',
+        'create_title' => 'Create New User',
+        'edit_title' => 'Edit User',
+        'delete_title' => 'Delete User',
+        'show_title' => 'Show User',
 
         'form' => [
             'name' => 'Name',

@@ -26,9 +26,9 @@
 
                 <ul class="sidebar-submenu">
                     <li>
-                        <a href="{{ route('admin.admins.index') }}">
+                        <a href="{{ route('admin.users.index') }}">
                             <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('admin.admins_management.index_title') }}
+                            {{ __('admin.users_management.index_title') }}
                         </a>
                     </li>
 

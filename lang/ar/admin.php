@@ -58,13 +58,13 @@ return [
             'status' => 'الحالة',
         ],
     ],
-    'admins_management' => [
-        'sidebar_title' => 'إدارة المسؤولين',
-        'index_title' => 'قائمة المسؤولين',
-        'create_title' => 'إضافة مسؤول جديد',
-        'edit_title' => 'تعديل بيانات المسؤول',
-        'delete_title' => 'حذف المسؤول',
-        'show_title' => 'عرض المسؤول',
+    'users_management' => [
+        'sidebar_title' => 'إدارة المستخدمين',
+        'index_title' => 'قائمة المستخدمين',
+        'create_title' => 'إضافة مستخدم جديد',
+        'edit_title' => 'تعديل بيانات المستخدم',
+        'delete_title' => 'حذف المستخدم',
+        'show_title' => 'عرض المستخدم',
 
         'form' => [
             'name' => 'الاسم',
