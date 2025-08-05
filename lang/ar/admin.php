@@ -44,6 +44,37 @@ return [
             ],
         ],
     ],
+    'permissions_management' => [
+        'sidebar_title' => 'إدارة الصلاحيات',
+        'index_title' => 'قائمة الصلاحيات',
+        'create_title' => 'إضافة صلاحية جديدة',
+        'edit_title' => 'تعديل الصلاحية',
+        'delete_title' => 'حذف الصلاحية',
+        'show_title' => 'عرض الصلاحية',
+
+        'form' => [
+            'title' => 'العنوان',
+            'description' => 'الوصف',
+            'status' => 'الحالة',
+        ],
+    ],
+    'admins_management' => [
+        'sidebar_title' => 'إدارة المسؤولين',
+        'index_title' => 'قائمة المسؤولين',
+        'create_title' => 'إضافة مسؤول جديد',
+        'edit_title' => 'تعديل بيانات المسؤول',
+        'delete_title' => 'حذف المسؤول',
+        'show_title' => 'عرض المسؤول',
+
+        'form' => [
+            'name' => 'الاسم',
+            'email' => 'البريد الإلكتروني',
+            'password' => 'كلمة المرور',
+            'password_confirmation' => 'تأكيد كلمة المرور',
+            'role' => 'الدور',
+            'status' => 'الحالة',
+        ],
+    ],
     'bank_management' => [
         'sidebar_title' => 'إدارة بنك المعرفة',
         'index_title' => 'قائمة البنوك',

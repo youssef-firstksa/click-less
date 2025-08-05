@@ -44,6 +44,37 @@ return [
             ],
         ],
     ],
+    'permissions_management' => [
+        'sidebar_title' => 'Permissions Management',
+        'index_title' => 'Permissions List',
+        'create_title' => 'Create New Permission',
+        'edit_title' => 'Edit Permission',
+        'delete_title' => 'Delete Permission',
+        'show_title' => 'Show Permission',
+
+        'form' => [
+            'title' => 'Title',
+            'description' => 'Description',
+            'status' => 'Status',
+        ],
+    ],
+    'admins_management' => [
+        'sidebar_title' => 'Admins Management',
+        'index_title' => 'Admins List',
+        'create_title' => 'Create New Admin',
+        'edit_title' => 'Edit Admin',
+        'delete_title' => 'Delete Admin',
+        'show_title' => 'Show Admin',
+
+        'form' => [
+            'name' => 'Name',
+            'email' => 'Email',
+            'password' => 'Password',
+            'password_confirmation' => 'Password Confirmation',
+            'role' => 'Role',
+            'status' => 'Status',
+        ],
+    ],
     'bank_management' => [
         'sidebar_title' => 'Bank Management',
         'index_title' => 'Banks List',

@@ -21,6 +21,23 @@
             <li class="dropdown">
                 <a href="javascript:void(0)">
                     <iconify-icon icon="solar:cloud-broken" class="menu-icon"></iconify-icon>
+                    <span>{{__('admin.permissions_management.sidebar_title')}}</span>
+                </a>
+
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ route('admin.admins.index') }}">
+                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            {{ __('admin.admins_management.index_title') }}
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="solar:cloud-broken" class="menu-icon"></iconify-icon>
                     <span>{{__('admin.bank_management.sidebar_title')}}</span>
                 </a>
 
@@ -34,6 +51,8 @@
 
                 </ul>
             </li>
+
+
         </ul>
     </div>
 </aside>

@@ -3,13 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\Status;
+use App\Traits\CommonFilters;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, CommonFilters;
 
     /**
      * The attributes that are mass assignable.
@@ -42,6 +45,7 @@ class Admin extends Authenticatable
     {
         return [
             'password' => 'hashed',
+            'status' => Status::class,
         ];
     }
 }

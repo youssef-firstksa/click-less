@@ -12,7 +12,7 @@
             <form action="{{ URL::current() }}" class="d-flex align-items-center flex-wrap gap-3">
                 <x-admin.table.filters.per-page />
                 <x-admin.table.filters.search />
-                <x-admin.table.filters.status :options="['activated' => __('admin.general.activated'), 'disabled' => __('admin.general.disabled')]" />
+                <x-admin.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
             <x-admin.button class="btn-primary" :href="route('admin.banks.create')">

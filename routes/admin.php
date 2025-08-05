@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\BankController;
 use Illuminate\Support\Facades\Route;
@@ -18,5 +19,6 @@ Route::middleware(['auth:admin'])->group(function () {
     })->name('dashboard');
 
 
+    Route::resource('admins', AdminController::class);
     Route::resource('banks', BankController::class);
 });
