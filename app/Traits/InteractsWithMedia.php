@@ -20,4 +20,10 @@ trait InteractsWithMedia
 
         return $media;
     }
+
+    public function hasMedia(string $collectionName = 'default', string $conversionName = ''): bool
+    {
+        $mediaItem = $this->getFirstMedia($collectionName);
+        return file_exists($mediaItem?->getPath($conversionName));
+    }
 }

@@ -71,6 +71,15 @@ class BankController extends Controller
     public function update(UpdateBankRequest $request, Bank $bank)
     {
         $bank->update($request->validated());
+
+        if ($request->hasFile('image')) {
+            $bank->addMediaFromRequest('image')->toMediaCollection('image', 'media');
+        }
+
+        if ($request->hasFile('logo')) {
+            $bank->addMediaFromRequest('logo')->toMediaCollection('logo', 'media');
+        }
+
         return redirect()->route('admin.banks.index')->with('success', __('admin.messages.success.updated', ['resource' => $bank->title]));
     }
 

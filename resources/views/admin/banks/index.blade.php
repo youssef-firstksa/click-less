@@ -41,7 +41,8 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <img src="{{ $bank->getFirstMediaUrlSafe('logo') }}" alt=""
-                                            class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden">
+                                            class="w-40-px h-40-px rounded-circle flex-shrink-0 me-12 overflow-hidden"
+                                            style="object-fit: contain">
                                         <div class="flex-grow-1">
                                             <span
                                                 class="text-md mb-0 fw-normal text-secondary-light">{{$bank->title}}</span>

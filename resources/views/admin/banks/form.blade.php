@@ -63,9 +63,11 @@
         <x-admin.form.input type="file" name="logo" id="logo" placeholder="{{__('admin.bank_management.form.logo')}}" />
         <x-admin.form.error :messages="$errors->get('logo')" />
 
-        <div class="mt-2">
-            <img style="height: 70px" src="{{ $bank->getFirstMediaUrlSafe('logo') }}" alt="{{ $bank->title }}">
-        </div>
+        @if ($bank->hasMedia('logo'))
+            <div class="mt-2">
+                <img style="height: 50px;" src="{{ $bank->getFirstMediaUrlSafe('logo') }}" alt="{{ $bank->title }}">
+            </div>
+        @endif
     </div>
 
     <div class="col-lg-6">

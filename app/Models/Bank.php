@@ -9,7 +9,6 @@ use App\Enums\Status;
 use App\Traits\CommonFilters;
 use App\Traits\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
 
 use Spatie\Image\Enums\Fit;
