@@ -35,9 +35,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         then: function () {
             Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localize'])
-                ->prefix(LaravelLocalization::setLocale() . '/admin')
-                ->as('admin.')
-                ->group(base_path('routes/admin.php'));
+                ->prefix(LaravelLocalization::setLocale() . '/dashboard')
+                ->as('dashboard.')
+                ->group(base_path('routes/dashboard.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {

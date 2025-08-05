@@ -20,7 +20,7 @@ class BankController extends Controller
             'status' => 'status',
         ])->commonPaginate();
 
-        return view('admin.banks.index', compact('banks'));
+        return view('dashboard.banks.index', compact('banks'));
     }
 
     /**
@@ -28,7 +28,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        return view('admin.banks.create');
+        return view('dashboard.banks.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class BankController extends Controller
             $bank->addMediaFromRequest('logo')->toMediaCollection('logo', 'media');
         }
 
-        return redirect()->route('admin.banks.index')->with('success', __('admin.messages.success.created', ['resource' => $bank->title]));
+        return redirect()->route('dashboard.banks.index')->with('success', __('dashboard.messages.success.created', ['resource' => $bank->title]));
     }
 
     /**
@@ -54,7 +54,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
-        // return view('admin.banks.show');
+        // return view('dashboard.banks.show');
     }
 
     /**
@@ -62,7 +62,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        return view('admin.banks.edit', compact('bank'));
+        return view('dashboard.banks.edit', compact('bank'));
     }
 
     /**
@@ -80,7 +80,7 @@ class BankController extends Controller
             $bank->addMediaFromRequest('logo')->toMediaCollection('logo', 'media');
         }
 
-        return redirect()->route('admin.banks.index')->with('success', __('admin.messages.success.updated', ['resource' => $bank->title]));
+        return redirect()->route('dashboard.banks.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $bank->title]));
     }
 
     /**
@@ -89,6 +89,6 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
         $bank->delete();
-        return redirect()->route('admin.banks.index');
+        return redirect()->route('dashboard.banks.index');
     }
 }

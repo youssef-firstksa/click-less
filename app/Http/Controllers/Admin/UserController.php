@@ -19,7 +19,7 @@ class UserController extends Controller
             'status' => 'status',
         ])->commonPaginate();
 
-        return view('admin.users.index', compact('users'));
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('dashboard.users.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         $user = User::create($request->validated());
 
-        return redirect()->route('admin.users.index')->with('success', __('admin.messages.success.created', ['resource' => $user->name]));
+        return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.created', ['resource' => $user->name]));
     }
 
     /**
@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // return view('admin.users.show');
+        // return view('dashboard.users.show');
     }
 
     /**
@@ -53,7 +53,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        return view('dashboard.users.edit', compact('user'));
     }
 
     /**
@@ -67,7 +67,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('admin.users.index')->with('success', __('admin.messages.success.updated', ['resource' => $user->name]));
+        return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $user->name]));
     }
 
     /**
@@ -76,6 +76,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('dashboard.users.index');
     }
 }

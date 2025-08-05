@@ -15,7 +15,7 @@ enum Status: string
     public static function labels(): array
     {
         return collect(self::cases())->mapWithKeys(fn($case) => [
-            $case->value => __("admin.general.{$case->value}")
+            $case->value => __("dashboard.general.{$case->value}")
         ])->toArray();
     }
 }

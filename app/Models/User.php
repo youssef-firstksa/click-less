@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\Status;
 use App\Traits\CommonFilters;
+use App\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,7 +15,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, CommonFilters;
+    use HasFactory, Notifiable, CommonFilters, HasRoles;
 
     /**
      * The attributes that are mass assignable.

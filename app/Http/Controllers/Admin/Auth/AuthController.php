@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function loginView()
     {
-        return view('admin.auth.login');
+        return view('dashboard.auth.login');
     }
 
     public function login(Request $request)
@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('dashboard.dashboard');
     }
 
     public function logout(Request $request)
@@ -40,6 +40,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.auth.login');
+        return redirect()->route('dashboard.auth.login');
     }
 }
