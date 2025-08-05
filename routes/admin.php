@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\BankController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['guest:admin'])->group(function () {
-    Route::get('login', [AuthController::class, 'loginView'])->name('auth.login');
-    Route::post('login', [AuthController::class, 'login']);
-});
+// Route::middleware(['guest:admin'])->group(function () {
+//     Route::get('login', [AuthController::class, 'loginView'])->name('auth.login');
+//     Route::post('login', [AuthController::class, 'login']);
+// });
 
-Route::middleware(['auth:admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
 
     Route::get('/', function () {
@@ -19,6 +19,6 @@ Route::middleware(['auth:admin'])->group(function () {
     })->name('dashboard');
 
 
-    Route::resource('admins', AdminController::class);
+    Route::resource('users', UserController::class);
     Route::resource('banks', BankController::class);
 });

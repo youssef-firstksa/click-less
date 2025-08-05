@@ -1,16 +1,16 @@
 <x-layouts.admin.master>
 
     <x-slot name="title">
-        {{ __('admin.admins_management.edit_title') }}
+        {{ __('admin.users_management.edit_title') }}
     </x-slot>
 
     <div class="card radius-12">
         <div class="card-body">
-            <form action="{{ route('admin.admins.update', $admin) }}" method="POST">
+            <form action="{{ route('admin.users.update', $user) }}" method="POST">
                 @csrf
                 @method('PUT')
 
-                @include('admin.admins.form')
+                @include('admin.users.form')
 
                 <x-admin.form.actions>
                     <x-admin.button type="submit" class="btn-success">

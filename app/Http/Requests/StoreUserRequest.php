@@ -6,7 +6,7 @@ use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateAdminRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class UpdateAdminRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('admins', 'email')->ignore($this->route('admin'))],
-            'password' => ['nullable', 'confirmed', 'min:8'],
+            'email' => ['required', 'email', Rule::unique('admins', 'email')],
+            'password' => ['required', 'confirmed', 'min:8'],
             'status' => ['required', Rule::in(Status::cases())],
             // 'role' => ['required', Rule::in(Status::cases())],
         ];

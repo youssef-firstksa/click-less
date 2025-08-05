@@ -13,17 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('agent_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable();
-            $table->string('gender');
-            $table->integer('points')->nullable();
-            $table->foreignId('active_bank_id')->nullable()->constrained('banks', 'id')->cascadeOnUpdate()->nullOnDelete();
-            $table->string('account_status')->default('activated');
-            $table->string('login_status')->default('online');
+            $table->string('gender')->default('male');
+            $table->string('status')->default('activated');
             $table->rememberToken();
             $table->timestamps();
         });

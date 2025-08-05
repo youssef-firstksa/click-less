@@ -9,12 +9,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 function handleAuthRedirect(Middleware $middleware)
 {
     $middleware->redirectUsersTo(function () {
-        return auth()->guard('admin')->user() ? route('admin.dashboard') : route('frontend.index');
+        return route('frontend.index');
     });
 
     $middleware->redirectGuestsTo(function () {
-        $isAdmin = request()->is('admin') || request()->is('*/admin') || request()->is('admin/*') || request()->is('*/admin/*');
-        return $isAdmin ? route('admin.auth.login') : route('login');
+        return route('login');
     });
 }
 

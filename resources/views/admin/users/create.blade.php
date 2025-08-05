@@ -1,14 +1,14 @@
 <x-layouts.admin.master>
     <x-slot name="title">
-        {{ __('admin.admins_management.create_title') }}
+        {{ __('admin.users_management.create_title') }}
     </x-slot>
 
     <div class="card radius-12">
         <div class="card-body">
-            <form action="{{ route('admin.admins.store') }}" method="POST">
+            <form action="{{ route('admin.users.store') }}" method="POST">
                 @csrf
 
-                @include('admin.admins.form', ['admin' => new App\Models\Admin])
+                @include('admin.users.form', ['user' => new App\Models\User])
 
 
                 <x-admin.form.actions>

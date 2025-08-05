@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
         Bank::factory()->count(2)->create();
 
         User::factory()->create([
-            'name' => 'User',
-            'email' => 'user@clickless.com',
-        ]);
-
-        Admin::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@clickless.com',
+        ]);
+
+        User::factory()->create([
+            'name' => 'User',
+            'email' => 'user@clickless.com',
         ]);
 
         User::factory(10)->create();
