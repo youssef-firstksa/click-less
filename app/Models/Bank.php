@@ -11,6 +11,7 @@ use App\Traits\CommonFilters;
 use App\Traits\HasStatus;
 use App\Traits\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
@@ -29,6 +30,11 @@ class Bank extends Model implements HasMedia
     protected $casts = [
         'status' => Status::class,
     ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 
     public function registerMediaCollections(): void
     {

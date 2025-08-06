@@ -1,6 +1,6 @@
 <x-layouts.dashboard.master>
     <x-slot name="title">
-        {{ __('dashboard.products_management.index_title') }}
+        {{ __('dashboard.sections_management.index_title') }}
     </x-slot>
 
 
@@ -14,7 +14,7 @@
                 <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            <x-dashboard.button class="btn-primary-600" :href="route('dashboard.products.create')">
+            <x-dashboard.button class="btn-primary-600" :href="route('dashboard.sections.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
             </x-dashboard.button>
@@ -27,35 +27,35 @@
                     <thead>
                         <tr>
                             <th scope="col">{{__('dashboard.general.table_id')}}</th>
-                            <th scope="col">{{__('dashboard.products_management.form.title')}}</th>
+                            <th scope="col">{{__('dashboard.sections_management.form.title')}}</th>
                             <th scope="col" class="text-center">{{__('dashboard.general.status')}}</th>
                             <th scope="col" class="text-center">{{__('dashboard.general.action')}}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
+                        @foreach ($sections as $section)
                             <tr>
-                                <td>{{ $product->id }}</td>
+                                <td>{{ $section->id }}</td>
 
-                                <td>{{ $product->title }}</td>
+                                <td>{{ $section->title }}</td>
 
                                 <td class="text-center">
 
-                                    @if ($product->status == App\Enums\Status::ACTIVATED)
-                                        <x-dashboard.status status="success" :content="strtoupper(__('dashboard.general.' . $product->status->value))" />
+                                    @if ($section->status == App\Enums\Status::ACTIVATED)
+                                        <x-dashboard.status status="success" :content="strtoupper(__('dashboard.general.' . $section->status->value))" />
                                     @else
-                                        <x-dashboard.status status="danger" :content="strtoupper(__('dashboard.general.' . $product->status->value))" />
+                                        <x-dashboard.status status="danger" :content="strtoupper(__('dashboard.general.' . $section->status->value))" />
                                     @endif
                                 </td>
 
                                 <td class="text-center">
                                     <div class="d-flex align-items-center gap-10 justify-content-center">
                                         <x-dashboard.table.actions.show
-                                            route="{{ route('dashboard.products.show', $product) }}" :model="$product" />
+                                            route="{{ route('dashboard.sections.show', $section) }}" :model="$section" />
                                         <x-dashboard.table.actions.edit
-                                            route="{{ route('dashboard.products.edit', $product) }}" :model="$product" />
+                                            route="{{ route('dashboard.sections.edit', $section) }}" :model="$section" />
                                         <x-dashboard.table.actions.delete
-                                            route="{{ route('dashboard.products.destroy', $product) }}" :model="$product" />
+                                            route="{{ route('dashboard.sections.destroy', $section) }}" :model="$section" />
                                     </div>
                                 </td>
                             </tr>
@@ -65,7 +65,7 @@
             </div>
 
 
-            <x-dashboard.table.pagination :data="$products" class="mt-3" />
+            <x-dashboard.table.pagination :data="$sections" class="mt-3" />
         </div>
     </div>
     </x-layouts.admin.master>

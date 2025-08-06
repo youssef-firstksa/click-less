@@ -110,4 +110,18 @@ return [
             'bank' => 'Bank',
         ],
     ],
+    'sections_management' => [
+        'index_title' => 'Sections List',
+        'create_title' => 'Create New Section',
+        'edit_title' => 'Edit Section',
+        'delete_title' => 'Delete Section',
+        'show_title' => 'Show Section',
+
+        'form' => [
+            'title' => 'Title',
+            'status' => 'Status',
+            'bank' => 'Bank',
+            'product' => 'Product',
+        ],
+    ],
 ];

@@ -110,4 +110,18 @@ return [
             'bank' => 'البنك',
         ],
     ],
+    'sections_management' => [
+        'index_title' => 'قائمة أقسام المنتجات',
+        'create_title' => 'إنشاء قسم جديد',
+        'edit_title' => 'تعديل القسم',
+        'delete_title' => 'حذف القسم',
+        'show_title' => 'عرض القسم',
+
+        'form' => [
+            'title' => 'العنوان',
+            'status' => 'الحالة',
+            'bank' => 'البنك',
+            'product' => 'المنتج',
+        ],
+    ],
 ];
