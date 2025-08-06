@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bank_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('sort_order')->default(1);
@@ -20,12 +20,12 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('category_translations', function (Blueprint $table) {
+        Schema::create('product_translations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
             $table->string('locale')->index();
-            $table->unique(['category_id', 'locale']);
+            $table->unique(['product_id', 'locale']);
         });
     }
 
@@ -34,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_translations');
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('product_translations');
+        Schema::dropIfExists('products');
     }
 };

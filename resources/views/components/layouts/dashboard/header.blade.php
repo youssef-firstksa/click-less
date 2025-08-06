@@ -364,7 +364,7 @@
                                         class="icon text-xl"></iconify-icon> Setting</a>
                             </li>
                             <li>
-                                <form action="{{ route('dashboard.auth.logout') }}" method="POST">
+                                <form action="{{ route('logout') }}" method="POST">
                                     @csrf
 
                                     <button
