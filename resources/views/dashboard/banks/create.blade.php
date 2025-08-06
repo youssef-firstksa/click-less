@@ -12,12 +12,12 @@
 
 
                 <x-dashboard.form.actions>
-                    <x-dashboard.button type="submit" class="btn-primary">
+                    <x-dashboard.button type="submit" class="btn-primary-600">
                         {{__('dashboard.general.create')}}
-                    </x-admin.button>
-                </x-admin.form.actions>
+                        </x-admin.button>
+                        </x-admin.form.actions>
 
             </form>
         </div>
     </div>
-</x-layouts.admin.master>
+    </x-layouts.admin.master>

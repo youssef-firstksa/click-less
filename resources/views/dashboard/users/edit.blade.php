@@ -13,11 +13,11 @@
                 @include('dashboard.users.form')
 
                 <x-dashboard.form.actions>
-                    <x-dashboard.button type="submit" class="btn-success">
+                    <x-dashboard.button type="submit" class="btn-success-600">
                         {{__('dashboard.general.update')}}
-                    </x-admin.button>
-                </x-admin.form.actions>
+                        </x-admin.button>
+                        </x-admin.form.actions>
             </form>
         </div>
     </div>
-</x-layouts.admin.master>
+    </x-layouts.admin.master>

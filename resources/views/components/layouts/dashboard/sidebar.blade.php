@@ -20,7 +20,7 @@
 
             <li class="dropdown">
                 <a href="javascript:void(0)">
-                    <iconify-icon icon="solar:cloud-broken" class="menu-icon"></iconify-icon>
+                    <iconify-icon icon="solar:lock-broken" class="menu-icon"></iconify-icon>
                     <span>{{__('dashboard.permissions_management.sidebar_title')}}</span>
                 </a>
 

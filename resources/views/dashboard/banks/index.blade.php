@@ -15,10 +15,10 @@
                 <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            <x-dashboard.button class="btn-primary" :href="route('dashboard.banks.create')">
+            <x-dashboard.button class="btn-primary-600" :href="route('dashboard.banks.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
-            </x-admin.button>
+                </x-admin.button>
 
         </div>
 
@@ -65,8 +65,8 @@
                                             :model="$bank" />
                                         <x-dashboard.table.actions.edit route="{{ route('dashboard.banks.edit', $bank) }}"
                                             :model="$bank" />
-                                        <x-dashboard.table.actions.delete route="{{ route('dashboard.banks.destroy', $bank) }}"
-                                            :model="$bank" />
+                                        <x-dashboard.table.actions.delete
+                                            route="{{ route('dashboard.banks.destroy', $bank) }}" :model="$bank" />
                                     </div>
                                 </td>
                             </tr>
@@ -76,8 +76,7 @@
             </div>
 
 
-            <x-dashboard.table.pagination :data="$banks" />
-
+            <x-dashboard.table.pagination :data="$banks" class="mt-3" />
         </div>
     </div>
-            </x-layouts.admin.master>
+    </x-layouts.admin.master>

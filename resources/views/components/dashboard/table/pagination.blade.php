@@ -1,3 +1,5 @@
 @props(['data'])
 
-{{ $data->appends(request()->query())->links() }}
+<div {{ $attributes->merge([]) }}>
+    {{ $data->appends(request()->query())->links() }}
+</div>
