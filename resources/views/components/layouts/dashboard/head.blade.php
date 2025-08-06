@@ -18,8 +18,6 @@
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/flatpickr.min.css') }}">
 <!-- Calendar css -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/full-calendar.css') }}">
-<!-- Vector Map css -->
-<link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/jquery-jvectormap-2.0.5.css') }}">
 <!-- Popup css -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/magnific-popup.css') }}">
 <!-- Slick Slider css -->
@@ -29,6 +27,8 @@
 <!-- file upload css -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/file-upload.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/audioplayer.css') }}">
+<!-- Select2  -->
+<link rel="stylesheet" href="{{ asset('assets/dashboard/css/lib/select2.min.css') }}">
 <!-- main css -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/custom.css') }}">

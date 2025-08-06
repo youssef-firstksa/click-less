@@ -36,16 +36,9 @@
     <div class="col-lg-6">
         <x-dashboard.form.label
             for="bank_id">{{ __('dashboard.sections_management.form.bank') }}</x-dashboard.form.label>
-        <x-dashboard.form.select name="bank_id" id="bank_id">
 
-            <option value="" disabled selected>{{ __('dashboard.general.select') }}</option>
-
-            @foreach ($bankOptions as $bankId => $bankName)
-                <option value="{{ $bankId }}" @selected(old('bank_id', $section->product?->bank_id) === $bankId)>
-                    {{ $bankName }}
-                </option>
-            @endforeach
-        </x-dashboard.form.select>
+        <x-dashboard.form.select2 id="bank_id" name="bank_id" :options="$bankOptions"
+            placeholder="{{__('dashboard.general.select')}}" :selected="$section?->product?->bank_id" />
 
         <x-dashboard.form.error :messages="$errors->get('bank_id')" />
     </div>
@@ -63,17 +56,10 @@
 
     <div class="col-lg-6">
         <x-dashboard.form.label
-            for="status">{{ __('dashboard.sections_management.form.status') }}</x-dashboard.form.label>
-        <x-dashboard.form.select name="status" id="status">
+            for="status">{{__('dashboard.sections_management.form.status')}}</x-dashboard.form.label>
 
-            <option value="" disabled selected>{{ __('dashboard.general.select') }}</option>
-
-            @foreach (\App\Enums\Status::labels() as $value => $label)
-                <option value="{{ $value }}" @selected(old('status', $section->status?->value) === $value)>
-                    {{ $label }}
-                </option>
-            @endforeach
-        </x-dashboard.form.select>
+        <x-dashboard.form.select2 id="status" name="status" :options="\App\Enums\Status::labels()"
+            placeholder="{{__('dashboard.general.select')}}" :selected="$section->status?->value" />
 
         <x-dashboard.form.error :messages="$errors->get('status')" />
     </div>

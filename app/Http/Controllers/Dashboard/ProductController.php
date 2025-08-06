@@ -78,4 +78,25 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('dashboard.products.index');
     }
+
+    public function getBankProducts(Request $request)
+    {
+        $bankId = $request->get('bank_id');
+
+        if (!$bankId) {
+            return response()->json([]);
+        }
+
+        $products = Product::where('bank_id', $bankId)
+            ->whereActivated()
+            ->translatedPluck('title')
+            ->toArray();
+
+        $results = [];
+        foreach ($products as $id => $name) {
+            $results[] = ['id' => $id, 'text' => $name];
+        }
+
+        return response()->json($results);
+    }
 }

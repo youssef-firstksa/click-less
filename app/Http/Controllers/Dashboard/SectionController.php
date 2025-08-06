@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateSectionRequest;
 use App\Models\Bank;
 use App\Models\Product;
 use App\Models\Section;
+use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {

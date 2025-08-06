@@ -10,9 +10,6 @@
 <script src="{{ asset('assets/dashboard/js/lib/iconify-icon.min.js') }}"></script>
 <!-- jQuery UI js -->
 <script src="{{ asset('assets/dashboard/js/lib/jquery-ui.min.js') }}"></script>
-<!-- Vector Map js -->
-<script src="{{ asset('assets/dashboard/js/lib/jquery-jvectormap-2.0.5.min.js') }}"></script>
-<script src="{{ asset('assets/dashboard/js/lib/jquery-jvectormap-world-mill-en.js') }}"></script>
 <!-- Popup js -->
 <script src="{{ asset('assets/dashboard/js/lib/magnifc-popup.min.js') }}"></script>
 <!-- Slick Slider js -->
@@ -24,6 +21,8 @@
 <!-- audioplayer -->
 <script src="{{ asset('assets/dashboard/js/lib/audioplayer.js') }}"></script>
 
+<!-- Select2  -->
+<script src="{{ asset('assets/dashboard/js/lib/select2.min.js') }}"></script>
 <!-- main js -->
 <script src="{{ asset('assets/dashboard/js/app.js') }}"></script>
 
