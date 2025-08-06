@@ -15,8 +15,8 @@
                 <x-dashboard.form.actions>
                     <x-dashboard.button type="submit" class="btn-success-600">
                         {{__('dashboard.general.update')}}
-                        </x-admin.button>
-                        </x-admin.form.actions>
+                    </x-dashboard.button>
+                </x-dashboard.form.actions>
             </form>
         </div>
     </div>

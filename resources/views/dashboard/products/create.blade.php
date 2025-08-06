@@ -1,14 +1,14 @@
 <x-layouts.dashboard.master>
     <x-slot name="title">
-        {{ __('dashboard.bank_management.create_title') }}
+        {{ __('dashboard.products_management.create_title') }}
     </x-slot>
 
     <div class="card radius-12">
         <div class="card-body">
-            <form action="{{ route('dashboard.banks.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('dashboard.products.store') }}" method="POST">
                 @csrf
 
-                @include('dashboard.banks.form', ['bank' => new App\Models\Bank])
+                @include('dashboard.products.form', ['product' => new App\Models\Product])
 
 
                 <x-dashboard.form.actions>

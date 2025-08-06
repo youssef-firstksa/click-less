@@ -44,8 +44,13 @@ return [
             ],
         ],
     ],
+    'sidebar' => [
+        'dashboard' => 'Dashboard',
+        'permissions_management' => 'Permissions Management',
+        'content_management' => 'Content Management',
+        'bank_management' => 'Bank Management',
+    ],
     'permissions_management' => [
-        'sidebar_title' => 'Permissions Management',
         'index_title' => 'Permissions List',
         'create_title' => 'Create New Permission',
         'edit_title' => 'Edit Permission',
@@ -59,7 +64,6 @@ return [
         ],
     ],
     'users_management' => [
-        'sidebar_title' => 'Users Management',
         'index_title' => 'Users List',
         'create_title' => 'Create New User',
         'edit_title' => 'Edit User',
@@ -76,7 +80,6 @@ return [
         ],
     ],
     'bank_management' => [
-        'sidebar_title' => 'Bank Management',
         'index_title' => 'Banks List',
         'create_title' => 'Create New Bank',
         'edit_title' => 'Edit Bank',
@@ -92,6 +95,19 @@ return [
             'image' => 'Image',
             'ai_key' => 'Ai Key',
             'status' => 'Status',
+        ],
+    ],
+    'products_management' => [
+        'index_title' => 'Products List',
+        'create_title' => 'Create New Product',
+        'edit_title' => 'Edit Product',
+        'delete_title' => 'Delete Product',
+        'show_title' => 'Show Product',
+
+        'form' => [
+            'title' => 'Title',
+            'status' => 'Status',
+            'bank' => 'Bank',
         ],
     ],
 ];

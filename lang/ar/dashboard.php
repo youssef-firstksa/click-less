@@ -44,8 +44,13 @@ return [
             ],
         ],
     ],
+    'sidebar' => [
+        'dashboard' => 'لوحة التحكم',
+        'permissions_management' => 'إدارة الصلاحيات',
+        'content_management' => 'إدارة المحتوى',
+        'bank_management' => 'إدارة بنك المعرفة',
+    ],
     'permissions_management' => [
-        'sidebar_title' => 'إدارة الصلاحيات',
         'index_title' => 'قائمة الصلاحيات',
         'create_title' => 'إضافة صلاحية جديدة',
         'edit_title' => 'تعديل الصلاحية',
@@ -59,7 +64,6 @@ return [
         ],
     ],
     'users_management' => [
-        'sidebar_title' => 'إدارة المستخدمين',
         'index_title' => 'قائمة المستخدمين',
         'create_title' => 'إضافة مستخدم جديد',
         'edit_title' => 'تعديل بيانات المستخدم',
@@ -76,12 +80,11 @@ return [
         ],
     ],
     'bank_management' => [
-        'sidebar_title' => 'إدارة بنك المعرفة',
         'index_title' => 'قائمة البنوك',
         'create_title' => 'إنشاء بنك جديد',
         'edit_title' => 'تعديل بنك',
-        'delete_title' => 'Delete Bank',
-        'show_title' => 'Show Bank',
+        'delete_title' => 'حذف البنك',
+        'show_title' => 'عرض بنك',
         'form' => [
 
             'title' => 'العنوان',
@@ -92,6 +95,19 @@ return [
             'image' => 'الصورة',
             'ai_key' => 'مفتاح الذكاء الاصطناعي',
             'status' => 'الحالة',
+        ],
+    ],
+    'products_management' => [
+        'index_title' => 'قائمة المنتجات',
+        'create_title' => 'إنشاء منتج جديد',
+        'edit_title' => 'تعديل المنتج',
+        'delete_title' => 'حذف المنتج',
+        'show_title' => 'عرض المنتج',
+
+        'form' => [
+            'title' => 'العنوان',
+            'status' => 'الحالة',
+            'bank' => 'البنك',
         ],
     ],
 ];

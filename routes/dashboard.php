@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
+use App\Http\Controllers\Dashboard\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -12,5 +13,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('banks', BankController::class);
     Route::resource('users', UserController::class);
-    // Route::resource('products', CategoryController::class);
+    Route::resource('products', ProductController::class);
 });

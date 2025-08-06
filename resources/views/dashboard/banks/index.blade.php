@@ -18,7 +18,7 @@
             <x-dashboard.button class="btn-primary-600" :href="route('dashboard.banks.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
-                </x-admin.button>
+            </x-dashboard.button>
 
         </div>
 

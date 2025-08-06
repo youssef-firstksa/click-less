@@ -14,14 +14,14 @@
             <li>
                 <a href="{{ route('dashboard.dashboard') }}">
                     <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.general.dashboard')}}</span>
+                    <span>{{__('dashboard.sidebar.dashboard')}}</span>
                 </a>
             </li>
 
             <li class="dropdown">
                 <a href="javascript:void(0)">
                     <iconify-icon icon="solar:lock-broken" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.permissions_management.sidebar_title')}}</span>
+                    <span>{{__('dashboard.sidebar.permissions_management')}}</span>
                 </a>
 
                 <ul class="sidebar-submenu">
@@ -38,14 +38,31 @@
             <li class="dropdown">
                 <a href="javascript:void(0)">
                     <iconify-icon icon="solar:cloud-broken" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.bank_management.sidebar_title')}}</span>
+                    <span>{{__('dashboard.sidebar.bank_management')}}</span>
                 </a>
 
                 <ul class="sidebar-submenu">
                     <li>
                         <a href="{{ route('dashboard.banks.index') }}">
                             <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.bank_management.index_title') }}
+                            {{ __('dashboard.sidebar.bank_management') }}
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)">
+                    <iconify-icon icon="solar:pen-new-square-linear" class="menu-icon"></iconify-icon>
+                    <span>{{__('dashboard.sidebar.content_management')}}</span>
+                </a>
+
+                <ul class="sidebar-submenu">
+                    <li>
+                        <a href="{{ route('dashboard.products.index') }}">
+                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            {{ __('dashboard.products_management.index_title') }}
                         </a>
                     </li>
 
