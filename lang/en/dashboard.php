@@ -34,7 +34,7 @@ return [
         'inbox' => 'Inbox',
         'settings' => 'Settings',
         'logout' => 'Logout',
-
+        'copy_right' => '© 2024 Upsource. All Rights Reserved.',
     ],
     'messages' => [
         'success' => [

@@ -34,6 +34,7 @@ return [
         'inbox' => 'صندوق الوارد',
         'settings' => 'الإعدادات',
         'logout' => 'تسجيل الخروج',
+        'copy_right' => 'جميع الحقوق محفوظة © 2024 Upsource.',
     ],
     'messages' => [
         'success' => [

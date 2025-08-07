@@ -1,7 +1,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{config('app.name')}} {{$title ? " | {$title}" : ''}}</title>
-<link rel="icon" type="image/png" href="{{ asset('assets/dashboard/images/favicon.png') }}" sizes="16x16">
+<link rel="icon" type="image/png" href="{{ asset('assets/common/media/logos/favicon.png') }}" sizes="16x16">
+
+<style>
+    @font-face {
+        font-family: "Cairo";
+        src: url("{{ asset('assets/common/fonts/cairo/Cairo-SemiBold.ttf') }}") format("truetype");
+        font-weight: 600;
+    }
+</style>
+
 <!-- remix icon font css  -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/remixicon.css') }}">
 <!-- BootStrap css -->
@@ -32,6 +41,8 @@
 <!-- main css -->
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/dashboard/css/custom.css') }}">
+
+
 
 @stack('head')
 @stack('styles')

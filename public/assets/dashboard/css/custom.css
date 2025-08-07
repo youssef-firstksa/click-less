@@ -1,3 +1,7 @@
+body {
+    font-family: "Cairo", sans-serif;
+}
+
 th {
     text-align: start;
 }
