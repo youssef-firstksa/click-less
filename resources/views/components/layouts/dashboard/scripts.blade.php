@@ -1,3 +1,5 @@
+<x-dashboard.trans-js />
+
 <!-- jQuery library js -->
 <script src="{{ asset('assets/dashboard/js/lib/jquery-3.7.1.min.js') }}"></script>
 <!-- Bootstrap js -->
@@ -23,6 +25,7 @@
 
 <!-- Select2  -->
 <script src="{{ asset('assets/dashboard/js/lib/select2.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/js/select2-global.js') }}"></script>
 <!-- main js -->
 <script src="{{ asset('assets/dashboard/js/app.js') }}"></script>
 

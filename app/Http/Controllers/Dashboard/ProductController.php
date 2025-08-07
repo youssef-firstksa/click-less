@@ -57,6 +57,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
+
         return view('dashboard.products.edit', compact('product', 'bankOptions'));
     }
 
@@ -81,7 +82,7 @@ class ProductController extends Controller
 
     public function getBankProducts(Request $request)
     {
-        $bankId = $request->get('bank_id');
+        $bankId = $request->get('id');
 
         if (!$bankId) {
             return response()->json([]);

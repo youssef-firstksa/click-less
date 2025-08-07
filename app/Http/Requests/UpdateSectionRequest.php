@@ -27,7 +27,7 @@ class UpdateSectionRequest extends FormRequest
         $rules = [
             'status' => ['required', Rule::in(Status::cases())],
             'bank_id' => ['required', Rule::exists('banks', 'id')],
-            'product_id' => ['nullable'],
+            'product_id' => ['required', Rule::exists('products', 'id')],
         ];
 
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {

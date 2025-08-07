@@ -14,7 +14,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('banks', BankController::class);
     Route::resource('users', UserController::class);
-    Route::get('products/ajax/by-bank', [SectionController::class, 'getBankProducts'])->name('products.by-bank');
+    Route::get('products/ajax/by-bank', [ProductController::class, 'getBankProducts'])->name('products.by-bank');
     Route::resource('products', ProductController::class);
     Route::resource('sections', SectionController::class);
 });

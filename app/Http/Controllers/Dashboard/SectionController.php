@@ -58,7 +58,9 @@ class SectionController extends Controller
     public function edit(Section $section)
     {
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
-        return view('dashboard.sections.edit', compact('section', 'bankOptions'));
+        $productOptions = Product::where('bank_id', $section->product->bank_id)->whereActivated()->translatedPluck('title');
+
+        return view('dashboard.sections.edit', compact('section', 'bankOptions', 'productOptions'));
     }
 
     /**

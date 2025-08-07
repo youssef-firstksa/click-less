@@ -38,18 +38,19 @@
             for="bank_id">{{ __('dashboard.sections_management.form.bank') }}</x-dashboard.form.label>
 
         <x-dashboard.form.select2 id="bank_id" name="bank_id" :options="$bankOptions"
-            placeholder="{{__('dashboard.general.select')}}" :selected="$section?->product?->bank_id" />
+            placeholder="{{__('dashboard.general.select')}}" :selected="$section?->product?->bank_id"
+            data-cascade-elements="product_id" data-cascade-url="{{ route('dashboard.products.by-bank') }}" />
 
         <x-dashboard.form.error :messages="$errors->get('bank_id')" />
     </div>
 
     <div class="col-lg-6">
-        <x-dashboard.form.label
-            for="product_id">{{ __('dashboard.sections_management.form.product') }}</x-dashboard.form.label>
-        <x-dashboard.form.select name="product_id" id="product_id" disabled>
+        <x-dashboard.form.label for="product_id">{{ __('dashboard.sections_management.form.product')
+            }}</x-dashboard.form.label>
 
-            <option value="1" disabled selected>{{ __('dashboard.general.select') }}</option>
-        </x-dashboard.form.select>
+        <x-dashboard.form.select2 id="product_id" name="product_id" :options="isset($productOptions) ? $productOptions : []"
+            placeholder="{{__('dashboard.general.select')}}" :selected="$section?->product_id"
+            :disabled="!$section?->product_id" />
 
         <x-dashboard.form.error :messages="$errors->get('product_id')" />
     </div>
@@ -64,3 +65,12 @@
         <x-dashboard.form.error :messages="$errors->get('status')" />
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bankSelect = $('#bank_id');
+            bankSelect.on('change', cascadeSelect);
+        });
+    </script>
+@endpush
