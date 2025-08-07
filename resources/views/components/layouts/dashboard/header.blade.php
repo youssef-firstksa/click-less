@@ -26,10 +26,10 @@
                         type="button" data-bs-toggle="dropdown">
 
                         @if (app()->getLocale() == 'en')
-                            <img src="{{ asset('assets/dashboard/images/lang-flag.png') }}" alt="image"
+                            <img src="{{ asset('assets/dashboard/images/flags/usa.png') }}" alt="image"
                                 class="w-24 h-24 object-fit-cover rounded-circle">
                         @else
-                            <img src="{{ asset('assets/dashboard/images/lang-flag.png') }}" alt="image"
+                            <img src="{{ asset('assets/dashboard/images/flags/saudi.png') }}" alt="image"
                                 class="w-24 h-24 object-fit-cover rounded-circle">
                         @endif
                     </button>
@@ -38,7 +38,7 @@
                             class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
                             <div>
                                 <h6 class="text-lg text-primary-light fw-semibold mb-0">
-                                    Choose Your Language
+                                    {{ __('dashboard.general.choose_your_language') }}
                                 </h6>
                             </div>
                         </div>
@@ -50,9 +50,11 @@
                                     class="form-check-label line-height-1 fw-medium text-secondary-light" for="english">
                                     <span
                                         class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
-                                        <img src="{{ asset('assets/dashboard/images/flags/flag1.png') }}" alt=""
+                                        <img src="{{ asset('assets/dashboard/images/flags/usa.png') }}" alt=""
                                             class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                                        <span class="text-md fw-semibold mb-0">English</span>
+                                        <span class="text-md fw-semibold mb-0">
+                                            {{ __('dashboard.general.english') }}
+                                        </span>
                                     </span>
                                 </a>
                             </div>
@@ -62,9 +64,11 @@
                                     class="form-check-label line-height-1 fw-medium text-secondary-light" for="arabic">
                                     <span
                                         class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
-                                        <img src="{{ asset('assets/dashboard/images/flags/flag1.png') }}" alt=""
+                                        <img src="{{ asset('assets/dashboard/images/flags/saudi.png') }}" alt=""
                                             class="w-36-px h-36-px bg-success-subtle text-success-main rounded-circle flex-shrink-0">
-                                        <span class="text-md fw-semibold mb-0">Arabic</span>
+                                        <span class="text-md fw-semibold mb-0">
+                                            {{ __('dashboard.general.arabic') }}
+                                        </span>
                                     </span>
                                 </a>
                             </div>
@@ -82,7 +86,9 @@
                         <div
                             class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
                             <div>
-                                <h6 class="text-lg text-primary-light fw-semibold mb-0">Message</h6>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-0">
+                                    {{__('dashboard.general.messages')}}
+                                </h6>
                             </div>
                             <span
                                 class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
@@ -95,8 +101,7 @@
                                 <div
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-3.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/women-hijab.png') }}" alt="">
                                         <span
                                             class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
                                     </span>
@@ -118,13 +123,12 @@
                                 <div
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-4.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/man.png') }}" alt="">
                                         <span
                                             class="w-8-px h-8-px  bg-neutral-300 rounded-circle position-absolute end-0 bottom-0"></span>
                                     </span>
                                     <div>
-                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <h6 class="text-md fw-semibold mb-4">Ahmed Ali</h6>
                                         <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
                                             i’m...</p>
                                     </div>
@@ -141,8 +145,7 @@
                                 <div
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-5.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/women-hijab.png') }}" alt="">
                                         <span
                                             class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
                                     </span>
@@ -164,8 +167,7 @@
                                 <div
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-6.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/women-hijab.png') }}" alt="">
                                         <span
                                             class="w-8-px h-8-px bg-neutral-300 rounded-circle position-absolute end-0 bottom-0"></span>
                                     </span>
@@ -187,13 +189,12 @@
                                 <div
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span class="w-40-px h-40-px rounded-circle flex-shrink-0 position-relative">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-7.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/man.png') }}" alt="">
                                         <span
                                             class="w-8-px h-8-px bg-success-main rounded-circle position-absolute end-0 bottom-0"></span>
                                     </span>
                                     <div>
-                                        <h6 class="text-md fw-semibold mb-4">Kathryn Murphy</h6>
+                                        <h6 class="text-md fw-semibold mb-4">Omar Mohammed</h6>
                                         <p class="mb-0 text-sm text-secondary-light text-w-100-px">hey! there
                                             i’m...</p>
                                     </div>
@@ -207,8 +208,9 @@
 
                         </div>
                         <div class="text-center py-12 px-16">
-                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All
-                                Message</a>
+                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">
+                                {{ __('dashboard.general.see_all_message') }}
+                            </a>
                         </div>
                     </div>
                 </div><!-- Message dropdown end -->
@@ -223,7 +225,9 @@
                         <div
                             class="m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
                             <div>
-                                <h6 class="text-lg text-primary-light fw-semibold mb-0">Notifications</h6>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-0">
+                                    {{__('dashboard.general.notifications')}}
+                                </h6>
                             </div>
                             <span
                                 class="text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center">05</span>
@@ -254,8 +258,7 @@
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span
                                         class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-1.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/women-hijab.png') }}" alt="">
                                     </span>
                                     <div>
                                         <h6 class="text-md fw-semibold mb-4">Ronald Richards</h6>
@@ -289,8 +292,7 @@
                                     class="text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3">
                                     <span
                                         class="w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0">
-                                        <img src="{{ asset('assets/dashboard/images/notification/profile-2.png') }}"
-                                            alt="">
+                                        <img src="{{ asset('assets/dashboard/images/users/women-hijab.png') }}" alt="">
                                     </span>
                                     <div>
                                         <h6 class="text-md fw-semibold mb-4">Annette Black</h6>
@@ -320,8 +322,9 @@
                         </div>
 
                         <div class="text-center py-12 px-16">
-                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">See All
-                                Notification</a>
+                            <a href="javascript:void(0)" class="text-primary-600 fw-semibold text-md">
+                                {{ __('dashboard.general.see_all_notifications') }}
+                            </a>
                         </div>
 
                     </div>
@@ -330,15 +333,21 @@
                 <div class="dropdown">
                     <button class="d-flex justify-content-center align-items-center rounded-circle" type="button"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('assets/dashboard/images/user.png') }}" alt="image"
+                        <img src="{{ asset('assets/dashboard/images/users/man.png') }}" alt="image"
                             class="w-40-px h-40-px object-fit-cover rounded-circle">
                     </button>
                     <div class="dropdown-menu to-top dropdown-menu-sm">
                         <div
                             class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
-                            <div>
-                                <h6 class="text-lg text-primary-light fw-semibold mb-2">Shaidul Islam</h6>
-                                <span class="text-secondary-light fw-medium text-sm">Admin</span>
+                            <div class="d-flex flex-column align-items-start">
+                                <h6 class="text-lg text-primary-light fw-semibold mb-2">
+
+                                    {{ auth()->user()->name ?? 'User Name' }}
+                                </h6>
+
+                                <span class="text-secondary-light fw-medium text-sm">
+                                    {{ auth()->user()->role ?? 'User' }}
+                                </span>
                             </div>
                             <button type="button" class="hover-text-danger">
                                 <iconify-icon icon="radix-icons:cross-1" class="icon text-xl"></iconify-icon>
@@ -349,19 +358,24 @@
                                 <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
                                     href="view-profile.html">
                                     <iconify-icon icon="solar:user-linear" class="icon text-xl"></iconify-icon>
-                                    My Profile</a>
+
+                                    {{ __('dashboard.general.my_profile') }}
+
+                                </a>
                             </li>
                             <li>
                                 <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
                                     href="email.html">
                                     <iconify-icon icon="tabler:message-check" class="icon text-xl"></iconify-icon>
-                                    Inbox</a>
+
+                                    {{ __('dashboard.general.inbox') }}
+                                </a>
                             </li>
                             <li>
                                 <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
                                     href="company.html">
                                     <iconify-icon icon="icon-park-outline:setting-two"
-                                        class="icon text-xl"></iconify-icon> Setting</a>
+                                        class="icon text-xl"></iconify-icon> {{ __('dashboard.general.settings') }}</a>
                             </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
@@ -372,7 +386,7 @@
 
                                         <iconify-icon icon="lucide:power" class="icon text-xl"></iconify-icon>
 
-                                        Log Out
+                                        {{ __('dashboard.general.logout') }}
 
                                     </button>
                                 </form>

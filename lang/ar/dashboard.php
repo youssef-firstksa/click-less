@@ -23,6 +23,17 @@ return [
         'back' => 'الرجوع',
         'confirm' => 'تأكيد',
         'cancel' => 'الغاء',
+        'see_all_message' => 'عرض جميع الرسائل',
+        'notifications' => 'الإشعارات',
+        'see_all_notifications' => 'عرض جميع الإشعارات',
+        'messages' => 'الرسائل',
+        'choose_your_language' => 'اختر لغتك',
+        'english' => 'الإنجليزية',
+        'arabic' => 'العربية',
+        'my_profile' => 'ملفي الشخصي',
+        'inbox' => 'صندوق الوارد',
+        'settings' => 'الإعدادات',
+        'logout' => 'تسجيل الخروج',
     ],
     'messages' => [
         'success' => [

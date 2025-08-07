@@ -23,6 +23,18 @@ return [
         'back' => 'Back',
         'confirm' => 'Confirm',
         'cancel' => 'Cancel',
+        'messages' => 'Messages',
+        'see_all_message' => 'See All Messages',
+        'notifications' => 'Notifications',
+        'see_all_notifications' => 'See All Notifications',
+        'choose_your_language' => 'Choose Your Language',
+        'english' => 'English',
+        'arabic' => 'Arabic',
+        'my_profile' => 'My Profile',
+        'inbox' => 'Inbox',
+        'settings' => 'Settings',
+        'logout' => 'Logout',
+
     ],
     'messages' => [
         'success' => [
