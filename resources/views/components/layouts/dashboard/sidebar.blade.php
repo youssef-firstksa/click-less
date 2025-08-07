@@ -73,6 +73,13 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="{{ route('dashboard.articles.index') }}">
+                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            {{ __('dashboard.articles_management.index_title') }}
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 

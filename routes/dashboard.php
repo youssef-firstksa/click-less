@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
 use App\Http\Controllers\Dashboard\ProductController;
@@ -14,7 +15,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('banks', BankController::class);
     Route::resource('users', UserController::class);
+
     Route::get('products/ajax/by-bank', [ProductController::class, 'getBankProducts'])->name('products.by-bank');
     Route::resource('products', ProductController::class);
+
+    Route::get('sections/ajax/by-product', [SectionController::class, 'getProductSections'])->name('sections.by-product');
     Route::resource('sections', SectionController::class);
+
+    Route::resource('articles', ArticleController::class);
 });

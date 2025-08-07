@@ -11,17 +11,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Section extends Model
+class Article extends Model
 {
     use HasFactory, Translatable, SoftDeletes, CommonFilters, HasStatus;
 
-    public $translatedAttributes = ['title', 'slug'];
+    public $translatedAttributes = ['title', 'content', 'slug'];
 
-    protected $fillable = ['product_id', 'bank_id', 'sort_order', 'status'];
+    protected $fillable = ['author_id', 'section_id', 'product_id', 'bank_id', 'sort_order', 'status', 'published_at'];
 
     protected $casts = [
         'status' => Status::class,
+        'published_at' => 'datetime',
     ];
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'author_id', 'id');
+    }
+
+    public function section(): BelongsTo
+    {
+        return $this->belongsTo(Section::class);
+    }
 
     public function product(): BelongsTo
     {
@@ -31,5 +42,14 @@ class Section extends Model
     public function bank(): BelongsTo
     {
         return $this->belongsTo(Bank::class);
+    }
+
+    public function publishedAt()
+    {
+        if ($this->published_at) {
+            return $this->published_at->format('Y-m-d');
+        }
+
+        return $this->created_at->format('Y-m-d');
     }
 }

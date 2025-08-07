@@ -136,4 +136,22 @@ return [
             'product' => 'Product',
         ],
     ],
+    'articles_management' => [
+        'index_title' => 'Articles List',
+        'create_title' => 'Create New Article',
+        'edit_title' => 'Edit Article',
+        'delete_title' => 'Delete Article',
+        'show_title' => 'Show Article',
+
+        'form' => [
+            'title' => 'Title',
+            'content' => 'Content',
+            'status' => 'Status',
+            'bank' => 'Bank',
+            'product' => 'Product',
+            'section' => 'Section',
+            'published_at' => 'Published At',
+            'author' => 'Author',
+        ],
+    ],
 ];

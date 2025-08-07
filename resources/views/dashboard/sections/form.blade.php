@@ -38,8 +38,8 @@
             for="bank_id">{{ __('dashboard.sections_management.form.bank') }}</x-dashboard.form.label>
 
         <x-dashboard.form.select2 id="bank_id" name="bank_id" :options="$bankOptions"
-            placeholder="{{__('dashboard.general.select')}}" :selected="$section?->product?->bank_id"
-            data-cascade-elements="product_id" data-cascade-url="{{ route('dashboard.products.by-bank') }}" />
+            placeholder="{{__('dashboard.general.select')}}" :selected="$section?->bank_id"
+            data-cascade-element="product_id" data-cascade-url="{{ route('dashboard.products.by-bank') }}" />
 
         <x-dashboard.form.error :messages="$errors->get('bank_id')" />
     </div>
@@ -48,7 +48,11 @@
         <x-dashboard.form.label for="product_id">{{ __('dashboard.sections_management.form.product')
             }}</x-dashboard.form.label>
 
-        <x-dashboard.form.select2 id="product_id" name="product_id" :options="isset($productOptions) ? $productOptions : []"
+        @php
+            $productOptions = isset($productOptions) ? $productOptions : [];
+        @endphp
+
+        <x-dashboard.form.select2 id="product_id" name="product_id" :options="$productOptions"
             placeholder="{{__('dashboard.general.select')}}" :selected="$section?->product_id"
             :disabled="!$section?->product_id" />
 

@@ -11,24 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('author_id')->constrained('users', 'id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('section_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('product_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('bank_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('sort_order')->default(1);
             $table->string('status')->default('activated');
+            $table->datetime('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::create('section_translations', function (Blueprint $table) {
+        Schema::create('article_translations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('section_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('article_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('title');
+            $table->longText('content');
             $table->string('slug');
             $table->string('locale')->index();
             $table->unique(['locale', 'slug']);
-            $table->unique(['section_id', 'locale']);
+            $table->unique(['article_id', 'locale']);
         });
     }
 
@@ -37,7 +41,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('section_translations');
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('article_translations');
+        Schema::dropIfExists('articles');
     }
 };

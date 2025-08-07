@@ -135,4 +135,22 @@ return [
             'product' => 'المنتج',
         ],
     ],
+    'articles_management' => [
+        'index_title' => 'قائمة المقالات',
+        'create_title' => 'إنشاء مقال جديد',
+        'edit_title' => 'تعديل المقال',
+        'delete_title' => 'حذف المقال',
+        'show_title' => 'عرض المقال',
+
+        'form' => [
+            'title' => 'العنوان',
+            'content' => 'المحتوى',
+            'status' => 'الحالة',
+            'bank' => 'البنك',
+            'product' => 'المنتج',
+            'section' => 'القسم',
+            'published_at' => 'تاريخ النشر',
+            'author' => 'الناشر',
+        ],
+    ],
 ];

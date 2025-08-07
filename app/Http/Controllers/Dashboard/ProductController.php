@@ -77,7 +77,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('dashboard.products.index');
+        return redirect()->route('dashboard.products.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $product->title]));
     }
 
     public function getBankProducts(Request $request)
@@ -94,8 +94,8 @@ class ProductController extends Controller
             ->toArray();
 
         $results = [];
-        foreach ($products as $id => $name) {
-            $results[] = ['id' => $id, 'text' => $name];
+        foreach ($products as $id => $title) {
+            $results[] = ['id' => $id, 'text' => $title];
         }
 
         return response()->json($results);

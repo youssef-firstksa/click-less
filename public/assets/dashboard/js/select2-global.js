@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function cascadeSelect(event) {
-    const firstSelect = $(this);
+    const firstSelect = $(`#${event.target.id}`);
 
-    const cascadeSelect = $(`#${firstSelect.data("cascade-elements")}`);
+    const cascadeSelect = $(`#${firstSelect.data("cascade-element")}`);
     const cascadeURL = firstSelect.data("cascade-url");
 
     cascadeSelect.prop("disabled", false);
@@ -24,10 +24,18 @@ function cascadeSelect(event) {
                 };
             },
             processResults: function (data) {
+                if (data.length === 0) {
+                    cascadeSelect.prop("disabled", true);
+                    cascadeSelect.val(null).trigger("change");
+                    cascadeSelect.select2("close");
+                }
+
                 return {
                     results: data,
                 };
             },
         },
     });
+
+    cascadeSelect.select2("open");
 }

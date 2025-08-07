@@ -89,6 +89,6 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
         $bank->delete();
-        return redirect()->route('dashboard.banks.index');
+        return redirect()->route('dashboard.banks.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $bank->title]));
     }
 }

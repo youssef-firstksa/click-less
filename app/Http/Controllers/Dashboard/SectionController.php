@@ -58,7 +58,7 @@ class SectionController extends Controller
     public function edit(Section $section)
     {
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
-        $productOptions = Product::where('bank_id', $section->product->bank_id)->whereActivated()->translatedPluck('title');
+        $productOptions = Product::where('bank_id', $section->bank_id)->whereActivated()->translatedPluck('title');
 
         return view('dashboard.sections.edit', compact('section', 'bankOptions', 'productOptions'));
     }
@@ -79,6 +79,27 @@ class SectionController extends Controller
     public function destroy(Section $section)
     {
         $section->delete();
-        return redirect()->route('dashboard.sections.index');
+        return redirect()->route('dashboard.sections.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $section->title]));
+    }
+
+    public function getProductSections(Request $request)
+    {
+        $productId = $request->get('id');
+
+        if (!$productId) {
+            return response()->json([]);
+        }
+
+        $sections = Section::where('product_id', $productId)
+            ->whereActivated()
+            ->translatedPluck('title')
+            ->toArray();
+
+        $results = [];
+        foreach ($sections as $id => $title) {
+            $results[] = ['id' => $id, 'text' => $title];
+        }
+
+        return response()->json($results);
     }
 }
