@@ -1,37 +1,14 @@
 <div class="row gy-3">
-    <div class="col-12">
-
-        <ul class="nav bordered-tab border border-top-0 border-start-0 border-end-0 d-inline-flex nav-pills mb-16"
-            id="pills-tab" role="tablist">
-
-            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link px-16 py-10 {{ $loop->first ? 'active' : '' }}"
-                        id="{{ $localeCode }}-inputs-tab" data-bs-toggle="pill" data-bs-target="#{{ $localeCode }}-inputs"
-                        type="button" role="tab" aria-controls="{{ $localeCode }}-inputs"
-                        aria-selected="true">{{ $properties['native'] }}</button>
-                </li>
-            @endforeach
-        </ul>
-
-        <div class="tab-content" id="pills-tabContent">
-            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                <div class="tab-pane fade {{ $loop->first ? ' show active ' : '' }}" id="{{ $localeCode }}-inputs"
-                    role="tabpanel" aria-labelledby="{{ $localeCode }}-inputs-tab" tabindex="0">
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <x-dashboard.form.label
-                                for="title">{{ __('dashboard.sections_management.form.title') }}</x-dashboard.form.label>
-                            <x-dashboard.form.input name="{{ $localeCode }}[title]" id="title_{{ $localeCode }}"
-                                placeholder="{{ __('dashboard.sections_management.form.title') }}"
-                                value="{{ old($localeCode . '.title', $section->{'title:' . $localeCode}) }}" />
-                            <x-dashboard.form.error :messages="$errors->get($localeCode . '.title')" />
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+    @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+        <div class="col-lg-6 mb-4">
+            <x-dashboard.form.label for="title">{{ __('dashboard.sections_management.form.title') }}
+                ({{$properties['native']}}) </x-dashboard.form.label>
+            <x-dashboard.form.input name="{{ $localeCode }}[title]" id="title_{{ $localeCode }}"
+                placeholder="{{ __('dashboard.sections_management.form.title') }} ({{$properties['native']}})"
+                value="{{ old($localeCode . '.title', $section->{'title:' . $localeCode}) }}" />
+            <x-dashboard.form.error :messages="$errors->get($localeCode . '.title')" />
         </div>
-    </div>
+    @endforeach
 
     <div class="col-lg-6">
         <x-dashboard.form.label

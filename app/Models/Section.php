@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Section extends Model
 {
-    use HasFactory, Translatable, SoftDeletes, CommonFilters, HasStatus;
+    use HasFactory, Translatable, SoftDeletes, CommonFilters, HasStatus, LogsActivity;
 
     public $translatedAttributes = ['title', 'slug'];
 
@@ -22,6 +24,18 @@ class Section extends Model
     protected $casts = [
         'status' => Status::class,
     ];
+
+    protected static $logOnlyDirty = true;
+
+    protected static $logAttributes = ['product_id', 'bank_id', 'sort_order', 'status', 'title', 'slug'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['product_id', 'bank_id', 'sort_order', 'status', 'title', 'slug'])
+            ->useLogName('section_log')
+            ->dontSubmitEmptyLogs();
+    }
 
     public function product(): BelongsTo
     {

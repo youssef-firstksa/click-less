@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
+use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SectionController;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('sections', SectionController::class);
 
     Route::resource('articles', ArticleController::class);
+    Route::resource('notifications', NotificationController::class);
 });

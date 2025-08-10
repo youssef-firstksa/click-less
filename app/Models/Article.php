@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Article extends Model
 {
-    use HasFactory, Translatable, SoftDeletes, CommonFilters, HasStatus;
+    use HasFactory, Translatable, SoftDeletes, CommonFilters, HasStatus, LogsActivity;
 
     public $translatedAttributes = ['title', 'content', 'slug'];
 
@@ -23,6 +25,18 @@ class Article extends Model
         'status' => Status::class,
         'published_at' => 'datetime',
     ];
+
+    protected static $logOnlyDirty = true;
+
+    protected static $logAttributes = ['author_id', 'section_id', 'product_id', 'bank_id', 'sort_order', 'status', 'published_at', 'title', 'content', 'slug'];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['author_id', 'section_id', 'product_id', 'bank_id', 'sort_order', 'status', 'published_at', 'title', 'content', 'slug'])
+            ->useLogName('article_log')
+            ->dontSubmitEmptyLogs();
+    }
 
     public function author(): BelongsTo
     {
