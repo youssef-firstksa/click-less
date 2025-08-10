@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SectionController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('banks', BankController::class);
+    Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 
     Route::get('products/ajax/by-bank', [ProductController::class, 'getBankProducts'])->name('products.by-bank');

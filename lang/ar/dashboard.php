@@ -189,4 +189,19 @@ return [
             'prop_quick' => 'اختيار سريع',
         ],
     ],
+    'roles_management' => [
+        'index_title' => 'قائمة الأدوار',
+        'create_title' => 'إنشاء دور جديد',
+        'edit_title' => 'تعديل الدور',
+        'delete_title' => 'حذف الدور',
+        'show_title' => 'عرض الدور',
+
+        'form' => [
+            'name' => 'الاسم الفريد',
+            'name_tips' => 'يجب أن يكون باللغة الإنجليزية وأن يكون غير مكرر',
+            'name_placeholder' => 'super-admin',
+            'title' => 'العنوان',
+            'permissions' => 'الصلاحيات',
+        ],
+    ],
 ];

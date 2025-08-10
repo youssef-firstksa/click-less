@@ -21,7 +21,8 @@
     @endforeach
 
     <div class="col-lg-6">
-        <x-dashboard.form.label for="color">{{__('dashboard.bank_management.form.font_color')}}</x-dashboard.form.label>
+        <x-dashboard.form.label
+            for="font_color">{{__('dashboard.bank_management.form.font_color')}}</x-dashboard.form.label>
         <x-dashboard.form.input type="color" name="font_color" id="font_color"
             placeholder="{{__('dashboard.bank_management.form.font_color')}}"
             value="{{ old('font_color', $bank->font_color) }}" />

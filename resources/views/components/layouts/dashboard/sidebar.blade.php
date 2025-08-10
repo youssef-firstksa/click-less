@@ -32,6 +32,13 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="{{ route('dashboard.roles.index') }}">
+                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                            {{ __('dashboard.roles_management.index_title') }}
+                        </a>
+                    </li>
+
                 </ul>
             </li>
 

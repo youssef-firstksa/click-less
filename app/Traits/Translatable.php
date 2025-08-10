@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Astrotomic\Translatable\Translatable as AstrotomicTranslatable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 trait Translatable
@@ -18,12 +19,16 @@ trait Translatable
 
         $locale = app()->getLocale();
 
-        return $builder->join($translationTable, function ($join) use ($mainTable, $translationTable, $locale) {
+        $query = $builder->join($translationTable, function ($join) use ($mainTable, $translationTable, $locale) {
             $join->on("{$translationTable}." . Str::singular($mainTable) . "_id", '=', "{$mainTable}.id")
                 ->where("{$translationTable}.locale", $locale);
         })
-            ->select("{$mainTable}.id", "{$translationTable}.{$titleColumn}")
-            ->orderBy("{$mainTable}.sort_order", 'asc')
-            ->pluck("{$translationTable}.{$titleColumn}", "{$mainTable}.id");
+            ->select("{$mainTable}.id", "{$translationTable}.{$titleColumn}");
+
+        if (Schema::hasColumn($mainTable, 'sort_order')) {
+            $query->orderBy("{$mainTable}.sort_order", 'asc');
+        }
+
+        return $query->pluck("{$translationTable}.{$titleColumn}", "{$mainTable}.id");
     }
 }

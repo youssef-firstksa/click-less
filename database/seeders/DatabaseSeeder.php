@@ -17,16 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         Bank::factory()->count(2)->create();
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@clickless.com',
+        $this->call([
+            RolesAndPermissionsSeeder::class,
+            UserSeeder::class,
         ]);
-
-        User::factory()->create([
-            'name' => 'User',
-            'email' => 'user@clickless.com',
-        ]);
-
-        User::factory(10)->create();
     }
 }
