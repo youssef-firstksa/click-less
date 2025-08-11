@@ -15,10 +15,12 @@
                 <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            <x-dashboard.button class="btn-primary-600" :href="route('dashboard.banks.create')">
-                <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
-                {{ __('dashboard.general.add_new') }}
-            </x-dashboard.button>
+            @can('create-bank')
+                <x-dashboard.button class="btn-primary-600" :href="route('dashboard.banks.create')">
+                    <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
+                    {{ __('dashboard.general.add_new') }}
+                </x-dashboard.button>
+            @endcan
 
         </div>
 
@@ -61,12 +63,20 @@
 
                                 <td class="text-center">
                                     <div class="d-flex align-items-center gap-10 justify-content-center">
-                                        <x-dashboard.table.actions.show route="{{ route('dashboard.banks.show', $bank) }}"
-                                            :model="$bank" />
-                                        <x-dashboard.table.actions.edit route="{{ route('dashboard.banks.edit', $bank) }}"
-                                            :model="$bank" />
-                                        <x-dashboard.table.actions.delete
-                                            route="{{ route('dashboard.banks.destroy', $bank) }}" :model="$bank" />
+                                        @can('show-bank')
+                                            <x-dashboard.table.actions.show route="{{ route('dashboard.banks.show', $bank) }}"
+                                                :model="$bank" />
+                                        @endcan
+
+                                        @can('update-bank')
+                                            <x-dashboard.table.actions.edit route="{{ route('dashboard.banks.edit', $bank) }}"
+                                                :model="$bank" />
+                                        @endcan
+
+                                        @can('delete-bank')
+                                            <x-dashboard.table.actions.delete
+                                                route="{{ route('dashboard.banks.destroy', $bank) }}" :model="$bank" />
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

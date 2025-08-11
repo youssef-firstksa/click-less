@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+
+
+
 Route::prefix(LaravelLocalization::setLocale())
     ->middleware(['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localize'])
     ->group(function () {
 
-        Route::middleware(['auth'])->group(function () {
+        Route::middleware(['auth', 'platform-access'])->group(function () {
             Route::get('/', function () {
                 return view('frontend.index');
             })->name('frontend.index');

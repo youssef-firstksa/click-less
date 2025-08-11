@@ -30,35 +30,17 @@
     </div>
 
     <div class="col-lg-6">
-        <x-dashboard.form.label for="role">{{__('dashboard.users_management.form.role')}}</x-dashboard.form.label>
-        <x-dashboard.form.select name="role" id="role">
+        <x-dashboard.form.label for="role_id">{{__('dashboard.users_management.form.role')}}</x-dashboard.form.label>
+        <x-dashboard.form.select2 name="role_id" id="role_id" :options="$roles" :selected="$user?->role?->id" />
 
-            <option value="" disabled selected>{{__('dashboard.general.select')}}</option>
-
-            <option value="admin" @selected(old('role', $user->role) === 'admin')>
-                Admin
-            </option>
-
-            <option value="supervisor" @selected(old('role', $user->role) === 'supervisor')>
-                Supervisor
-            </option>
-        </x-dashboard.form.select>
-
-        <x-dashboard.form.error :messages="$errors->get('role')" />
+        <x-dashboard.form.error :messages="$errors->get('role_id')" />
     </div>
 
     <div class="col-lg-6">
         <x-dashboard.form.label for="status">{{__('dashboard.users_management.form.status')}}</x-dashboard.form.label>
-        <x-dashboard.form.select name="status" id="status">
 
-            <option value="" disabled selected>{{__('dashboard.general.select')}}</option>
-
-            @foreach(\App\Enums\Status::labels() as $value => $label)
-                <option value="{{ $value }}" @selected(old('status', $user->status?->value) === $value)>
-                    {{ $label }}
-                </option>
-            @endforeach
-        </x-dashboard.form.select>
+        <x-dashboard.form.select2 id="status" name="status" :options="\App\Enums\Status::labels()"
+            placeholder="{{__('dashboard.general.select')}}" :selected="$user->status?->value" />
 
         <x-dashboard.form.error :messages="$errors->get('status')" />
     </div>

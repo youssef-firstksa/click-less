@@ -25,10 +25,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('admins', 'email')->ignore($this->route('admin'))],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->route('user'))],
             'password' => ['nullable', 'confirmed', 'min:8'],
             'status' => ['required', Rule::in(Status::cases())],
-            // 'role' => ['required', Rule::in(Status::cases())],
+            'role_id' => ['required', Rule::exists('roles', 'id')],
         ];
     }
 }

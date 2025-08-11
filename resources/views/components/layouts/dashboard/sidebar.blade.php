@@ -11,101 +11,126 @@
     </div>
     <div class="sidebar-menu-area">
         <ul class="sidebar-menu" id="sidebar-menu">
-            <li>
-                <a href="{{ route('dashboard.dashboard') }}">
-                    <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.sidebar.dashboard')}}</span>
-                </a>
-            </li>
+            @can('show-dashboard')
+                <li>
+                    <a href="{{ route('dashboard.dashboard') }}">
+                        <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
+                        <span>{{ __('dashboard.sidebar.dashboard') }}</span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="dropdown">
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="solar:lock-broken" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.sidebar.permissions_management')}}</span>
-                </a>
 
-                <ul class="sidebar-submenu">
-                    <li>
-                        <a href="{{ route('dashboard.users.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.users_management.index_title') }}
-                        </a>
-                    </li>
+            @canany(['list-user', 'list-role'])
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:lock-broken" class="menu-icon"></iconify-icon>
+                        <span>{{ __('dashboard.sidebar.permissions_management') }}</span>
+                    </a>
 
-                    <li>
-                        <a href="{{ route('dashboard.roles.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.roles_management.index_title') }}
-                        </a>
-                    </li>
+                    <ul class="sidebar-submenu">
+                        @can('list-user')
+                            <li>
+                                <a href="{{ route('dashboard.users.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.users_management.index_title') }}
+                                </a>
+                            </li>
+                        @endcan
 
-                </ul>
-            </li>
+                        @can('list-role')
+                            <li>
+                                <a href="{{ route('dashboard.roles.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.roles_management.index_title') }}
+                                </a>
+                            </li>
+                        @endcan
 
-            <li class="dropdown">
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="solar:cloud-broken" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.sidebar.bank_management')}}</span>
-                </a>
+                    </ul>
+                </li>
+            @endcanany
 
-                <ul class="sidebar-submenu">
-                    <li>
-                        <a href="{{ route('dashboard.banks.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.sidebar.bank_management') }}
-                        </a>
-                    </li>
+            @canany(['list-bank'])
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:cloud-broken" class="menu-icon"></iconify-icon>
+                        <span>{{ __('dashboard.sidebar.bank_management') }}</span>
+                    </a>
 
-                </ul>
-            </li>
+                    <ul class="sidebar-submenu">
+                        @can('list-bank')
+                            <li>
+                                <a href="{{ route('dashboard.banks.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.sidebar.bank_management') }}
+                                </a>
+                            </li>
+                        @endcan
 
-            <li class="dropdown">
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="solar:pen-new-square-linear" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.sidebar.content_management')}}</span>
-                </a>
+                    </ul>
+                </li>
+            @endcanany
 
-                <ul class="sidebar-submenu">
-                    <li>
-                        <a href="{{ route('dashboard.products.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.products_management.index_title') }}
-                        </a>
-                    </li>
+            @canany(['list-product', 'list-section', 'list-article'])
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="solar:pen-new-square-linear" class="menu-icon"></iconify-icon>
+                        <span>{{ __('dashboard.sidebar.content_management') }}</span>
+                    </a>
 
-                    <li>
-                        <a href="{{ route('dashboard.sections.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.sections_management.index_title') }}
-                        </a>
-                    </li>
+                    <ul class="sidebar-submenu">
+                        @can('list-product')
+                            <li>
+                                <a href="{{ route('dashboard.products.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.products_management.index_title') }}
+                                </a>
+                            </li>
+                        @endcan
 
-                    <li>
-                        <a href="{{ route('dashboard.articles.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.articles_management.index_title') }}
-                        </a>
-                    </li>
+                        @can('list-section')
+                            <li>
+                                <a href="{{ route('dashboard.sections.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.sections_management.index_title') }}
+                                </a>
+                            </li>
+                        @endcan
 
-                </ul>
-            </li>
+                        @can('list-article')
+                            <li>
+                                <a href="{{ route('dashboard.articles.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.articles_management.index_title') }}
+                                </a>
+                            </li>
+                        @endcan
 
-            <li class="dropdown">
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="bi:bell" class="menu-icon"></iconify-icon>
-                    <span>{{__('dashboard.sidebar.notifications_management')}}</span>
-                </a>
+                    </ul>
+                </li>
+            @endcanany
 
-                <ul class="sidebar-submenu">
-                    <li>
-                        <a href="{{ route('dashboard.notifications.index') }}">
-                            <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                            {{ __('dashboard.sidebar.notifications_management') }}
-                        </a>
-                    </li>
+            @canany(['list-notification'])
+                <li class="dropdown">
+                    <a href="javascript:void(0)">
+                        <iconify-icon icon="bi:bell" class="menu-icon"></iconify-icon>
+                        <span>{{ __('dashboard.sidebar.notifications_management') }}</span>
+                    </a>
 
-                </ul>
-            </li>
+                    <ul class="sidebar-submenu">
+                        @can('list-notification')
+                            <li>
+                                <a href="{{ route('dashboard.notifications.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.sidebar.notifications_management') }}
+                                </a>
+                            </li>
+                        @endcan
+
+                    </ul>
+                </li>
+            @endcanany
 
 
         </ul>

@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Permission;
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
-
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +29,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RouteServiceProvider::loadCachedRoutesUsing(fn() => $this->loadCachedRoutes());
+        Gate::before(function (User $user, string $ability) {
+            return $user->role->name === 'super-admin';
+        });
 
+        RouteServiceProvider::loadCachedRoutesUsing(fn() => $this->loadCachedRoutes());
 
         if (request()->is('admin/*', '*/admin/*')) {
             // Use Admin Bootstrap Pagination for the admin dashboard

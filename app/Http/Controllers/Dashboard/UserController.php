@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -14,6 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        Gate::authorize('list-user');
+
         $users = User::whereNot('id', auth()->id())->commonFilters([
             'search' => ['name', 'email'],
             'status' => 'status',
@@ -27,7 +31,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.users.create');
+        Gate::authorize('create-user');
+
+        $roles = Role::translatedPluck('title');
+        return view('dashboard.users.create', compact('roles'));
     }
 
     /**
@@ -35,7 +42,11 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        Gate::authorize('create-user');
+
         $user = User::create($request->validated());
+
+        $user->roles()->sync($request->role_id);
 
         return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.created', ['resource' => $user->name]));
     }
@@ -45,6 +56,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        Gate::authorize('show-user');
         // return view('dashboard.users.show');
     }
 
@@ -53,7 +65,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.users.edit', compact('user'));
+        Gate::authorize('update-user');
+
+        $roles = Role::translatedPluck('title');
+        return view('dashboard.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -61,11 +76,15 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        Gate::authorize('update-user');
+
         $data = $request->validated();
 
         if (is_null($data['password'])) unset($data['password']);
 
         $user->update($data);
+
+        $user->roles()->sync($request->role_id);
 
         return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $user->name]));
     }
@@ -75,6 +94,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Gate::authorize('delete-user');
+
         $user->delete();
         return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $user->name]));
     }

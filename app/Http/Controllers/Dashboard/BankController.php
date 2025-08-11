@@ -7,6 +7,7 @@ use App\Http\Requests\StoreBankRequest;
 use App\Http\Requests\UpdateBankRequest;
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BankController extends Controller
 {
@@ -15,6 +16,8 @@ class BankController extends Controller
      */
     public function index()
     {
+        Gate::authorize('list-bank');
+
         $banks = Bank::commonFilters([
             'search' => ['translation.title'],
             'status' => 'status',
@@ -28,6 +31,8 @@ class BankController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create-bank');
+
         return view('dashboard.banks.create');
     }
 
@@ -36,6 +41,8 @@ class BankController extends Controller
      */
     public function store(StoreBankRequest $request)
     {
+        Gate::authorize('create-bank');
+
         $bank = Bank::create($request->validated());
 
         if ($request->hasFile('image')) {
@@ -54,6 +61,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
+        Gate::authorize('show-bank');
         // return view('dashboard.banks.show');
     }
 
@@ -62,6 +70,8 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
+        Gate::authorize('update-bank');
+
         return view('dashboard.banks.edit', compact('bank'));
     }
 
@@ -70,6 +80,8 @@ class BankController extends Controller
      */
     public function update(UpdateBankRequest $request, Bank $bank)
     {
+        Gate::authorize('update-bank');
+
         $bank->update($request->validated());
 
         if ($request->hasFile('image')) {
@@ -88,6 +100,8 @@ class BankController extends Controller
      */
     public function destroy(Bank $bank)
     {
+        Gate::authorize('delete-bank');
+
         $bank->delete();
         return redirect()->route('dashboard.banks.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $bank->title]));
     }

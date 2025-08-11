@@ -14,10 +14,12 @@
                 <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            <x-dashboard.button class="btn-primary-600" :href="route('dashboard.notifications.create')">
-                <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
-                {{ __('dashboard.general.add_new') }}
-            </x-dashboard.button>
+            @can('create-notification')
+                <x-dashboard.button class="btn-primary-600" :href="route('dashboard.notifications.create')">
+                    <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
+                    {{ __('dashboard.general.add_new') }}
+                </x-dashboard.button>
+            @endcan
 
         </div>
 
@@ -50,12 +52,23 @@
 
                                 <td class="text-center">
                                     <div class="d-flex align-items-center gap-10 justify-content-center">
-                                        <x-dashboard.table.actions.show
-                                            route="{{ route('dashboard.notifications.show', $notification) }}" :model="$notification" />
-                                        <x-dashboard.table.actions.edit
-                                            route="{{ route('dashboard.notifications.edit', $notification) }}" :model="$notification" />
-                                        <x-dashboard.table.actions.delete
-                                            route="{{ route('dashboard.notifications.destroy', $notification) }}" :model="$notification" />
+                                        @can('show-notification')
+                                            <x-dashboard.table.actions.show
+                                                route="{{ route('dashboard.notifications.show', $notification) }}"
+                                                :model="$notification" />
+                                        @endcan
+
+                                        @can('update-notification')
+                                            <x-dashboard.table.actions.edit
+                                                route="{{ route('dashboard.notifications.edit', $notification) }}"
+                                                :model="$notification" />
+                                        @endcan
+
+                                        @can('delete-notification')
+                                            <x-dashboard.table.actions.delete
+                                                route="{{ route('dashboard.notifications.destroy', $notification) }}"
+                                                :model="$notification" />
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

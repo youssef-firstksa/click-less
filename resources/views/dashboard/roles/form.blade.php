@@ -22,5 +22,24 @@
         <x-dashboard.form.error :messages="$errors->get('name')" />
     </div>
 
+    <div class="col-lg-12">
+        @foreach ($permissionOptions as $group => $permissions)
+            <h5 class="mb-3">{{__("permissions.groups.{$group}")}}</h5>
+
+            <div class="border border-primary-600 p-3 pb-0 mb-3">
+                <div class="row">
+                    @foreach ($permissions as $permission)
+                        <div class="col-lg-4 mb-3">
+                            <x-dashboard.form.switch :id="$permission->name" name="permission_ids[]" :value="$permission->id"
+                                :text="$permission->title" :checked="in_array($permission->id, $role->permissions->pluck('id')->toArray())" />
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <hr class="mb-3" />
+        @endforeach
+    </div>
+
 
 </div>

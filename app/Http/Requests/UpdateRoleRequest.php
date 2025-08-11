@@ -25,7 +25,7 @@ class UpdateRoleRequest extends FormRequest
     {
         $rules = [
             'name' => ['required', Rule::unique('roles')->ignore(request()->route('role'))],
-            'permission_ids' => ['required', 'array'],
+            'permission_ids' => ['required', 'array', Rule::exists('permissions', 'id')],
         ];
 
         foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {

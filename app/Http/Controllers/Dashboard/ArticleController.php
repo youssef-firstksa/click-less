@@ -10,6 +10,7 @@ use App\Models\Bank;
 use App\Models\Product;
 use App\Models\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends Controller
 {
@@ -18,6 +19,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        Gate::authorize('list-article');
+
         $articles = Article::commonFilters([
             'search' => ['translation.title'],
             'status' => 'status',
@@ -31,6 +34,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create-article');
+
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
         return view('dashboard.articles.create', compact('bankOptions'));
     }
@@ -40,6 +45,8 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
+        Gate::authorize('create-article');
+
         $data = [...$request->validated(), 'author_id' => auth()->id()];
         $article = Article::create($data);
 
@@ -51,6 +58,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        Gate::authorize('show-article');
         // return view('dashboard.articles.show');
     }
 
@@ -59,6 +67,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        Gate::authorize('update-article');
+
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
         $productOptions = Product::where('bank_id', $article->bank_id)->whereActivated()->translatedPluck('title');
         $sectionOptions = Section::where('product_id', $article->product_id)->whereActivated()->translatedPluck('title');
@@ -71,6 +81,8 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
+        Gate::authorize('update-article');
+
         $article->update($request->validated());
 
         return redirect()->route('dashboard.articles.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $article->title]));
@@ -81,6 +93,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        Gate::authorize('update-delete');
+
         $article->delete();
         return redirect()->route('dashboard.articles.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $article->title]));
     }

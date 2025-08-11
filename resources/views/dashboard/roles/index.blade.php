@@ -13,11 +13,12 @@
                 <x-dashboard.table.filters.search />
             </form>
 
+            @can('create-role')
             <x-dashboard.button class="btn-primary-600" :href="route('dashboard.roles.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
             </x-dashboard.button>
-
+            @endif
         </div>
 
         <div class="card-body p-24">
@@ -33,24 +34,33 @@
                     </thead>
                     <tbody>
                         @foreach ($roles as $role)
-                            <tr>
-                                <td>{{ $role->id }}</td>
+                        <tr>
+                            <td>{{ $role->id }}</td>
 
-                                <td>{{ $role->name }}</td>
+                            <td>{{ $role->name }}</td>
 
-                                <td>{{ $role->title }}</td>
+                            <td>{{ $role->title }}</td>
 
-                                <td class="text-center">
-                                    <div class="d-flex align-items-center gap-10 justify-content-center">
-                                        <x-dashboard.table.actions.show route="{{ route('dashboard.roles.show', $role) }}"
-                                            :model="$role" />
-                                        <x-dashboard.table.actions.edit route="{{ route('dashboard.roles.edit', $role) }}"
-                                            :model="$role" />
-                                        <x-dashboard.table.actions.delete
-                                            route="{{ route('dashboard.roles.destroy', $role) }}" :model="$role" />
-                                    </div>
-                                </td>
-                            </tr>
+                            <td class="text-center">
+                                <div class="d-flex align-items-center gap-10 justify-content-center">
+                                    @can('show-role')
+                                    <x-dashboard.table.actions.show route="{{ route('dashboard.roles.show', $role) }}"
+                                        :model="$role" />
+                                    @endif
+
+                                    @can('update-role')
+                                    <x-dashboard.table.actions.edit route="{{ route('dashboard.roles.edit', $role) }}"
+                                        :model="$role" />
+                                    @endif
+
+                                    @can('delete-role')
+                                    <x-dashboard.table.actions.delete
+                                        route="{{ route('dashboard.roles.destroy', $role) }}" :model="$role" />
+                                    @endif
+
+                                </div>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

@@ -6,14 +6,16 @@ enum PermissionEnum: string
 {
     // PLATFORM ACCESS LEVEL
 
-    case ACCESS_DASHBOARD = 'access-dashboard';
-    case ACCESS_AGENT = 'access-agent';
+    case ACCESS_DASHBOARD = 'access-dashboard-platform';
+    case ACCESS_AGENT = 'access-agent-platform';
 
-    /**
+/**
      * ************************************
      * *** Dashboard Access Permissions ***
      * ************************************
      */
+
+    case SHOW_DASHBOARD = 'show-dashboard';
 
 /**
      * Role Permissions
@@ -95,6 +97,12 @@ enum PermissionEnum: string
     //  case AGENT_SHOW_ARTICLE = 'agent-show-article';
 
     //  case AGENT_ADD_NOTE = 'agent-add-note';
+
+    public function group(): string
+    {
+        $parts = explode('-', $this->value);
+        return end($parts) ?: '';
+    }
 
     // ===== Grouped Getters =====
 

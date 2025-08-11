@@ -14,11 +14,12 @@
                 <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
+            @can('create-product')
             <x-dashboard.button class="btn-primary-600" :href="route('dashboard.products.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
             </x-dashboard.button>
-
+            @endif
         </div>
 
         <div class="card-body p-24">
@@ -34,31 +35,40 @@
                     </thead>
                     <tbody>
                         @foreach ($products as $product)
-                            <tr>
-                                <td>{{ $product->id }}</td>
+                        <tr>
+                            <td>{{ $product->id }}</td>
 
-                                <td>{{ $product->title }}</td>
+                            <td>{{ $product->title }}</td>
 
-                                <td class="text-center">
+                            <td class="text-center">
 
-                                    @if ($product->status == App\Enums\Status::ACTIVATED)
-                                        <x-dashboard.status status="success" :content="strtoupper(__('dashboard.general.' . $product->status->value))" />
-                                    @else
-                                        <x-dashboard.status status="danger" :content="strtoupper(__('dashboard.general.' . $product->status->value))" />
+                                @if ($product->status == App\Enums\Status::ACTIVATED)
+                                    <x-dashboard.status status="success" :content="strtoupper(__('dashboard.general.' . $product->status->value))" />
+                                @else
+                                    <x-dashboard.status status="danger" :content="strtoupper(__('dashboard.general.' . $product->status->value))" />
+                                @endif
+                            </td>
+
+                            <td class="text-center">
+                                <div class="d-flex align-items-center gap-10 justify-content-center">
+                                    @can('show-product')
+                                    <x-dashboard.table.actions.show
+                                        route="{{ route('dashboard.products.show', $product) }}" :model="$product" />
                                     @endif
-                                </td>
 
-                                <td class="text-center">
-                                    <div class="d-flex align-items-center gap-10 justify-content-center">
-                                        <x-dashboard.table.actions.show
-                                            route="{{ route('dashboard.products.show', $product) }}" :model="$product" />
-                                        <x-dashboard.table.actions.edit
-                                            route="{{ route('dashboard.products.edit', $product) }}" :model="$product" />
-                                        <x-dashboard.table.actions.delete
-                                            route="{{ route('dashboard.products.destroy', $product) }}" :model="$product" />
-                                    </div>
-                                </td>
-                            </tr>
+                                    @can('update-product')
+                                    <x-dashboard.table.actions.edit
+                                        route="{{ route('dashboard.products.edit', $product) }}" :model="$product" />
+                                    @endif
+
+                                    @can('delete-product')
+                                    <x-dashboard.table.actions.delete
+                                        route="{{ route('dashboard.products.destroy', $product) }}" :model="$product" />
+                                    @endif
+
+                                </div>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Bank;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -16,6 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        Gate::authorize('list-product');
+
         $products = Product::commonFilters([
             'search' => ['translation.title'],
             'status' => 'status',
@@ -29,6 +32,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create-product');
+
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
         return view('dashboard.products.create', compact('bankOptions'));
     }
@@ -38,6 +43,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        Gate::authorize('create-product');
+
         $product = Product::create($request->validated());
 
         return redirect()->route('dashboard.products.index')->with('success', __('dashboard.messages.success.created', ['resource' => $product->title]));
@@ -48,6 +55,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        Gate::authorize('show-product');
         // return view('dashboard.products.show');
     }
 
@@ -56,6 +64,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        Gate::authorize('update-product');
+
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
 
         return view('dashboard.products.edit', compact('product', 'bankOptions'));
@@ -66,6 +76,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        Gate::authorize('update-product');
+
         $product->update($request->validated());
 
         return redirect()->route('dashboard.products.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $product->title]));
@@ -76,12 +88,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        Gate::authorize('delete-product');
+
         $product->delete();
         return redirect()->route('dashboard.products.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $product->title]));
     }
 
     public function getBankProducts(Request $request)
     {
+        if (Gate::denies('update-product') ||  Gate::denies('store-product')) abort(403);
+
         $bankId = $request->get('id');
 
         if (!$bankId) {

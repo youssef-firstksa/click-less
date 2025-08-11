@@ -8,7 +8,7 @@
             <form action="{{ route('dashboard.roles.store') }}" method="POST">
                 @csrf
 
-                @include('dashboard.roles.form', ['product' => new App\Models\Role])
+                @include('dashboard.roles.form', ['role' => new App\Models\Role])
 
 
                 <x-dashboard.form.actions>

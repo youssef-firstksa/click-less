@@ -18,7 +18,8 @@ class RolesAndPermissionsSeeder extends Seeder
             Permission::firstOrCreate(
                 [
                     'name' => $case->value,
-                    'guard_name' => 'web'
+                    'group' => $case->group(),
+                    'guard_name' => 'web',
                 ],
                 [
                     'en' => [

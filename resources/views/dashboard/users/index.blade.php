@@ -14,10 +14,12 @@
                 <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            <x-dashboard.button class="btn-primary-600" :href="route('dashboard.users.create')">
-                <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
-                {{ __('dashboard.general.add_new') }}
-            </x-dashboard.button>
+            @can('create-user')
+                <x-dashboard.button class="btn-primary-600" :href="route('dashboard.users.create')">
+                    <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
+                    {{ __('dashboard.general.add_new') }}
+                </x-dashboard.button>
+            @endcan
 
         </div>
 
@@ -51,12 +53,20 @@
 
                                 <td class="text-center">
                                     <div class="d-flex align-items-center gap-10 justify-content-center">
-                                        <x-dashboard.table.actions.show route="{{ route('dashboard.users.show', $user) }}"
-                                            :model="$user" />
-                                        <x-dashboard.table.actions.edit route="{{ route('dashboard.users.edit', $user) }}"
-                                            :model="$user" />
-                                        <x-dashboard.table.actions.delete
-                                            route="{{ route('dashboard.users.destroy', $user) }}" :model="$user" />
+                                        @can('show-user')
+                                            <x-dashboard.table.actions.show route="{{ route('dashboard.users.show', $user) }}"
+                                                :model="$user" />
+                                        @endcan
+
+                                        @can('update-user')
+                                            <x-dashboard.table.actions.edit route="{{ route('dashboard.users.edit', $user) }}"
+                                                :model="$user" />
+                                        @endcan
+
+                                        @can('delete-user')
+                                            <x-dashboard.table.actions.delete
+                                                route="{{ route('dashboard.users.destroy', $user) }}" :model="$user" />
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

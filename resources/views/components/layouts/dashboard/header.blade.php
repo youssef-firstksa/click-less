@@ -346,7 +346,7 @@
                                 </h6>
 
                                 <span class="text-secondary-light fw-medium text-sm">
-                                    {{ auth()->user()->role ?? 'User' }}
+                                    {{ auth()->user()?->role?->title ?? 'User' }}
                                 </span>
                             </div>
                             <button type="button" class="hover-text-danger">

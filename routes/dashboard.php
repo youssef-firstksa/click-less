@@ -9,7 +9,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SectionController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'platform-access'])->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
     })->name('dashboard');

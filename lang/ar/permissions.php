@@ -1,8 +1,30 @@
 <?php
 
 return [
-    'access-dashboard' => 'الوصول للوحة التحكم',
-    'access-agent' => 'الوصول للموقع الرئيسي',
+    'groups' => [
+        'platform' => 'المنصة',
+        'dashboard' => 'لوحة التحكم',
+        'agent' => 'منصة الوكيل',
+        'role' => 'الأدوار',
+        'user' => 'المستخدمون',
+        'bank' => 'البنوك',
+        'product' => 'المنتجات',
+        'section' => 'الأقسام',
+        'article' => 'المقالات',
+        'notification' => 'الإشعارات',
+    ],
+
+
+    'access-dashboard-platform' => 'الوصول للوحة التحكم',
+    'access-agent-platform' => 'الوصول للموقع الرئيسي',
+
+    'show-dashboard' => 'عرض لوحة التحكم',
+
+    'list-role'          => 'عرض قائمة الأدوار',
+    'show-role'          => 'عرض الدور',
+    'create-role'        => 'إنشاء دور',
+    'update-role'        => 'تحديث دور',
+    'delete-role'        => 'حذف دور',
 
     'list-user'          => 'عرض قائمة المستخدمين',
     'show-user'          => 'عرض المستخدم',

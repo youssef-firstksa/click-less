@@ -25,10 +25,10 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'email', Rule::unique('admins', 'email')],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', 'min:8'],
             'status' => ['required', Rule::in(Status::cases())],
-            // 'role' => ['required', Rule::in(Status::cases())],
+            'role_id' => ['required', Rule::exists('roles', 'id')],
         ];
     }
 }
