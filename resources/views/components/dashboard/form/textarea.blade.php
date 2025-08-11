@@ -1,1 +1,1 @@
-<textarea {{ $attributes->merge(['class' => 'form-control']) }}>{{$slot}}</textarea>
+<textarea {{ $attributes->merge(['class' => 'form-control']) }}>{{ $slot }}</textarea>
