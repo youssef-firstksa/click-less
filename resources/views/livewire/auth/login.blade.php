@@ -3,7 +3,6 @@
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -40,7 +39,7 @@ new #[Layout('components.layouts.auth.master')] class extends Component {
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('dashboard', absolute: false));
     }
 
     /**
@@ -73,145 +72,106 @@ new #[Layout('components.layouts.auth.master')] class extends Component {
     }
 }; ?>
 
-<!--begin::Authentication - Sign-in -->
-<div class="d-flex flex-column flex-lg-row flex-column-fluid">
-    <!--begin::Aside-->
-    <div class="d-flex flex-lg-row-fluid">
-        <!--begin::Content-->
-        <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
-            <!--begin::Image-->
-            <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                src="{{ asset('assets/agent/media/auth/agency.png') }}" alt="" />
-            <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                src="{{ asset('assets/agent/media/auth/agency-dark.png') }}" alt="" />
-            <!--end::Image-->
+<x-slot name="title">
+    {{ __('common.login') }}
+</x-slot>
 
-            <!--begin::Title-->
-            <h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">
-                Fast, Efficient and Productive
-            </h1>
-            <!--end::Title-->
-
-            <!--begin::Text-->
-            <div class="text-gray-600 fs-base text-center fw-semibold">
-                In this kind of post, <a href="#" class="opacity-75-hover text-primary me-1">the blogger</a>
-
-                introduces a person they’ve interviewed <br /> and provides some background information about
-
-                <a href="#" class="opacity-75-hover text-primary me-1">the interviewee</a>
-                and their <br /> work following this is a transcript of the interview.
-            </div>
-            <!--end::Text-->
+<section class="auth bg-base d-flex flex-wrap">
+    <div class="auth-left d-lg-block d-none">
+        <div class="d-flex align-items-center flex-column h-100 justify-content-center">
+            <img src="{{ asset('assets/common/images/auth/auth-img.png') }}" alt="">
         </div>
-        <!--end::Content-->
     </div>
-    <!--begin::Aside-->
 
-    <!--begin::Body-->
-    <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
-        <!--begin::Wrapper-->
-        <div class="bg-body d-flex flex-column flex-center rounded-4 w-md-600px p-10">
-            <!--begin::Content-->
-            <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
-                <!--begin::Wrapper-->
-                <div class="d-flex flex-center flex-column flex-column-fluid pb-15 pb-lg-20">
+    <div class="auth-right py-32 px-24 d-flex flex-column justify-content-center">
+        <div class="max-w-464-px mx-auto w-100">
+            <div>
+                <a href="{{ route('agent.index') }}" class="mb-40 max-w-290-px">
+                    <img src="{{ asset('assets/common/logos/ulogo.png') }}" alt="">
+                </a>
+                <h4 class="mb-12">{{ __('common.login_title') }}</h4>
+                <p class="mb-32 text-secondary-light text-lg">{{ __('common.login_description') }}</p>
+            </div>
 
-                    <!--begin::Form-->
-                    <form wire:submit="login" class="form w-100" novalidate="novalidate" id="kt_sign_in_form">
-                        <!--begin::Heading-->
-                        <div class="text-center mb-11">
-                            <!--begin::Title-->
-                            <h1 class="text-gray-900 fw-bolder mb-3">
-                                {{ __('Log in to your account') }}
-                            </h1>
-                            <!--end::Title-->
+            <form wire:submit="login">
 
-                            <!--begin::Subtitle-->
-                            <div class="text-gray-500 fw-semibold fs-6">
-                                {{ __('Enter your email and password below to log in') }}
-                            </div>
-                            <!--end::Subtitle--->
-                        </div>
-                        <!--begin::Heading-->
-
-
-                        <!--begin::Input group--->
-                        <div class="fv-row mb-5">
-                            <!--begin::Email-->
-                            <input type="email" placeholder="{{ __('Email address') }}" wire:model="email" autofocus
-                                autocomplete="off" class="form-control bg-transparent" />
-                            <!--end::Email-->
-                            @error('email')
-                                <div class="text-danger mt-2 mb-0">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!--end::Input group--->
-                        <div class="fv-row mb-3">
-                            <!--begin::Password-->
-                            <input type="password" placeholder="{{ __('Password') }}" wire:model="password"
-                                autocomplete="off" class="form-control bg-transparent" />
-                            <!--end::Password-->
-                            @error('password')
-                                <div class="text-danger mt-2 mb-0">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!--end::Input group--->
-
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                            <div></div>
-
-
-                            @if (Route::has('password.request'))
-                                <!--begin::Link-->
-                                <a href="{{ route('password.request') }}" class="link-primary">
-                                    {{ __('Forgot your password?') }}
-                                </a>
-                                <!--end::Link-->
-                            @endif
-
-                        </div>
-                        <!--end::Wrapper-->
-
-                        <!--begin::Submit button-->
-                        <div class="d-grid mb-10">
-                            <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
-
-                                <!--begin::Indicator label-->
-                                <span class="indicator-label">
-                                    {{ __('Log in') }}
-                                </span>
-                                <!--end::Indicator label-->
-
-                                <!--begin::Indicator progress-->
-                                <span class="indicator-progress">
-                                    Please wait... <span
-                                        class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                                <!--end::Indicator progress--> </button>
-                        </div>
-                        <!--end::Submit button-->
-
-                        <!--begin::Sign up-->
-                        {{-- <div class="text-gray-500 text-center fw-semibold fs-6">
-                            {{ __('Don\'t have an account?') }}
-
-                            <a href="sign-up.html" class="link-primary">
-                                {{ __('Sign up') }}
-                            </a>
-                        </div> --}}
-                        <!--end::Sign up-->
-                    </form>
-                    <!--end::Form-->
-
+                <div class="icon-field mb-2">
+                    <span class="icon top-50 translate-middle-y">
+                        <iconify-icon icon="mage:email"></iconify-icon>
+                    </span>
+                    <input type="email" id="email" wire:model="email"
+                        class="form-control h-56-px bg-neutral-50 radius-12" placeholder="{{ __('common.email') }}">
                 </div>
-                <!--end::Wrapper-->
-            </div>
-            <!--end::Content-->
+
+                @error('email')
+                    <div class="text-danger mt-2 mb-0">{{ $message }}</div>
+                @enderror
+
+                <div class="position-relative mb-2 mt-16">
+                    <div class="icon-field">
+                        <span class="icon top-50 translate-middle-y">
+                            <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
+                        </span>
+
+                        <input type="password" class="form-control h-56-px bg-neutral-50 radius-12" id="password"
+                            wire:model="password" placeholder="{{ __('common.password') }}">
+                    </div>
+
+                    @error('password')
+                        <div class="text-danger mt-2 mb-0">{{ $message }}</div>
+                    @enderror
+
+                    <span
+                        class="toggle-password ri-eye-line cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light"
+                        data-toggle="#password"></span>
+                </div>
+
+                <div class="">
+                    <div class="d-flex justify-content-between gap-2">
+                        <div class="form-check style-check d-flex align-items-center">
+                            <input class="form-check-input border border-neutral-300" type="checkbox" value=""
+                                id="remeber" name="remeber">
+
+                            <label class="form-check-label" for="remeber">{{ __('common.remember_me') }}</label>
+                        </div>
+
+                        @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}" class="text-primary-600 fw-medium">
+                                {{ __('common.forgot_your_password') }}
+                            </a>
+                        @endif
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary-600 text-sm btn-sm px-12 py-16 w-100 radius-12 mt-32">
+                    {{ __('common.login') }}
+                </button>
+
+                {{-- <div class="mt-32 center-border-horizontal text-center">
+                    <span class="bg-base z-1 px-4">Or sign in with</span>
+                </div>
+
+                <div class="mt-32 d-flex align-items-center gap-3">
+                    <button type="button"
+                        class="fw-semibold text-primary-light py-16 px-24 w-50 border radius-12 text-md d-flex align-items-center justify-content-center gap-12 line-height-1 bg-hover-primary-50">
+                        <iconify-icon icon="ic:baseline-facebook"
+                            class="text-primary-600 text-xl line-height-1"></iconify-icon>
+                        Google
+                    </button>
+                    <button type="button"
+                        class="fw-semibold text-primary-light py-16 px-24 w-50 border radius-12 text-md d-flex align-items-center justify-content-center gap-12 line-height-1 bg-hover-primary-50">
+                        <iconify-icon icon="logos:google-icon"
+                            class="text-primary-600 text-xl line-height-1"></iconify-icon>
+                        Google
+                    </button>
+                </div>
+
+                <div class="mt-32 text-center text-sm">
+                    <p class="mb-0">Don’t have an account? <a href="sign-up.html"
+                            class="text-primary-600 fw-semibold">Sign Up</a></p>
+                </div> --}}
+
+            </form>
         </div>
-        <!--end::Wrapper-->
     </div>
-    <!--end::Body-->
-</div>
-<!--end::Authentication - Sign-in-->
+</section>
