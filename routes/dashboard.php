@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CkEditorController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
@@ -26,8 +27,7 @@ Route::middleware(['auth', 'platform-access'])->group(function () {
     Route::resource('sections', SectionController::class);
 
     Route::resource('articles', ArticleController::class);
-    Route::post('ckeditor/upload', function () {})->name('ckeditor.upload');
-
-
     Route::resource('notifications', NotificationController::class);
+
+    Route::post('ckeditor/upload', [CkEditorController::class, 'upload'])->name('ckeditor.upload');
 });

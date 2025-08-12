@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Status;
 use App\Traits\CommonFilters;
 use App\Traits\HasStatus;
+use App\Traits\InteractsWithMedia;
 use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,10 +13,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia;
 
-class Article extends Model
+class Article extends Model implements HasMedia
 {
-    use HasFactory, Translatable, SoftDeletes, CommonFilters, HasStatus, LogsActivity;
+    use HasFactory, Translatable, SoftDeletes, InteractsWithMedia, CommonFilters, HasStatus, LogsActivity;
 
     public $translatedAttributes = ['title', 'content', 'slug'];
 

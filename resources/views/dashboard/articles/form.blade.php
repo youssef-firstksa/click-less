@@ -153,13 +153,16 @@
     <script>
         const ckeInterval = setInterval(() => {
             let status = 'pending';
+            let counter = 0;
 
             document.querySelectorAll('.cke_notifications_area').forEach((element) => {
                 element.remove()
                 status = 'done';
             })
 
-            if (status === 'done') clearInterval(ckeInterval);
+            counter++;
+
+            if (status === 'done' || counter === 30) clearInterval(ckeInterval);
         }, 100)
     </script>
 
