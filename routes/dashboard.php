@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'platform-access'])->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
-    })->name('dashboard');
+    })->name('index');
 
     Route::resource('banks', BankController::class);
     Route::resource('roles', RoleController::class);

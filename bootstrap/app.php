@@ -10,7 +10,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 function handleAuthRedirect(Middleware $middleware)
 {
     $middleware->redirectUsersTo(function () {
-        return route('frontend.index');
+        return route('agent.index');
     });
 
     $middleware->redirectGuestsTo(function () {

@@ -1,3 +1,7 @@
 <x-layouts.agent.master>
-    <h1>Home Page {{ app()->getLocale() }}</h1>
+
+    <x-slot name="title">
+        {{ __('agent.general.home') }}
+    </x-slot>
+
 </x-layouts.agent.master>

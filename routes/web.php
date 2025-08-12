@@ -14,7 +14,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::middleware(['auth', 'platform-access'])->group(function () {
             Route::get('/', function () {
                 return view('agent.index');
-            })->name('frontend.index');
+            })->name('agent.index');
         });
     });
 

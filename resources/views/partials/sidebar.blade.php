@@ -3,7 +3,7 @@
         <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
     </button>
     <div>
-        <a href="{{ route('frontend.index') }}" class="sidebar-logo">
+        <a href="{{ route('agent.index') }}" class="sidebar-logo">
             <img src="{{ asset('assets/common//logos/ulogo.png') }}" alt="site logo" class="light-logo">
             {{-- <img src="{{ asset('assets/common//logos/ulogo.png') }}" alt="site logo" class="dark-logo"> --}}
             <img src="{{ asset('assets/common//logos/sys-logo.png') }}" alt="site logo" class="logo-icon">
@@ -13,7 +13,7 @@
         <ul class="sidebar-menu" id="sidebar-menu">
             @can('show-dashboard')
                 <li>
-                    <a href="{{ route('dashboard.dashboard') }}">
+                    <a href="{{ route('dashboard.index') }}">
                         <iconify-icon icon="solar:home-smile-angle-outline" class="menu-icon"></iconify-icon>
                         <span>{{ __('dashboard.sidebar.dashboard') }}</span>
                     </a>

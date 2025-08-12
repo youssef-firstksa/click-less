@@ -4,6 +4,7 @@
 
 <head>
     @include('partials.head')
+    @include('dashboard.partials.styles')
 </head>
 
 <body>
@@ -22,6 +23,7 @@
     </main>
 
     @include('partials.scripts')
+    @include('dashboard.partials.scripts')
 
 </body>
 

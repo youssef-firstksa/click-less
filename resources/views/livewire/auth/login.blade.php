@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
-new #[Layout('components.layouts.frontend.auth')] class extends Component {
+new #[Layout('components.layouts.auth.master')] class extends Component {
     #[Validate('required|string|email')]
     public string $email = '';
 
@@ -81,9 +81,9 @@ new #[Layout('components.layouts.frontend.auth')] class extends Component {
         <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
             <!--begin::Image-->
             <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                src="{{ asset('assets/frontend/media/auth/agency.png') }}" alt="" />
+                src="{{ asset('assets/agent/media/auth/agency.png') }}" alt="" />
             <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20"
-                src="{{ asset('assets/frontend/media/auth/agency-dark.png') }}" alt="" />
+                src="{{ asset('assets/agent/media/auth/agency-dark.png') }}" alt="" />
             <!--end::Image-->
 
             <!--begin::Title-->
@@ -122,7 +122,7 @@ new #[Layout('components.layouts.frontend.auth')] class extends Component {
                         <div class="text-center mb-11">
                             <!--begin::Title-->
                             <h1 class="text-gray-900 fw-bolder mb-3">
-                                {{__('Log in to your account')}}
+                                {{ __('Log in to your account') }}
                             </h1>
                             <!--end::Title-->
 
@@ -142,7 +142,7 @@ new #[Layout('components.layouts.frontend.auth')] class extends Component {
                                 autocomplete="off" class="form-control bg-transparent" />
                             <!--end::Email-->
                             @error('email')
-                                <div class="text-danger mt-2 mb-0">{{$message}}</div>
+                                <div class="text-danger mt-2 mb-0">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -153,7 +153,7 @@ new #[Layout('components.layouts.frontend.auth')] class extends Component {
                                 autocomplete="off" class="form-control bg-transparent" />
                             <!--end::Password-->
                             @error('password')
-                                <div class="text-danger mt-2 mb-0">{{$message}}</div>
+                                <div class="text-danger mt-2 mb-0">{{ $message }}</div>
                             @enderror
                         </div>
                         <!--end::Input group--->
