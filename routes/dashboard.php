@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CkEditorController;
+use App\Http\Controllers\Dashboard\CkEditorController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
@@ -14,7 +14,6 @@ Route::middleware(['auth', 'platform-access'])->group(function () {
     Route::get('/', function () {
         return view('dashboard.index');
     })->name('dashboard');
-
 
     Route::resource('banks', BankController::class);
     Route::resource('roles', RoleController::class);

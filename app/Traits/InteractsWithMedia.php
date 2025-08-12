@@ -15,7 +15,7 @@ trait InteractsWithMedia
         if (file_exists($mediaItem?->getPath($conversionName))) {
             $media = $mediaItem->getUrl($conversionName);
         } else {
-            $media =  asset('assets/dashboard/images/user-list/user-list1.png');
+            $media =  asset('assets/common/images/user-list/user-list1.png');
         }
 
         return $media;

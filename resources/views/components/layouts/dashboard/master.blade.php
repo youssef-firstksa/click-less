@@ -3,25 +3,25 @@
 <html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}" data-theme="light">
 
 <head>
-    <x-layouts.dashboard.head title="{{$title ?? '' }}" />
+    @include('partials.head')
 </head>
 
 <body>
-    <x-layouts.dashboard.sidebar />
+    @include('partials.sidebar')
 
     <main class="dashboard-main">
-        <x-layouts.dashboard.header />
+        @include('partials.header')
 
         <div class="dashboard-main-body">
-            <x-layouts.dashboard.page-head :title="$title ?? ''" />
+            @include('partials.page-head')
 
             {{ $slot }}
         </div>
 
-        <x-layouts.dashboard.footer />
+        @include('partials.footer')
     </main>
 
-    <x-layouts.dashboard.scripts />
+    @include('partials.scripts')
 
 </body>
 

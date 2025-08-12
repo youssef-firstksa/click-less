@@ -1,5 +1,7 @@
 <x-layouts.dashboard.master>
+
     <x-slot name="title">
         {{ __('dashboard.general.dashboard') }}
     </x-slot>
-    </x-layouts.admin.master>
+
+</x-layouts.dashboard.master>

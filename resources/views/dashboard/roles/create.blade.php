@@ -8,16 +8,16 @@
             <form action="{{ route('dashboard.roles.store') }}" method="POST">
                 @csrf
 
-                @include('dashboard.roles.form', ['role' => new App\Models\Role])
+                @include('dashboard.roles.form', ['role' => new App\Models\Role()])
 
 
-                <x-dashboard.form.actions>
-                    <x-dashboard.button type="submit" class="btn-primary-600">
-                        {{__('dashboard.general.create')}}
-                    </x-dashboard.button>
-                </x-dashboard.form.actions>
+                <x-form.actions>
+                    <x-button type="submit" class="btn-primary-600">
+                        {{ __('dashboard.general.create') }}
+                        </x-dashboard.button>
+                        </x-dashboard.form.actions>
 
             </form>
         </div>
     </div>
-    </x-layouts.admin.master>
+</x-layouts.dashboard.master>

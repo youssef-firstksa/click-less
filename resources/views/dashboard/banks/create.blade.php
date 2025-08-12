@@ -11,13 +11,13 @@
                 @include('dashboard.banks.form', ['bank' => new App\Models\Bank()])
 
 
-                <x-dashboard.form.actions>
-                    <x-dashboard.button type="submit" class="btn-primary-600">
+                <x-form.actions>
+                    <x-button type="submit" class="btn-primary-600">
                         {{ __('dashboard.general.create') }}
-                    </x-dashboard.button>
-                </x-dashboard.form.actions>
+                        </x-dashboard.button>
+                        </x-dashboard.form.actions>
 
             </form>
         </div>
     </div>
-    </x-layouts.admin.master>
+</x-layouts.dashboard.master>

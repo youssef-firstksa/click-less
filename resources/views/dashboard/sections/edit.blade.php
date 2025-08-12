@@ -12,12 +12,12 @@
 
                 @include('dashboard.sections.form')
 
-                <x-dashboard.form.actions>
-                    <x-dashboard.button type="submit" class="btn-success-600">
-                        {{__('dashboard.general.update')}}
-                    </x-dashboard.button>
-                </x-dashboard.form.actions>
+                <x-form.actions>
+                    <x-button type="submit" class="btn-success-600">
+                        {{ __('dashboard.general.update') }}
+                        </x-dashboard.button>
+                        </x-dashboard.form.actions>
             </form>
         </div>
     </div>
-    </x-layouts.admin.master>
+</x-layouts.dashboard.master>

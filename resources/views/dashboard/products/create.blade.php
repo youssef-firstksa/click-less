@@ -8,16 +8,16 @@
             <form action="{{ route('dashboard.products.store') }}" method="POST">
                 @csrf
 
-                @include('dashboard.products.form', ['product' => new App\Models\Product])
+                @include('dashboard.products.form', ['product' => new App\Models\Product()])
 
 
-                <x-dashboard.form.actions>
-                    <x-dashboard.button type="submit" class="btn-primary-600">
-                        {{__('dashboard.general.create')}}
-                    </x-dashboard.button>
-                </x-dashboard.form.actions>
+                <x-form.actions>
+                    <x-button type="submit" class="btn-primary-600">
+                        {{ __('dashboard.general.create') }}
+                        </x-dashboard.button>
+                        </x-dashboard.form.actions>
 
             </form>
         </div>
     </div>
-    </x-layouts.admin.master>
+</x-layouts.dashboard.master>

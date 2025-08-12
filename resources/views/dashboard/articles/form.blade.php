@@ -22,25 +22,24 @@
                             id="{{ $localeCode }}-inputs" role="tabpanel"
                             aria-labelledby="{{ $localeCode }}-inputs-tab" tabindex="0">
                             <div class="col-12 mb-4">
-                                <x-dashboard.form.label for="title">
+                                <x-form.label for="title">
                                     {{ __('dashboard.articles_management.form.title') }}
-                                </x-dashboard.form.label>
+                                    </x-dashboard.form.label>
 
-                                <x-dashboard.form.input name="{{ $localeCode }}[title]"
-                                    id="title_{{ $localeCode }}"
-                                    placeholder="{{ __('dashboard.articles_management.form.title') }}"
-                                    value="{{ old($localeCode . '.title', $article->{'title:' . $localeCode}) }}" />
-                                <x-dashboard.form.error :messages="$errors->get($localeCode . '.title')" />
+                                    <x-form.input name="{{ $localeCode }}[title]" id="title_{{ $localeCode }}"
+                                        placeholder="{{ __('dashboard.articles_management.form.title') }}"
+                                        value="{{ old($localeCode . '.title', $article->{'title:' . $localeCode}) }}" />
+                                    <x-form.error :messages="$errors->get($localeCode . '.title')" />
 
                             </div>
 
                             <div class="col-12">
-                                <x-dashboard.form.label
+                                <x-form.label
                                     for="content">{{ __('dashboard.articles_management.form.content') }}</x-dashboard.form.label>
-                                <x-dashboard.form.textarea name="{{ $localeCode }}[content]"
-                                    id="content_{{ $localeCode }}"
-                                    placeholder="{{ __('dashboard.articles_management.form.content') }}">{{ old($localeCode . '.content', $article->{'content:' . $localeCode}) }}</x-dashboard.form.textarea>
-                                <x-dashboard.form.error :messages="$errors->get($localeCode . '.content')" />
+                                    <x-form.textarea name="{{ $localeCode }}[content]"
+                                        id="content_{{ $localeCode }}"
+                                        placeholder="{{ __('dashboard.articles_management.form.content') }}">{{ old($localeCode . '.content', $article->{'content:' . $localeCode}) }}</x-dashboard.form.textarea>
+                                        <x-form.error :messages="$errors->get($localeCode . '.content')" />
                             </div>
                         </div>
                     @endforeach
@@ -55,83 +54,84 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <x-dashboard.form.label
+                        <x-form.label
                             for="bank_id">{{ __('dashboard.articles_management.form.bank') }}</x-dashboard.form.label>
 
-                        <x-dashboard.form.select2 id="bank_id" name="bank_id" :options="$bankOptions"
-                            placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->bank_id"
-                            data-cascade-element="product_id"
-                            data-cascade-url="{{ route('dashboard.products.by-bank') }}" />
+                            <x-form.select2 id="bank_id" name="bank_id" :options="$bankOptions"
+                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->bank_id"
+                                data-cascade-element="product_id"
+                                data-cascade-url="{{ route('dashboard.products.by-bank') }}" />
 
-                        <x-dashboard.form.error :messages="$errors->get('bank_id')" />
+                            <x-form.error :messages="$errors->get('bank_id')" />
                     </div>
 
                     <div class="col-lg-12">
-                        <x-dashboard.form.label
+                        <x-form.label
                             for="product_id">{{ __('dashboard.articles_management.form.product') }}</x-dashboard.form.label>
 
-                        @php
-                            $productOptions = isset($productOptions) ? $productOptions : [];
-                        @endphp
+                            @php
+                                $productOptions = isset($productOptions) ? $productOptions : [];
+                            @endphp
 
-                        <x-dashboard.form.select2 id="product_id" name="product_id" :options="$productOptions"
-                            placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->product_id" :disabled="!$article?->product_id"
-                            data-cascade-element="section_id"
-                            data-cascade-url="{{ route('dashboard.sections.by-product') }}" />
+                            <x-form.select2 id="product_id" name="product_id" :options="$productOptions"
+                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->product_id" :disabled="!$article?->product_id"
+                                data-cascade-element="section_id"
+                                data-cascade-url="{{ route('dashboard.sections.by-product') }}" />
 
-                        <x-dashboard.form.error :messages="$errors->get('product_id')" />
+                            <x-form.error :messages="$errors->get('product_id')" />
                     </div>
 
                     <div class="col-lg-12">
-                        <x-dashboard.form.label
+                        <x-form.label
                             for="section_id">{{ __('dashboard.articles_management.form.section') }}</x-dashboard.form.label>
 
-                        @php
-                            $sectionOptions = isset($sectionOptions) ? $sectionOptions : [];
-                        @endphp
+                            @php
+                                $sectionOptions = isset($sectionOptions) ? $sectionOptions : [];
+                            @endphp
 
-                        <x-dashboard.form.select2 id="section_id" name="section_id" :options="$sectionOptions"
-                            placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->section_id" :disabled="!$article?->section_id" />
+                            <x-form.select2 id="section_id" name="section_id" :options="$sectionOptions"
+                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->section_id"
+                                :disabled="!$article?->section_id" />
 
-                        <x-dashboard.form.error :messages="$errors->get('section_id')" />
+                            <x-form.error :messages="$errors->get('section_id')" />
                     </div>
 
                     <div class="col-lg-12 mb-4">
-                        <x-dashboard.form.label
+                        <x-form.label
                             for="published_at">{{ __('dashboard.articles_management.form.published_at') }}</x-dashboard.form.label>
 
-                        <x-dashboard.form.input type="datetime-local" name="published_at" id="published_at"
-                            placeholder="{{ __('dashboard.articles_management.form.published_at') }}"
-                            value="{{ old('published_at', $article->published_at) }}" />
+                            <x-form.input type="datetime-local" name="published_at" id="published_at"
+                                placeholder="{{ __('dashboard.articles_management.form.published_at') }}"
+                                value="{{ old('published_at', $article->published_at) }}" />
 
-                        <x-dashboard.form.error :messages="$errors->get('published_at')" />
+                            <x-form.error :messages="$errors->get('published_at')" />
                     </div>
 
                     <div class="col-lg-12">
-                        <x-dashboard.form.label
+                        <x-form.label
                             for="status">{{ __('dashboard.articles_management.form.status') }}</x-dashboard.form.label>
 
-                        <x-dashboard.form.select2 id="status" name="status" :options="\App\Enums\Status::labels()"
-                            placeholder="{{ __('dashboard.general.select') }}" :selected="$article->status?->value" />
+                            <x-form.select2 id="status" name="status" :options="\App\Enums\Status::labels()"
+                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article->status?->value" />
 
-                        <x-dashboard.form.error :messages="$errors->get('status')" />
+                            <x-form.error :messages="$errors->get('status')" />
                     </div>
                 </div>
             </div>
         </div>
 
         @if ($article->id)
-            <x-dashboard.form.actions>
-                <x-dashboard.button type="submit" class="btn-success-600">
+            <x-form.actions>
+                <x-button type="submit" class="btn-success-600">
                     {{ __('dashboard.general.update') }}
-                </x-dashboard.button>
-            </x-dashboard.form.actions>
-        @else
-            <x-dashboard.form.actions>
-                <x-dashboard.button type="submit" class="btn-primary-600">
-                    {{ __('dashboard.general.create') }}
-                </x-dashboard.button>
-            </x-dashboard.form.actions>
+                    </x-dashboard.button>
+                    </x-dashboard.form.actions>
+                @else
+                    <x-form.actions>
+                        <x-button type="submit" class="btn-primary-600">
+                            {{ __('dashboard.general.create') }}
+                            </x-dashboard.button>
+                            </x-dashboard.form.actions>
         @endif
     </div>
 </div>

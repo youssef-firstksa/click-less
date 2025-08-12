@@ -10,17 +10,17 @@
             class="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
 
             <form action="{{ URL::current() }}" class="d-flex align-items-center flex-wrap gap-3">
-                <x-dashboard.table.filters.per-page />
-                <x-dashboard.table.filters.search />
-                <x-dashboard.table.filters.status :options="\App\Enums\Status::labels()" />
+                <x-table.filters.per-page />
+                <x-table.filters.search />
+                <x-table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
             @can('create-bank')
-                <x-dashboard.button class="btn-primary-600" :href="route('dashboard.banks.create')">
+                <x-button class="btn-primary-600" :href="route('dashboard.banks.create')">
                     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                     {{ __('dashboard.general.add_new') }}
-                </x-dashboard.button>
-            @endcan
+                    </x-dashboard.button>
+                @endcan
 
         </div>
 
@@ -29,10 +29,10 @@
                 <table class="table bordered-table sm-table mb-0">
                     <thead>
                         <tr>
-                            <th scope="col">{{__('dashboard.general.table_id')}}</th>
-                            <th scope="col">{{__('dashboard.bank_management.form.title')}}</th>
-                            <th scope="col" class="text-center">{{__('dashboard.general.status')}}</th>
-                            <th scope="col" class="text-center">{{__('dashboard.general.action')}}</th>
+                            <th scope="col">{{ __('dashboard.general.table_id') }}</th>
+                            <th scope="col">{{ __('dashboard.bank_management.form.title') }}</th>
+                            <th scope="col" class="text-center">{{ __('dashboard.general.status') }}</th>
+                            <th scope="col" class="text-center">{{ __('dashboard.general.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                                             style="object-fit: contain">
                                         <div class="flex-grow-1">
                                             <span
-                                                class="text-md mb-0 fw-normal text-secondary-light">{{$bank->title}}</span>
+                                                class="text-md mb-0 fw-normal text-secondary-light">{{ $bank->title }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -55,27 +55,27 @@
                                 <td class="text-center">
 
                                     @if ($bank->status == App\Enums\Status::ACTIVATED)
-                                        <x-dashboard.status status="success" :content="strtoupper(__('dashboard.general.' . $bank->status->value))" />
+                                        <x-status status="success" :content="strtoupper(__('dashboard.general.' . $bank->status->value))" />
                                     @else
-                                        <x-dashboard.status status="danger" :content="strtoupper(__('dashboard.general.' . $bank->status->value))" />
+                                        <x-status status="danger" :content="strtoupper(__('dashboard.general.' . $bank->status->value))" />
                                     @endif
                                 </td>
 
                                 <td class="text-center">
                                     <div class="d-flex align-items-center gap-10 justify-content-center">
                                         @can('show-bank')
-                                            <x-dashboard.table.actions.show route="{{ route('dashboard.banks.show', $bank) }}"
+                                            <x-table.actions.show route="{{ route('dashboard.banks.show', $bank) }}"
                                                 :model="$bank" />
                                         @endcan
 
                                         @can('update-bank')
-                                            <x-dashboard.table.actions.edit route="{{ route('dashboard.banks.edit', $bank) }}"
+                                            <x-table.actions.edit route="{{ route('dashboard.banks.edit', $bank) }}"
                                                 :model="$bank" />
                                         @endcan
 
                                         @can('delete-bank')
-                                            <x-dashboard.table.actions.delete
-                                                route="{{ route('dashboard.banks.destroy', $bank) }}" :model="$bank" />
+                                            <x-table.actions.delete route="{{ route('dashboard.banks.destroy', $bank) }}"
+                                                :model="$bank" />
                                         @endcan
                                     </div>
                                 </td>
@@ -86,7 +86,7 @@
             </div>
 
 
-            <x-dashboard.table.pagination :data="$banks" class="mt-3" />
+            <x-table.pagination :data="$banks" class="mt-3" />
         </div>
     </div>
-    </x-layouts.admin.master>
+</x-layouts.dashboard.master>
