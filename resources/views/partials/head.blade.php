@@ -3,13 +3,6 @@
 <title>{{ config('app.name') }} {{ $title ? " | {$title}" : '' }}</title>
 <link rel="icon" type="image/png" href="{{ asset('assets/common/logos/favicon.png') }}" sizes="16x16">
 
-<style>
-    @font-face {
-        font-family: "Cairo";
-        src: url("{{ asset('assets/common/fonts/cairo/Cairo-SemiBold.ttf') }}") format("truetype");
-        font-weight: 600;
-    }
-</style>
 
 <!-- remix icon font css  -->
 <link rel="stylesheet" href="{{ asset('assets/common/css/remixicon.css') }}">
@@ -42,7 +35,12 @@
 <link rel="stylesheet" href="{{ asset('assets/common/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/common/css/custom.css') }}">
 
-
+<style>
+    :root {
+        --bank-font-color: {{ auth()->user()->activeBank()->font_color }};
+        --bank-background-color: {{ auth()->user()->activeBank()->background_color }};
+    }
+</style>
 
 @stack('head')
 @stack('styles')

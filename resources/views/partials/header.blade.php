@@ -2,7 +2,6 @@
     <div class="row align-items-center justify-content-between">
         <div class="col-auto">
             <div class="d-flex flex-wrap align-items-center gap-4">
-
                 {{-- Show the sidebar button in the dashboard routes only --}}
                 @if (request()->routeIs('dashboard.*'))
                     <button type="button" class="sidebar-toggle">
@@ -19,13 +18,83 @@
                     <input type="text" name="search" placeholder="Search">
                     <iconify-icon icon="ion:search-outline" class="icon"></iconify-icon>
                 </form> --}}
+
+                <div class="d-flex flex-wrap align-items-center gap-3">
+                    {{-- <button type="button" data-theme-toggle
+                        class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"></button>
+                    --}}
+
+
+                    @if (!request()->routeIs('dashboard.*'))
+                        <a class="header-logo" href="{{ route('dashboard.index') }}">
+                            <img src="{{ asset('assets/common/logos/full-logow.png') }}" alt="site logo"
+                                class="light-logo">
+                        </a>
+                    @endif
+
+                    <x-nav-link href="{{ route('agent.index') }}" :active="request()->routeIs('agent.index')">
+                        {{ __('agent.general.home') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('agent.index') }}" :active="request()->routeIs('agent.quizzes.index')">
+                        {{ __('agent.general.quizzes') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('agent.index') }}" :active="request()->routeIs('agent.my_library.index')">
+                        {{ __('agent.general.my_library') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('agent.index') }}" :active="request()->routeIs('agent.my_courses.index')">
+                        {{ __('agent.general.my_courses') }}
+                    </x-nav-link>
+
+
+                </div>
             </div>
         </div>
+
         <div class="col-auto">
             <div class="d-flex flex-wrap align-items-center gap-3">
                 {{-- <button type="button" data-theme-toggle
                     class="w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"></button>
                 --}}
+
+                <div class="dropdown d-none d-sm-inline-block">
+                    <button class="bank-toggle-button d-flex justify-content-center align-items-center" type="button"
+                        data-bs-toggle="dropdown">
+
+                        <iconify-icon class="icon" icon="solar:repeat-line-duotone"></iconify-icon>
+
+                        {{ auth()->user()->activeBank()->title }}
+                    </button>
+
+                    <div class="dropdown-menu to-top dropdown-menu-sm">
+                        <div
+                            class="py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2">
+                            <div>
+                                <h6 class="text-lg text-primary-light fw-semibold mb-0">
+                                    اختر البنك
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="max-h-400-px overflow-y-auto scroll-sm pe-8">
+
+                            @foreach (auth()->user()->banks->where('pivot.active', '!=', 1) as $bank)
+                                <div
+                                    class="form-check style-check d-flex align-items-center justify-content-between mb-16">
+
+
+                                    <a href="{{ route('agent.update-active-bank', ['bank_id' => $bank->id]) }}">
+                                        {{ $bank->title }}
+                                    </a>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="dropdown d-none d-sm-inline-block">
                     <button
                         class="has-indicator w-40-px h-40-px bg-neutral-200 rounded-circle d-flex justify-content-center align-items-center"

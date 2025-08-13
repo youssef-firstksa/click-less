@@ -9,6 +9,7 @@ use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -45,5 +46,10 @@ class Section extends Model
     public function bank(): BelongsTo
     {
         return $this->belongsTo(Bank::class);
+    }
+
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
     }
 }

@@ -1,5 +1,64 @@
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-ExtraBold.ttf")
+        format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-ExtraLight.ttf")
+        format("truetype");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Cairo";
+    src: url("/assets/common/fonts/cairo/Cairo-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+
 body {
     font-family: "Cairo", sans-serif;
+    font-weight: 500;
+}
+
+.bank-color {
+    color: var(--bank-font-color);
+}
+
+.bank-background-color {
+    background-color: var(--bank-background-color);
 }
 
 th {
@@ -8,6 +67,54 @@ th {
 
 .navbar-header {
     background-color: #4f008c;
+}
+
+.header-logo {
+    width: 180px;
+    margin-inline-end: 30px;
+}
+
+.navbar-header .nav-link {
+    color: #fff;
+    position: relative;
+    transition: 0.3s ease-in-out;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &.active {
+        font-weight: 700;
+    }
+
+    &.active,
+    &:hover {
+        &::after {
+            width: 100%;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0%;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 8px;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.bank-toggle-button {
+    border: 1px solid var(--bank-font-color);
+    padding: 5px 15px;
+    border-radius: 8px;
+    font-size: var(--font-xl);
+    gap: 10px;
+}
+
+.bank-toggle-button .icon {
+    font-size: var(--font-2xl);
 }
 
 .sidebar-toggle,
@@ -73,4 +180,13 @@ th {
 
 .select2-container--default .select2-search--inline .select2-search__field {
     line-height: 15px;
+}
+
+.form-select:focus,
+.form-select:active,
+.form-control:focus,
+.form-control:active,
+textarea:focus,
+textarea:active {
+    background-color: var(--bs-body-bg);
 }

@@ -9,6 +9,7 @@ use App\Traits\CommonFilters;
 use App\Traits\HasRoles;
 use App\Traits\HasStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -74,5 +75,15 @@ class User extends Authenticatable
             ->logOnly(['name', 'email', 'status'])
             ->useLogName('user_log')
             ->dontSubmitEmptyLogs();
+    }
+
+    public function banks(): BelongsToMany
+    {
+        return $this->belongsToMany(Bank::class)->withPivot('active');;
+    }
+
+    public function activeBank(): Bank|null
+    {
+        return $this->banks()->wherePivot('active', 1)->first();
     }
 }

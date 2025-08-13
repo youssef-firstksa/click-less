@@ -1,3 +1,129 @@
 .dashboard-main {
     margin-inline-start: 0;
 }
+
+.navbar-header {
+    color: var(--bank-font-color);
+    background-color: var(--bank-background-color);
+}
+
+.header-logo {
+    width: 180px;
+    margin-inline-end: 30px;
+}
+
+.navbar-header .nav-link {
+    color: var(--bank-font-color);
+
+    &.active::after,
+    &::after {
+        background-color: var(--bank-font-color);
+    }
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 330px;
+    margin-bottom: 20px;
+    color: var(--bank-font-color);
+    background-color: var(--bank-background-color);
+}
+
+.hero-section-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 750px;
+}
+
+.hero-section .bank-title {
+    color: var(--bank-font-color);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-2xxl);
+    gap: 10px;
+}
+
+.bank-search-input {
+    height: 3.5rem !important;
+}
+
+.products-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--neutral-300);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.products-tabs-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.products-tabs-item {
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s ease-in-out;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &.active {
+        font-weight: 700;
+    }
+
+    &.active,
+    &:hover {
+        color: black;
+
+        &::after {
+            width: 100%;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0%;
+        height: 3px;
+        background-color: black;
+        border-radius: 8px;
+        transition: 0.3s ease-in-out;
+    }
+}
+
+.section-card {
+    min-height: 260px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.section-card .card-title {
+    /* font-size: 1rem !important; */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.section-card .section-card-list {
+    line-height: 2;
+}
+
+.section-card .article-title {
+    text-decoration: underline;
+    font-weight: 600;
+    color: black;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        color: var(--bank-background-color);
+    }
+}

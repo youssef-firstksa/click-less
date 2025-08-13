@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Controllers\Agent\AgentController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
-
 
 
 Route::prefix(LaravelLocalization::setLocale())
@@ -12,9 +11,8 @@ Route::prefix(LaravelLocalization::setLocale())
     ->group(function () {
 
         Route::middleware(['auth', 'platform-access'])->group(function () {
-            Route::get('/', function () {
-                return view('agent.index');
-            })->name('agent.index');
+            Route::get('/', [AgentController::class, 'index'])->name('agent.index');
+            Route::get('update-active-bank', [AgentController::class, 'updateActiveBank'])->name('agent.update-active-bank');
         });
     });
 

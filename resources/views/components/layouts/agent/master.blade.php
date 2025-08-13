@@ -10,10 +10,9 @@
 <body>
     <main class="dashboard-main">
         @include('partials.header')
+        @include('partials.hero-section')
 
         <div class="dashboard-main-body">
-            @include('partials.page-head')
-
             {{ $slot }}
         </div>
 
