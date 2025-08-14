@@ -6,6 +6,7 @@ use App\Enums\Status;
 use App\Traits\CommonFilters;
 use App\Traits\HasStatus;
 use App\Traits\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -51,5 +52,10 @@ class Section extends Model
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function scopeWhereCanAccess(Builder $builder): void
+    {
+        $builder->whereActivated()->where('bank_id', auth()->user()->activeBank()->id);
     }
 }

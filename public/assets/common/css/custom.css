@@ -67,6 +67,13 @@ th {
 
 .navbar-header {
     background-color: #4f008c;
+    padding: 0;
+    z-index: 1000;
+}
+
+.main-navbar {
+    background-color: #4f008c;
+    padding: 1rem 1.5rem;
 }
 
 .header-logo {
@@ -189,4 +196,12 @@ th {
 textarea:focus,
 textarea:active {
     background-color: var(--bs-body-bg);
+}
+
+.card .card-body {
+    padding: 25px 30px;
+}
+
+.card .card-title {
+    font-weight: 700;
 }

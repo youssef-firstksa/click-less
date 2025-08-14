@@ -18,7 +18,7 @@ class ProductSectionTab extends Component
     public function mount()
     {
         $this->activeBank = auth()->user()->activeBank();
-        $this->products = Product::where('bank_id', $this->activeBank->id)->whereActivated()->get();
+        $this->products = Product::whereCanAccess()->get();
         $this->setActiveProductTab($this?->products[0]?->id ?? 1);
     }
 
@@ -30,6 +30,12 @@ class ProductSectionTab extends Component
     public function setActiveProductTab(int $productId)
     {
         $this->activeProductTab = $productId;
-        $this->sections = Section::where('product_id', $productId)->whereActivated()->has('articles')->get();
+        $this->sections = Section::whereCanAccess()
+            ->where('product_id', $productId)
+            ->has('articles')
+            ->with(['articles'])
+            ->withCount(['articles'])
+            ->limit(6)
+            ->get();
     }
 }

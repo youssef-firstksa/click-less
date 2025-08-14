@@ -31,6 +31,6 @@ class AgentController extends Controller
         $user->banks()->update(['active' => 0]);
         $user->banks()->updateExistingPivot($bankId, ['active' => 1]);
 
-        return back();
+        return redirect()->route('agent.index');
     }
 }

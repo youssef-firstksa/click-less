@@ -7,10 +7,13 @@ use App\Traits\CommonFilters;
 use App\Traits\HasStatus;
 use App\Traits\InteractsWithMedia;
 use App\Traits\Translatable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
@@ -63,9 +66,27 @@ class Article extends Model implements HasMedia
     public function publishedAt()
     {
         if ($this->published_at) {
-            return $this->published_at->format('Y-m-d');
+            return $this->published_at->diffForHumans();
         }
 
-        return $this->created_at->format('Y-m-d');
+        return $this->created_at->diffForHumans();
+    }
+
+    public function updatedAt()
+    {
+        return $this->updated_at->diffForHumans();
+    }
+
+
+    public function shortContent(): Attribute
+    {
+        return Attribute::make(get: fn() => Str::limit(strip_tags($this->content), 150));
+    }
+
+    public function scopeWhereCanAccess(Builder $builder): void
+    {
+        $builder
+            ->whereActivated()
+            ->where('bank_id', auth()->user()->activeBank()->id);
     }
 }
