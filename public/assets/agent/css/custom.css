@@ -220,3 +220,41 @@
         color: var(--bank-background-color);
     }
 }
+
+.search-feature {
+    .search-feature-form {
+        position: relative;
+
+        .search-result {
+            position: absolute;
+            left: 0;
+            top: 60px;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            border-radius: 5px;
+            padding: 10px;
+
+            .search-result-item {
+                padding: 8px 12px;
+                border-bottom: 1px solid var(--neutral-200);
+                transition: 0.3s ease-in-out;
+                display: block;
+
+                &:hover {
+                    background: var(--neutral-100);
+                }
+
+                .result-item-title {
+                    font-size: var(--font-xl);
+                    margin: 0;
+                }
+
+                .result-item-description {
+                    font-size: var(--font-sm);
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

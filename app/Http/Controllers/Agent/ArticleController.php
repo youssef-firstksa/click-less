@@ -15,7 +15,7 @@ class ArticleController extends Controller
             ->whereCanAccess()
             ->when(request()->get('search'), function ($query, $search) {
                 $query->whereTranslationLike('title', "%{$search}%");
-                $query->whereTranslationLike('content', "%{$search}%");
+                $query->orWhereTranslationLike('content', "%{$search}%");
             })
             ->when(request()->get('section_id'), function ($query, $sectionId) {
                 $query->whereHas('section', fn($q) => $q->where('id', $sectionId));
