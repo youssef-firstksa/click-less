@@ -31,6 +31,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('slug');
             $table->string('locale')->index();
+            $table->fullText(['title', 'content']);
             $table->unique(['locale', 'slug']);
             $table->unique(['article_id', 'locale']);
         });

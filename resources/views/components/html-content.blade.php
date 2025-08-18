@@ -8,14 +8,16 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const iframe = document.getElementById("{{ $uniqueId }}");
         const doc = iframe.contentDocument || iframe.contentWindow.document;
 
         let contentHeight = doc.body.scrollHeight;
 
-        if (contentHeight < 100) {
-            contentHeight = contentHeight * 1.3;
+        if (contentHeight < 40) {
+            contentHeight = contentHeight * 2;
+        } else if (contentHeight < 100) {
+            contentHeight = contentHeight * 1.5;
         } else {
             contentHeight = contentHeight * 1.06;
         }
