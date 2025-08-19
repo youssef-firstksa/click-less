@@ -174,6 +174,31 @@ return [
             'status' => 'الحالة',
         ],
     ],
+    'article_notes_management' => [
+        'index_title' => 'قائمة ملاحظات المقالات',
+        'create_title' => 'إنشاء ملاحظة مقال جديدة',
+        'edit_title' => 'تعديل ملاحظة المقال',
+        'delete_title' => 'حذف ملاحظة المقال',
+        'show_title' => 'عرض ملاحظة المقال',
+
+        'form' => [
+            'title' => 'العنوان',
+            'content' => 'المحتوى',
+            'status' => 'الحالة',
+            'bank' => 'البنك',
+            'product' => 'المنتج',
+            'section' => 'القسم',
+            'article' => 'المقال',
+            'article_note' => 'ملاحظة المقال',
+            'user' => 'المستخدم',
+        ],
+
+        'status' => [
+            'sent' => 'تم الإرسال',
+            'under_review' => 'قيد المراجعة',
+            'closed' => 'مغلق',
+        ]
+    ],
     'notifications_management' => [
         'index_title' => 'قائمة الإشعارات',
         'create_title' => 'إنشاء إشعار جديد',

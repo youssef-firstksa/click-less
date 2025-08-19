@@ -3,6 +3,7 @@
 return [
     'general' => [
         'home' => 'الرئيسية',
+        'article_notes' => 'ملاحظات المقالات',
         'quizzes' => 'الأختبارات',
         'my_library' => 'مكتبتي',
         'my_courses' => 'دوراتي',
@@ -12,6 +13,28 @@ return [
         'ai_search_offline' => 'البحث الذكي',
         'ai_search_online' => 'البحث التفاعلي',
         'add_your_notes' => 'أضف ملاحظاتك',
+        'update_your_notes' => 'تحديث ملاحظاتك',
+        'select' => 'اختر',
+        'create' => 'إنشاء',
+        'submit' => 'إرسال',
+        'update' => 'تحديث',
+    ],
+    'article_notes_management' => [
 
+        'index_title' => 'ملاحظات المقالات',
+        'create_title' => 'إنشاء ملاحظة مقال',
+        'edit_title' => 'تعديل ملاحظة مقال',
+
+        'form' => [
+            'note_category' => 'تصنيف الملاحظة',
+            'title' => 'العنوان',
+            'content' => 'التفاصيل',
+        ],
+
+        'status' => [
+            'sent' => 'تم الإرسال',
+            'under_review' => 'قيد المراجعة',
+            'closed' => 'مغلق',
+        ],
     ],
 ];

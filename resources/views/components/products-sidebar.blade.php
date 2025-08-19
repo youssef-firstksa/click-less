@@ -1,5 +1,13 @@
 @props(['products' => []])
 
+
+@php
+    if (count($products) === 0) {
+        $products = App\Models\Product::whereCanAccess()->withWhereHas('sections')->get();
+    }
+   @endphp
+
+
 <div {{ $attributes->merge(['class' => 'accordion products-accordion', 'id' => 'products-accordion']) }}>
 
     @foreach ($products as $product)

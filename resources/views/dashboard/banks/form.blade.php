@@ -17,8 +17,8 @@
                 ({{ $properties['native'] }})
             </x-form.label>
             <x-form.textarea name="{{ $localeCode }}[description]" id="description_{{ $localeCode }}"
-                placeholder="{{ __('dashboard.bank_management.form.description') }} ({{ $properties['native'] }})">{{ old($localeCode . '.description', $bank->{'description:' . $localeCode}) }}</x-dashboard.form.textarea>
-                <x-form.error :messages="$errors->get($localeCode . '.description')" />
+                placeholder="{{ __('dashboard.bank_management.form.description') }} ({{ $properties['native'] }})">{{ old($localeCode . '.description', $bank->{'description:' . $localeCode}) }}</x-form.textarea>
+            <x-form.error :messages="$errors->get($localeCode . '.description')" />
         </div>
     @endforeach
 

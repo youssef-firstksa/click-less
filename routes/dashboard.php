@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ArticleNoteController;
 use App\Http\Controllers\Dashboard\CkEditorController;
 use App\Http\Controllers\Dashboard\ArticleController;
 use App\Http\Controllers\Dashboard\ArticleNoteCategoryController;
@@ -28,6 +29,10 @@ Route::middleware(['auth', 'platform-access'])->group(function () {
 
     Route::resource('articles', ArticleController::class);
     Route::resource('article-note-categories', ArticleNoteCategoryController::class);
+
+    Route::get('article-notes', [ArticleNoteController::class, 'index'])->name('article-notes.index');
+    Route::get('article-notes/{note}', [ArticleNoteController::class, 'show'])->name('article-notes.show');
+
     Route::resource('notifications', NotificationController::class);
 
     Route::post('ckeditor/upload', [CkEditorController::class, 'upload'])->name('ckeditor.upload');

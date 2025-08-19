@@ -174,6 +174,31 @@ return [
             'status' => 'Status',
         ],
     ],
+    'article_notes_management' => [
+        'index_title' => 'Article Notes List',
+        'create_title' => 'Create New Article Note',
+        'edit_title' => 'Edit Article Note',
+        'delete_title' => 'Delete Article Note',
+        'show_title' => 'Show Article Note',
+
+        'form' => [
+            'title' => 'Title',
+            'content' => 'Content',
+            'status' => 'Status',
+            'bank' => 'Bank',
+            'product' => 'Product',
+            'section' => 'Section',
+            'article' => 'Article',
+            'article_note' => 'Article Note',
+            'user' => 'User',
+        ],
+
+        'status' => [
+            'sent' => 'Sent',
+            'under_review' => 'Under Review',
+            'closed' => 'Closed',
+        ]
+    ],
     'notifications_management' => [
         'index_title' => 'Notifications List',
         'create_title' => 'Create New Notification',

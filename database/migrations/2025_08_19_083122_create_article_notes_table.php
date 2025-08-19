@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('content')->nullable();
+            $table->string('status')->default('sent');
             $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('article_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('article_note_category_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();

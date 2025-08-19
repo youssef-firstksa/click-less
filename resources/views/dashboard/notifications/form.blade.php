@@ -20,8 +20,8 @@
                 ({{ $properties['native'] }})
             </x-form.label>
             <x-form.textarea name="{{ $localeCode }}[description]" id="description_{{ $localeCode }}"
-                placeholder="{{ __('dashboard.notifications_management.form.description') }} ({{ $properties['native'] }})">{{ old($localeCode . '.description', $notification->{'description:' . $localeCode}) }}</x-dashboard.form.textarea>
-                <x-form.error :messages="$errors->get($localeCode . '.description')" />
+                placeholder="{{ __('dashboard.notifications_management.form.description') }} ({{ $properties['native'] }})">{{ old($localeCode . '.description', $notification->{'description:' . $localeCode}) }}</x-form.textarea>
+            <x-form.error :messages="$errors->get($localeCode . '.description')" />
         </div>
     @endforeach
 
@@ -104,18 +104,18 @@
     </script>
 
     <script>
-            const ckeInterval = setInterval(() => {
-                let status = 'pending';
-                let counter = 0;
+                const ckeInterval = setInterval(() => {
+                    let status = 'pending';
+                    let counter = 0;
 
-                document.querySelectorAll('.cke_notifications_area').forEach((element) => {
-                    element.remove()
-                    status = 'done';
-                })
+                    document.querySelectorAll('.cke_notifications_area').forEach((element) => {
+                        element.remove()
+                        status = 'done';
+                    })
 
-                counter++;
+                    counter++;
 
-                if (status === 'done' || counter === 30) clearInterval(ckeInterval);
-            }, 100)
+                    if (status === 'done' || counter === 30) clearInterval(ckeInterval);
+                }, 100)
     </script>
 @endpush

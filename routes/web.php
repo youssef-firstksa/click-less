@@ -21,7 +21,8 @@ Route::prefix(LaravelLocalization::setLocale())
             Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
             Route::get('articles/rate/{article}', [ArticleController::class, 'toggleLike'])->name('articles.toggleLike');
 
-            Route::resource('articles.notes', ArticleNoteController::class);
+            Route::get('articles-notes', [ArticleNoteController::class, 'index'])->name('articles-notes.index');
+            Route::resource('articles.notes', ArticleNoteController::class)->except(['index', 'show']);
         });
     });
 

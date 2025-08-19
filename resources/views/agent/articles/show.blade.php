@@ -73,10 +73,23 @@
                             </div>
 
                             <div class="text-center mt-3">
-                                <a href="{{ route('agent.articles.notes.create', $article) }}"
-                                    class="btn btn-primary-600">
-                                    {{ __('agent.general.add_your_notes') }}
-                                </a>
+
+                                @php
+                                    $note = $article->notes()->where('user_id', auth()->id())->first();
+                                @endphp
+
+                                @if ($note)
+                                    <a href="{{ route('agent.articles.notes.edit', [$article, $note]) }}"
+                                        class="btn btn-success">
+                                        {{ __('agent.general.update_your_notes') }}
+                                    </a>
+                                @else
+                                    <a href="{{ route('agent.articles.notes.create', $article) }}"
+                                        class="btn btn-primary-600">
+                                        {{ __('agent.general.add_your_notes') }}
+                                    </a>
+                                @endif
+
                             </div>
                         </div>
                     </div>

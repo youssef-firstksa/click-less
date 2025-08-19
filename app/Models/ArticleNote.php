@@ -2,12 +2,31 @@
 
 namespace App\Models;
 
+use App\Traits\CommonFilters;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class ArticleNote extends Model
 {
-    protected $fillable = ['title', 'content', 'article_note_category_id', 'user_id', 'article_id', 'bank_id'];
+    use HasFactory, CommonFilters;
+
+    protected $fillable = ['title', 'content', 'status', 'article_note_category_id', 'user_id', 'article_id', 'bank_id'];
+
+    public const STATUS = [
+        'sent',
+        'under_review',
+        'closed',
+    ];
+
+    public static function statuses()
+    {
+        return collect(self::STATUS)->mapWithKeys(
+            fn($status) =>
+            [$status => __('dashboard.article_notes_management.status.' . $status)]
+        );
+    }
 
     public function user(): BelongsTo
     {
@@ -19,9 +38,9 @@ class ArticleNote extends Model
         return $this->belongsTo(Article::class);
     }
 
-    public function articleNoteCategory(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(ArticleNoteCategory::class);
+        return $this->belongsTo(ArticleNoteCategory::class, 'article_note_category_id', 'id');
     }
 
     public function bank(): BelongsTo
