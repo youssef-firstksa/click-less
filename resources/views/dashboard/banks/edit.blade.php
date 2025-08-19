@@ -22,8 +22,8 @@
                 <x-form.actions>
                     <x-button type="submit" class="btn-success-600">
                         {{ __('dashboard.general.update') }}
-                        </x-dashboard.button>
-                        </x-dashboard.form.actions>
+                        </x-button>
+        </x-form.actions>
             </form>
         </div>
     </div>

@@ -18,8 +18,8 @@
                 <x-button class="btn-primary-600" :href="route('dashboard.articles.create')">
                     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                     {{ __('dashboard.general.add_new') }}
-                    </x-dashboard.button>
-                @endcan
+                </x-button>
+            @endcan
         </div>
 
         <div class="card-body p-24">
@@ -70,8 +70,7 @@
                                         @endcan
 
                                         @can('delete-article')
-                                            <x-table.actions.delete
-                                                route="{{ route('dashboard.articles.destroy', $article) }}"
+                                            <x-table.actions.delete route="{{ route('dashboard.articles.destroy', $article) }}"
                                                 :model="$article" />
                                         @endcan
                                     </div>

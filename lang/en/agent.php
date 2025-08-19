@@ -11,5 +11,6 @@ return [
         'normal_search' => 'Quick Search',
         'ai_search_offline' => 'Smart Search',
         'ai_search_online' => 'Interactive Search',
+        'add_your_notes' => 'Add Your Notes',
     ],
 ];

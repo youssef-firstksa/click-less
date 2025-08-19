@@ -63,6 +63,21 @@ class Article extends Model implements HasMedia
         return $this->belongsTo(Bank::class);
     }
 
+    public function rates()
+    {
+        return $this->hasMany(ArticleRate::class);
+    }
+
+    public function isDislikedBy(User $user): bool
+    {
+        return $this->rates()->where('user_id', $user->id)->where('action', 'dislike')->exists();
+    }
+
+    public function isLikedBy(User $user): bool
+    {
+        return $this->rates()->where('user_id', $user->id)->where('action', 'like')->exists();
+    }
+
     public function publishedAt()
     {
         if ($this->published_at) {

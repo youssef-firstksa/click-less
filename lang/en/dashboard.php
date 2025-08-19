@@ -161,6 +161,19 @@ return [
             'author' => 'Author',
         ],
     ],
+    'article_note_categories_management' => [
+        'index_title' => 'Article Note Categories List',
+        'create_title' => 'Create New Article Note Category',
+        'edit_title' => 'Edit Article Note Category',
+        'delete_title' => 'Delete Article Note Category',
+        'show_title' => 'Show Article Note Category',
+
+        'form' => [
+            'title' => 'Title',
+            'bank' => 'Bank',
+            'status' => 'Status',
+        ],
+    ],
     'notifications_management' => [
         'index_title' => 'Notifications List',
         'create_title' => 'Create New Notification',

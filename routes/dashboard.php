@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\CkEditorController;
 use App\Http\Controllers\Dashboard\ArticleController;
+use App\Http\Controllers\Dashboard\ArticleNoteCategoryController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankController;
 use App\Http\Controllers\Dashboard\NotificationController;
@@ -26,6 +27,7 @@ Route::middleware(['auth', 'platform-access'])->group(function () {
     Route::resource('sections', SectionController::class);
 
     Route::resource('articles', ArticleController::class);
+    Route::resource('article-note-categories', ArticleNoteCategoryController::class);
     Route::resource('notifications', NotificationController::class);
 
     Route::post('ckeditor/upload', [CkEditorController::class, 'upload'])->name('ckeditor.upload');

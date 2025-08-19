@@ -161,6 +161,19 @@ return [
             'author' => 'الناشر',
         ],
     ],
+    'article_note_categories_management' => [
+        'index_title' => 'فئات ملاحظات المقالات',
+        'create_title' => 'إضافة فئة ملاحظات مقال جديدة',
+        'edit_title' => 'تعديل فئة ملاحظات المقال',
+        'delete_title' => 'حذف فئة ملاحظات المقال',
+        'show_title' => 'عرض فئة ملاحظات المقال',
+
+        'form' => [
+            'title' => 'العنوان',
+            'bank' => 'البنك',
+            'status' => 'الحالة',
+        ],
+    ],
     'notifications_management' => [
         'index_title' => 'قائمة الإشعارات',
         'create_title' => 'إنشاء إشعار جديد',

@@ -14,8 +14,8 @@
                 <x-form.actions>
                     <x-button type="submit" class="btn-primary-600">
                         {{ __('dashboard.general.create') }}
-                        </x-dashboard.button>
-                        </x-dashboard.form.actions>
+                        </x-button>
+                </x-form.actions>
 
             </form>
         </div>

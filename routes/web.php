@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Agent\ArticleController;
+use App\Http\Controllers\Agent\ArticleNoteController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -18,6 +19,9 @@ Route::prefix(LaravelLocalization::setLocale())
 
             Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
             Route::get('articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+            Route::get('articles/rate/{article}', [ArticleController::class, 'toggleLike'])->name('articles.toggleLike');
+
+            Route::resource('articles.notes', ArticleNoteController::class);
         });
     });
 

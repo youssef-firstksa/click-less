@@ -118,6 +118,7 @@ th {
     border-radius: 8px;
     font-size: var(--font-xl);
     gap: 10px;
+    color: var(--bank-font-color);
 }
 
 .bank-toggle-button .icon {

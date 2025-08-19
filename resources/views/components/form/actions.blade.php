@@ -5,5 +5,5 @@
 
     <x-button href="{{ $backRoute ? route($backRoute) : URL::previous() }}" class="btn-dark">
         {{ __('dashboard.general.back') }}
-        </x-dashboard.button>
+    </x-button>
 </div>

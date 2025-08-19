@@ -18,13 +18,12 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        <div class="tab-pane fade {{ $loop->first ? ' show active ' : '' }}"
-                            id="{{ $localeCode }}-inputs" role="tabpanel"
-                            aria-labelledby="{{ $localeCode }}-inputs-tab" tabindex="0">
+                        <div class="tab-pane fade {{ $loop->first ? ' show active ' : '' }}" id="{{ $localeCode }}-inputs"
+                            role="tabpanel" aria-labelledby="{{ $localeCode }}-inputs-tab" tabindex="0">
                             <div class="col-12 mb-4">
                                 <x-form.label for="title">
                                     {{ __('dashboard.articles_management.form.title') }}
-                                    </x-dashboard.form.label>
+                                    </x-form.label>
 
                                     <x-form.input name="{{ $localeCode }}[title]" id="title_{{ $localeCode }}"
                                         placeholder="{{ __('dashboard.articles_management.form.title') }}"
@@ -35,9 +34,8 @@
 
                             <div class="col-12">
                                 <x-form.label
-                                    for="content">{{ __('dashboard.articles_management.form.content') }}</x-dashboard.form.label>
-                                    <x-form.textarea name="{{ $localeCode }}[content]"
-                                        id="content_{{ $localeCode }}"
+                                    for="content">{{ __('dashboard.articles_management.form.content') }}</x-form.label>
+                                    <x-form.textarea name="{{ $localeCode }}[content]" id="content_{{ $localeCode }}"
                                         placeholder="{{ __('dashboard.articles_management.form.content') }}">{{ old($localeCode . '.content', $article->{'content:' . $localeCode}) }}</x-dashboard.form.textarea>
                                         <x-form.error :messages="$errors->get($localeCode . '.content')" />
                             </div>
@@ -55,7 +53,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <x-form.label
-                            for="bank_id">{{ __('dashboard.articles_management.form.bank') }}</x-dashboard.form.label>
+                            for="bank_id">{{ __('dashboard.articles_management.form.bank') }}</x-form.label>
 
                             <x-form.select2 id="bank_id" name="bank_id" :options="$bankOptions"
                                 placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->bank_id"
@@ -67,15 +65,15 @@
 
                     <div class="col-lg-12">
                         <x-form.label
-                            for="product_id">{{ __('dashboard.articles_management.form.product') }}</x-dashboard.form.label>
+                            for="product_id">{{ __('dashboard.articles_management.form.product') }}</x-form.label>
 
                             @php
                                 $productOptions = isset($productOptions) ? $productOptions : [];
                             @endphp
 
                             <x-form.select2 id="product_id" name="product_id" :options="$productOptions"
-                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->product_id" :disabled="!$article?->product_id"
-                                data-cascade-element="section_id"
+                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article?->product_id"
+                                :disabled="!$article?->product_id" data-cascade-element="section_id"
                                 data-cascade-url="{{ route('dashboard.sections.by-product') }}" />
 
                             <x-form.error :messages="$errors->get('product_id')" />
@@ -83,7 +81,7 @@
 
                     <div class="col-lg-12">
                         <x-form.label
-                            for="section_id">{{ __('dashboard.articles_management.form.section') }}</x-dashboard.form.label>
+                            for="section_id">{{ __('dashboard.articles_management.form.section') }}</x-form.label>
 
                             @php
                                 $sectionOptions = isset($sectionOptions) ? $sectionOptions : [];
@@ -98,7 +96,7 @@
 
                     <div class="col-lg-12 mb-4">
                         <x-form.label
-                            for="published_at">{{ __('dashboard.articles_management.form.published_at') }}</x-dashboard.form.label>
+                            for="published_at">{{ __('dashboard.articles_management.form.published_at') }}</x-form.label>
 
                             <x-form.input type="datetime-local" name="published_at" id="published_at"
                                 placeholder="{{ __('dashboard.articles_management.form.published_at') }}"
@@ -109,10 +107,11 @@
 
                     <div class="col-lg-12">
                         <x-form.label
-                            for="status">{{ __('dashboard.articles_management.form.status') }}</x-dashboard.form.label>
+                            for="status">{{ __('dashboard.articles_management.form.status') }}</x-form.label>
 
                             <x-form.select2 id="status" name="status" :options="\App\Enums\Status::labels()"
-                                placeholder="{{ __('dashboard.general.select') }}" :selected="$article->status?->value" />
+                                placeholder="{{ __('dashboard.general.select') }}"
+                                :selected="$article->status?->value" />
 
                             <x-form.error :messages="$errors->get('status')" />
                     </div>
@@ -124,14 +123,14 @@
             <x-form.actions>
                 <x-button type="submit" class="btn-success-600">
                     {{ __('dashboard.general.update') }}
-                    </x-dashboard.button>
-                    </x-dashboard.form.actions>
-                @else
-                    <x-form.actions>
-                        <x-button type="submit" class="btn-primary-600">
-                            {{ __('dashboard.general.create') }}
-                            </x-dashboard.button>
-                            </x-dashboard.form.actions>
+                    </x-button>
+            </x-form.actions>
+        @else
+            <x-form.actions>
+                <x-button type="submit" class="btn-primary-600">
+                    {{ __('dashboard.general.create') }}
+                    </x-button>
+            </x-form.actions>
         @endif
     </div>
 </div>
@@ -151,23 +150,23 @@
     </script>
 
     <script>
-        const ckeInterval = setInterval(() => {
-            let status = 'pending';
-            let counter = 0;
+            const ckeInterval = setInterval(() => {
+                let status = 'pending';
+                let counter = 0;
 
-            document.querySelectorAll('.cke_notifications_area').forEach((element) => {
-                element.remove()
-                status = 'done';
-            })
+                document.querySelectorAll('.cke_notifications_area').forEach((element) => {
+                    element.remove()
+                    status = 'done';
+                })
 
-            counter++;
+                counter++;
 
-            if (status === 'done' || counter === 30) clearInterval(ckeInterval);
-        }, 100)
+                if (status === 'done' || counter === 30) clearInterval(ckeInterval);
+            }, 100)
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const bankSelect = $('#bank_id');
             bankSelect.on('change', (e) => {
                 cascadeSelect(e);

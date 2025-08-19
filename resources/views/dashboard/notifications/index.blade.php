@@ -18,8 +18,8 @@
                 <x-button class="btn-primary-600" :href="route('dashboard.notifications.create')">
                     <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                     {{ __('dashboard.general.add_new') }}
-                    </x-dashboard.button>
-                @endcan
+                </x-button>
+            @endcan
 
         </div>
 

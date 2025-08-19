@@ -28,7 +28,8 @@
                                     </div>
 
                                     <div class="d-flex align-items-center gap-2">
-                                        <span class="bookmark-button">
+
+                                        <span class="action-button">
                                             <iconify-icon icon="solar:bookmark-outline"></iconify-icon>
                                         </span>
 
@@ -54,6 +55,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="card article-comments-card">
+                        <div class="card-body">
+                            <div class="rate-buttons">
+                                <a href="{{ route('agent.articles.toggleLike', ['article' => $article, 'action' => 'dislike']) }}"
+                                    class="action-button dislike-button {{ $article->isDislikedBy(auth()->user()) ? 'active' : '' }}"
+                                    id="dislike-button">
+                                    <iconify-icon icon="solar:dislike-outline"></iconify-icon>
+                                </a>
+
+                                <a href="{{ route('agent.articles.toggleLike', ['article' => $article, 'action' => 'like']) }}"
+                                    class="action-button like-button {{ $article->isLikedBy(auth()->user()) ? 'active' : '' }}"
+                                    id="like-button">
+                                    <iconify-icon icon="solar:like-outline"></iconify-icon>
+                                </a>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <a href="{{ route('agent.articles.notes.create', $article) }}"
+                                    class="btn btn-primary-600">
+                                    {{ __('agent.general.add_your_notes') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="col-lg-3">

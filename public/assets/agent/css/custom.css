@@ -171,21 +171,6 @@
             display: flex;
             justify-content: space-between;
 
-            .bookmark-button {
-                border: 1px solid var(--neutral-200);
-                padding: 5px 10px;
-                font-size: var(--font-xxl);
-                color: black;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: 0.3s ease-in-out;
-
-                &:hover {
-                    background-color: black;
-                    color: #fff;
-                }
-            }
-
             .views-count {
                 border: 1px solid var(--neutral-200);
                 padding: 5px 10px;
@@ -313,6 +298,38 @@
                     margin: 0;
                 }
             }
+        }
+    }
+}
+
+.action-button {
+    border: 1px solid var(--neutral-200);
+    padding: 5px 10px;
+    font-size: var(--font-xxl);
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+    &.active,
+    &:hover {
+        background-color: black;
+        color: #fff;
+    }
+}
+
+.article-comments-card {
+    margin-top: 15px;
+
+    .rate-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .like-button,
+        .dislike-button {
+            font-size: var(--font-2xxl);
         }
     }
 }

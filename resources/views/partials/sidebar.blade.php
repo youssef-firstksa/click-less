@@ -107,6 +107,15 @@
                             </li>
                         @endcan
 
+                        @can('list-article-note-category')
+                            <li>
+                                <a href="{{ route('dashboard.article-note-categories.index') }}">
+                                    <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
+                                    {{ __('dashboard.article_note_categories_management.index_title') }}
+                                </a>
+                            </li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcanany

@@ -1,6 +1,6 @@
 <x-layouts.dashboard.master>
     <x-slot name="title">
-        {{ __('dashboard.sections_management.index_title') }}
+        {{ __('dashboard.article_note_categories_management.index_title') }}
     </x-slot>
 
 
@@ -14,13 +14,12 @@
                 <x-table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            @can('create-section')
-            <x-button class="btn-primary-600" :href="route('dashboard.sections.create')">
+            @can('create-article-note-category')
+            <x-button class="btn-primary-600" :href="route('dashboard.article-note-categories.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
             </x-button>
             @endif
-
         </div>
 
         <div class="card-body p-24">
@@ -29,42 +28,45 @@
                     <thead>
                         <tr>
                             <th scope="col">{{ __('dashboard.general.table_id') }}</th>
-                            <th scope="col">{{ __('dashboard.sections_management.form.title') }}</th>
+                            <th scope="col">{{ __('dashboard.article_note_categories_management.form.title') }}</th>
                             <th scope="col" class="text-center">{{ __('dashboard.general.status') }}</th>
                             <th scope="col" class="text-center">{{ __('dashboard.general.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($sections as $section)
+                        @foreach ($articleNoteCategories as $category)
                         <tr>
-                            <td>{{ $section->id }}</td>
+                            <td>{{ $category->id }}</td>
 
-                            <td>{{ $section->title }}</td>
+                            <td>{{ $category->title }}</td>
 
                             <td class="text-center">
 
-                                @if ($section->status == App\Enums\Status::ACTIVATED)
-                                    <x-status status="success" :content="strtoupper(__('dashboard.general.' . $section->status->value))" />
+                                @if ($category->status == App\Enums\Status::ACTIVATED)
+                                    <x-status status="success" :content="strtoupper(__('dashboard.general.' . $category->status->value))" />
                                 @else
-                                    <x-status status="danger" :content="strtoupper(__('dashboard.general.' . $section->status->value))" />
+                                    <x-status status="danger" :content="strtoupper(__('dashboard.general.' . $category->status->value))" />
                                 @endif
                             </td>
 
                             <td class="text-center">
                                 <div class="d-flex align-items-center gap-10 justify-content-center">
-                                    @can('show-section')
-                                    <x-table.actions.show route="{{ route('dashboard.sections.show', $section) }}"
-                                        :model="$section" />
+                                    @can('show-article-note-category')
+                                    <x-table.actions.show
+                                        route="{{ route('dashboard.article-note-categories.show', $category) }}"
+                                        :model="$category" />
                                     @endif
 
-                                    @can('update-section')
-                                    <x-table.actions.edit route="{{ route('dashboard.sections.edit', $section) }}"
-                                        :model="$section" />
+                                    @can('update-article-note-category')
+                                    <x-table.actions.edit
+                                        route="{{ route('dashboard.article-note-categories.edit', $category) }}"
+                                        :model="$category" />
                                     @endif
 
-                                    @can('delete-section')
-                                    <x-table.actions.delete route="{{ route('dashboard.sections.destroy', $section) }}"
-                                        :model="$section" />
+                                    @can('delete-article-note-category')
+                                    <x-table.actions.delete
+                                        route="{{ route('dashboard.article-note-categories.destroy', $category) }}"
+                                        :model="$category" />
                                     @endif
 
                                 </div>
@@ -76,7 +78,7 @@
             </div>
 
 
-            <x-table.pagination :data="$sections" class="mt-3" />
+            <x-table.pagination :data="$articleNoteCategories" class="mt-3" />
         </div>
     </div>
 </x-layouts.dashboard.master>

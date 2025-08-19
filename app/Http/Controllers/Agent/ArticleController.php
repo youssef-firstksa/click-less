@@ -36,4 +36,37 @@ class ArticleController extends Controller
 
         return view('agent.articles.show', compact('article', 'products'));
     }
+
+    public function toggleLike(Article $article)
+    {
+        $validated = request()->validate([
+            'action' => ['required', 'string', 'in:like,dislike']
+        ]);
+
+        $action = $validated['action'];
+
+        // Check if the user has already rated the article
+        $existingRate = $article->rates()->where('user_id', auth()->id())->first();
+
+        // Check if there is an existing rate
+        if ($existingRate) {
+            // If the action is the same as the existing rate, remove it
+            if ($existingRate->action === $action) {
+                $existingRate->delete();
+                return redirect()->back();
+            }
+
+            // If the action is different, update it
+            $existingRate->update(['action' => $action]);
+            return redirect()->back();
+        }
+
+        // If there is no existing rate, create a new one
+        $article->rates()->create([
+            'user_id' => auth()->id(),
+            'action' => $action
+        ]);
+
+        return redirect()->back();
+    }
 }

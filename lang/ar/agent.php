@@ -11,5 +11,7 @@ return [
         'normal_search' => 'البحث السريع',
         'ai_search_offline' => 'البحث الذكي',
         'ai_search_online' => 'البحث التفاعلي',
+        'add_your_notes' => 'أضف ملاحظاتك',
+
     ],
 ];
