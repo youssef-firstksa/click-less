@@ -43,6 +43,10 @@ return [
         'top_bar' => 'شريط علوي',
         'male' => 'ذكر',
         'female' => 'أنثى',
+        'upload_file' => 'رفع ملف',
+        'create-update' => 'إنشاء / تحديث',
+        'users' => 'المستخدمين',
+        'force_delete' => 'حذف دائم',
     ],
     'messages' => [
         'success' => [

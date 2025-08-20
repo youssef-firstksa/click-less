@@ -1,11 +1,4 @@
 <div class="row gy-3">
-
-    <div class="col-12">
-        @if (session('errors'))
-            {{ session('errors')->first() }}
-        @endif
-    </div>
-
     @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
         <div class="col-lg-6 mb-4">
             <x-form.label for="name">{{ __('dashboard.users_management.form.name') }}

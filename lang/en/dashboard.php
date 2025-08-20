@@ -43,6 +43,10 @@ return [
         'top_bar' => 'Top Bar',
         'male' => 'Male',
         'female' => 'Female',
+        'upload_file' => 'Upload File',
+        'create-update' => 'Create/Update',
+        'users' => 'Users',
+        'force_delete' => 'Force Delete',
     ],
     'messages' => [
         'success' => [

@@ -14,12 +14,21 @@
                 <x-table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            @can('create-user')
-                <x-button class="btn-primary-600" :href="route('dashboard.users.create')">
-                    <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
-                    {{ __('dashboard.general.add_new') }}
-                </x-button>
-            @endcan
+            <div class="d-flex gap-1">
+                @can('bulk-create-user')
+                    <x-button class="btn-success-600" :href="route('dashboard.users.upload-excel.form')">
+                        <iconify-icon icon="solar:upload-square-outline" class="icon text-xl line-height-1"></iconify-icon>
+                        {{ __('dashboard.general.upload_file') }}
+                    </x-button>
+                @endcan
+
+                @can('create-user')
+                    <x-button class="btn-primary-600" :href="route('dashboard.users.create')">
+                        <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
+                        {{ __('dashboard.general.add_new') }}
+                    </x-button>
+                @endcan
+            </div>
 
         </div>
 

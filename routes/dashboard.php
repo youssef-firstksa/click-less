@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SectionController;
+use App\Http\Controllers\Dashboard\UserUploadExcelController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'platform-access'])->group(function () {
@@ -19,6 +20,10 @@ Route::middleware(['auth', 'platform-access'])->group(function () {
 
     Route::resource('banks', BankController::class);
     Route::resource('roles', RoleController::class);
+
+    Route::get('users/upload-excel', [UserUploadExcelController::class, 'form'])->name('users.upload-excel.form');
+    Route::post('users/upload-excel', [UserUploadExcelController::class, 'upload'])->name('users.upload-excel.upload');
+
     Route::resource('users', UserController::class);
 
     Route::get('products/ajax/by-bank', [ProductController::class, 'getBankProducts'])->name('products.by-bank');
