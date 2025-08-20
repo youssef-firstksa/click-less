@@ -41,6 +41,8 @@ return [
         'error' => 'Error',
         'popup' => 'Popup',
         'top_bar' => 'Top Bar',
+        'male' => 'Male',
+        'female' => 'Female',
     ],
     'messages' => [
         'success' => [
@@ -90,11 +92,15 @@ return [
         'show_title' => 'Show User',
 
         'form' => [
+            'hr_id' => 'HR ID',
             'name' => 'Name',
             'email' => 'Email',
             'password' => 'Password',
             'password_confirmation' => 'Password Confirmation',
+            'gender' => 'Gender',
             'role' => 'Role',
+            'banks' => 'Banks',
+            'active_bank' => 'Active Bank',
             'status' => 'Status',
         ],
     ],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Bank;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
@@ -33,8 +34,11 @@ class UserController extends Controller
     {
         Gate::authorize('create-user');
 
-        $roles = Role::translatedPluck('title');
-        return view('dashboard.users.create', compact('roles'));
+        $roles = Role::whereNot('name', 'super-admin')->translatedPluck('title');
+        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+
+
+        return view('dashboard.users.create', compact('roles', 'bankOptions'));
     }
 
     /**
@@ -47,6 +51,10 @@ class UserController extends Controller
         $user = User::create($request->validated());
 
         $user->roles()->sync($request->role_id);
+        $user->banks()->sync($request->bank_ids);
+
+        $bank = $user->banks()->first();
+        $user->banks()->updateExistingPivot($bank->id, ['active' => 1]);
 
         return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.created', ['resource' => $user->name]));
     }
@@ -67,8 +75,12 @@ class UserController extends Controller
     {
         Gate::authorize('update-user');
 
-        $roles = Role::translatedPluck('title');
-        return view('dashboard.users.edit', compact('user', 'roles'));
+        $roles = Role::whereNot('name', 'super-admin')->translatedPluck('title');
+
+        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $userBankIds = $user->banks->pluck('id')->toArray();
+
+        return view('dashboard.users.edit', compact('user', 'roles', 'bankOptions', 'userBankIds'));
     }
 
     /**
@@ -85,6 +97,12 @@ class UserController extends Controller
         $user->update($data);
 
         $user->roles()->sync($request->role_id);
+        $user->banks()->sync($request->bank_ids);
+
+        if (!$user->activeBank()) {
+            $bank = $user->banks()->first();
+            $user->banks()->updateExistingPivot($bank->id, ['active' => 1]);
+        }
 
         return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $user->name]));
     }

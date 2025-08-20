@@ -18,8 +18,8 @@ class BankFactory extends Factory
     public function definition(): array
     {
         return [
-            'font_color' => $this->faker->safeHexColor(),
-            'background_color' => $this->faker->safeHexColor(),
+            'font_color' => '#ffffff',
+            'background_color' => '#4f008c',
             'ai_key' => $this->faker->uuid(),
         ];
     }

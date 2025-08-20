@@ -27,7 +27,7 @@
 
 
                         @if (!request()->routeIs('dashboard.*'))
-                            <a class="header-logo" href="{{ route('dashboard.index') }}">
+                            <a class="header-logo" href="{{ route('agent.index') }}">
                                 <img src="{{ asset('assets/common/logos/full-logow.png') }}" alt="site logo"
                                     class="light-logo">
                             </a>
@@ -205,14 +205,21 @@
 
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
-                                        href="email.html">
-                                        <iconify-icon icon="tabler:message-check" class="icon text-xl"></iconify-icon>
 
-                                        {{ __('dashboard.general.inbox') }}
-                                    </a>
-                                </li>
+
+
+                                @if (auth()->user()->can('access-dashboard-platform') && !request()->routeIs('dashboard.*'))
+                                    <li>
+                                        <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
+                                            href="{{ route('dashboard.index') }}">
+                                            <iconify-icon icon="solar:home-smile-angle-outline"
+                                                class="icon text-xl"></iconify-icon>
+
+                                            {{ __('dashboard.general.dashboard') }}
+                                        </a>
+                                    </li>
+                                @endif
+
                                 <li>
                                     <a class="dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3"
                                         href="company.html">

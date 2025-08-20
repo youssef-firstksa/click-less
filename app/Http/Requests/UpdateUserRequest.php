@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -23,12 +24,22 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => ['required', 'string', 'max:20'],
+        $rules = [
+            'hr_id' => ['required', 'string', Rule::unique('users', 'hr_id')->ignore($this->route('user'))],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->route('user'))],
             'password' => ['nullable', 'confirmed', 'min:8'],
+            'gender' => ['required', 'in:male,female'],
             'status' => ['required', Rule::in(Status::cases())],
             'role_id' => ['required', Rule::exists('roles', 'id')],
+            'bank_ids' => ['required', 'array'],
+            'bank_ids.*' => [Rule::exists('banks', 'id')],
         ];
+
+        foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
+            $rules[$localeCode] = ['required', 'array'];
+            $rules["{$localeCode}.name"] = ['required', 'string'];
+        }
+
+        return $rules;
     }
 }

@@ -16,8 +16,8 @@ class CreateBanksTable extends Migration
         Schema::create('banks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sort_order')->default(1);
-            $table->string('font_color')->nullable();
-            $table->string('background_color')->nullable();
+            $table->string('font_color')->default('#ffffff');
+            $table->string('background_color')->default('#4f008c');
             $table->string('ai_key')->nullable();
             $table->string('status')->default('activated');
             $table->timestamps();

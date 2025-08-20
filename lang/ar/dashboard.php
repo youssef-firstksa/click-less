@@ -41,6 +41,8 @@ return [
         'error' => 'حطأ',
         'popup' => 'منبثق',
         'top_bar' => 'شريط علوي',
+        'male' => 'ذكر',
+        'female' => 'أنثى',
     ],
     'messages' => [
         'success' => [
@@ -90,11 +92,15 @@ return [
         'show_title' => 'عرض المستخدم',
 
         'form' => [
+            'hr_id' => 'رقم الموظف',
             'name' => 'الاسم',
             'email' => 'البريد الإلكتروني',
             'password' => 'كلمة المرور',
             'password_confirmation' => 'تأكيد كلمة المرور',
+            'gender' => 'الجنس',
             'role' => 'الدور',
+            'banks' => 'البنوك',
+            'active_bank' => 'البنك النشط',
             'status' => 'الحالة',
         ],
     ],

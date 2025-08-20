@@ -8,8 +8,11 @@ use App\Enums\Status;
 use App\Traits\CommonFilters;
 use App\Traits\HasRoles;
 use App\Traits\HasStatus;
+use App\Traits\InteractsWithMedia;
+use App\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -19,7 +22,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, CommonFilters, HasRoles, HasStatus, LogsActivity;
+    use HasFactory, Notifiable, SoftDeletes, Translatable, InteractsWithMedia, CommonFilters, HasRoles, HasStatus, LogsActivity;
+
 
     /**
      * The attributes that are mass assignable.
@@ -27,11 +31,14 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'hr_id',
         'email',
         'password',
+        'gender',
         'status'
     ];
+
+    public $translatedAttributes = ['name',];
 
     /**
      * The attributes that should be hidden for serialization.

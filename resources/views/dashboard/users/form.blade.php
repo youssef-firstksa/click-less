@@ -1,9 +1,28 @@
 <div class="row gy-3">
+
+    <div class="col-12">
+        @if (session('errors'))
+            {{ session('errors')->first() }}
+        @endif
+    </div>
+
+    @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+        <div class="col-lg-6 mb-4">
+            <x-form.label for="name">{{ __('dashboard.users_management.form.name') }}
+                ({{ $properties['native'] }})
+            </x-form.label>
+            <x-form.input name="{{ $localeCode }}[name]" id="name_{{ $localeCode }}"
+                placeholder="{{ __('dashboard.users_management.form.name') }} ({{ $properties['native'] }})"
+                value="{{ old($localeCode . '.name', $user->{'name:' . $localeCode}) }}" />
+            <x-form.error :messages="$errors->get($localeCode . '.name')" />
+        </div>
+    @endforeach
+
     <div class="col-lg-6">
-        <x-form.label for="name">{{ __('dashboard.users_management.form.name') }}</x-form.label>
-        <x-form.input name="name" id="name" placeholder="{{ __('dashboard.users_management.form.name') }}"
-            value="{{ old('name', $user->name) }}" />
-        <x-form.error :messages="$errors->get('name')" />
+        <x-form.label for="hr_id">{{ __('dashboard.users_management.form.hr_id') }}</x-form.label>
+        <x-form.input name="hr_id" id="hr_id" placeholder="{{ __('dashboard.users_management.form.hr_id') }}"
+            value="{{ old('hr_id', $user->hr_id) }}" />
+        <x-form.error :messages="$errors->get('hr_id')" />
     </div>
 
     <div class="col-lg-6">
@@ -29,17 +48,34 @@
     </div>
 
     <div class="col-lg-6">
+        <x-form.label for="gender">{{ __('dashboard.users_management.form.gender') }}</x-form.label>
+
+        <x-form.select2 id="gender" name="gender" :options="['male' => __('dashboard.general.male'), 'female' => __('dashboard.general.female')]"
+            placeholder="{{ __('dashboard.general.select') }}" :selected="old('gender', $user?->gender)" />
+
+        <x-form.error :messages="$errors->get('gender')" />
+    </div>
+
+    <div class="col-lg-6">
         <x-form.label for="role_id">{{ __('dashboard.users_management.form.role') }}</x-form.label>
-        <x-form.select2 name="role_id" id="role_id" :options="$roles" :selected="$user?->role?->id" />
+        <x-form.select2 name="role_id" id="role_id" :options="$roles" :selected="old('role_id', $user?->role?->id)" />
 
         <x-form.error :messages="$errors->get('role_id')" />
+    </div>
+
+    <div class="col-lg-6">
+        <x-form.label for="bank_ids">{{ __('dashboard.users_management.form.banks') }}</x-form.label>
+        <x-form.select2 name="bank_ids" id="bank_ids" :options="$bankOptions" :selected="old('bank_ids', $userBankIds ?? [])"
+            :multiple="true" />
+
+        <x-form.error :messages="$errors->get('bank_ids')" />
     </div>
 
     <div class="col-lg-6">
         <x-form.label for="status">{{ __('dashboard.users_management.form.status') }}</x-form.label>
 
         <x-form.select2 id="status" name="status" :options="\App\Enums\Status::labels()"
-            placeholder="{{ __('dashboard.general.select') }}" :selected="$user->status?->value" />
+            placeholder="{{ __('dashboard.general.select') }}" :selected="old('status', $user?->status?->value)" />
 
         <x-form.error :messages="$errors->get('status')" />
     </div>

@@ -20,9 +20,10 @@ class RoleController extends Controller
     {
         Gate::authorize('list-role');
 
-        $roles = Role::commonFilters([
-            'search' => ['translation.title'],
-        ])->commonPaginate();
+        $roles = Role::whereNot('name', 'super-admin')
+            ->commonFilters([
+                'search' => ['translation.title'],
+            ])->commonPaginate();
 
         return view('dashboard.roles.index', compact('roles'));
     }
@@ -56,7 +57,10 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+        if ($role->name === 'super-admin') abort(404);
+
         Gate::authorize('show-role');
+
         // return view('dashboard.roles.show');
     }
 
@@ -65,7 +69,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        if ($role->name === 'super-admin') abort(404);
+
         Gate::authorize('update-role');
+
 
         $permissionOptions = Permission::all()->groupBy('group');
 
@@ -77,6 +84,8 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
+        if ($role->name === 'super-admin') abort(404);
+
         Gate::authorize('update-role');
 
         $role->update($request->validated());
@@ -90,6 +99,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        if ($role->name === 'super-admin') abort(404);
+
         Gate::authorize('delete-role');
 
         $role->delete();
