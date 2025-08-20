@@ -35,10 +35,18 @@
 <link rel="stylesheet" href="{{ asset('assets/common/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/common/css/custom.css') }}">
 
+@if (app()->getLocale() === 'ar')
+    <link rel="stylesheet" href="{{ asset('assets/common/css/custom-rtl.css') }}">
+@endif
+
 <style>
     :root {
-        --bank-font-color: {{ auth()->user()->activeBank()->font_color }};
-        --bank-background-color: {{ auth()->user()->activeBank()->background_color }};
+        --bank-font-color:
+            {{ auth()->user()->activeBank()->font_color }}
+        ;
+        --bank-background-color:
+            {{ auth()->user()->activeBank()->background_color }}
+        ;
     }
 </style>
 
