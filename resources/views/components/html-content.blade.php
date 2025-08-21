@@ -18,8 +18,12 @@
             contentHeight = contentHeight * 2;
         } else if (contentHeight < 100) {
             contentHeight = contentHeight * 1.5;
+        } else if (contentHeight < 500) {
+            contentHeight = contentHeight * 1.1;
+        } else if (contentHeight < 800) {
+            contentHeight = contentHeight * 1.03;
         } else {
-            contentHeight = contentHeight * 1.06;
+            contentHeight = contentHeight * 1.04;
         }
 
         iframe.style.height = contentHeight + "px";

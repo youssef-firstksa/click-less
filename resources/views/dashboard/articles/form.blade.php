@@ -141,25 +141,28 @@
                 height: 1000,
                 filebrowserUploadUrl: "{{ route('dashboard.ckeditor.upload') . '?_token=' . csrf_token() }}",
                 filebrowserUploadMethod: 'form',
-                contentsLangDirection: '{{ in_array($localeCode, ['ar']) ? 'rtl' : 'ltr' }}'
+                contentsLangDirection: '{{ in_array($localeCode, ['ar']) ? 'rtl' : 'ltr' }}',
+                enterMode: CKEDITOR.ENTER_P,
+                shiftEnterMode: CKEDITOR.ENTER_BR,
+                fillEmptyBlocks: false
             });
         @endforeach
     </script>
 
     <script>
-                const ckeInterval = setInterval(() => {
-                    let status = 'pending';
-                    let counter = 0;
+                                const ckeInterval = setInterval(() => {
+                                    let status = 'pending';
+                                    let counter = 0;
 
-                    document.querySelectorAll('.cke_notifications_area').forEach((element) => {
-                        element.remove()
-                        status = 'done';
-                    })
+                                    document.querySelectorAll('.cke_notifications_area').forEach((element) => {
+                                        element.remove()
+                                        status = 'done';
+                                    })
 
-                    counter++;
+                                    // counter++;
 
-                    if (status === 'done' || counter === 30) clearInterval(ckeInterval);
-                }, 100)
+                                    // if (status === 'done' || counter === 30) clearInterval(ckeInterval);
+                                }, 100)
     </script>
 
     <script>

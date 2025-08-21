@@ -17,6 +17,9 @@
                                         <th scope="col">
                                             {{ __('dashboard.article_notes_management.form.title') }}
                                         </th>
+                                        <th scope="col">
+                                            {{ __('dashboard.article_notes_management.form.article') }}
+                                        </th>
                                         <th scope="col" class="text-center">{{ __('dashboard.general.status') }}</th>
                                         <th scope="col" class="text-center">{{ __('dashboard.general.action') }}</th>
                                     </tr>
@@ -27,6 +30,12 @@
                                             <td>{{ $note->id }}</td>
 
                                             <td>{{ $note->title }}</td>
+                                            <td>
+                                                <a class="btn-link" title="{{ $note->article->title }}"
+                                                    href="{{ route('agent.articles.show', $note->article_id) }}">
+                                                    #{{ $note->article_id }}
+                                                </a>
+                                            </td>
 
                                             <td class="text-center">
 

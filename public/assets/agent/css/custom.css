@@ -111,7 +111,7 @@
 }
 
 .section-card {
-    min-height: 260px;
+    min-height: 300px;
     position: relative;
 }
 
@@ -332,4 +332,9 @@
             font-size: var(--font-2xxl);
         }
     }
+}
+
+.accordion .accordion-item {
+    padding: 15px 0;
+    padding-inline-start: 20px;
 }

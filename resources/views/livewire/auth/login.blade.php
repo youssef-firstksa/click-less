@@ -79,7 +79,7 @@ new #[Layout('components.layouts.auth.master')] class extends Component {
 <section class="auth bg-base d-flex flex-wrap">
     <div class="auth-left d-lg-block d-none">
         <div class="d-flex align-items-center flex-column h-100 justify-content-center">
-            <img src="{{ asset('assets/common/images/auth/auth-img.png') }}" alt="">
+            <img src="{{ asset('assets/common/images/auth/auth-img.jpg') }}" alt="">
         </div>
     </div>
 

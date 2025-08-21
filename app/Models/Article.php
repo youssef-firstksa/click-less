@@ -101,7 +101,7 @@ class Article extends Model implements HasMedia
 
     public function shortContent(): Attribute
     {
-        return Attribute::make(get: fn() => Str::limit(strip_tags($this->content), 150));
+        return Attribute::make(get: fn() => Str::limit(html_entity_decode(strip_tags($this->content)), 150));
     }
 
     public function scopeWhereCanAccess(Builder $builder): void

@@ -30,7 +30,7 @@ new #[Layout('components.layouts.auth.master')] class extends Component {
 <section class="auth forgot-password-page bg-base d-flex flex-wrap">
     <div class="auth-left d-lg-block d-none">
         <div class="d-flex align-items-center flex-column h-100 justify-content-center">
-            <img src="{{ asset('assets/common/images/auth/forgot-pass-img.png') }}" alt="">
+            <img src="{{ asset('assets/common/images/auth/forgot-pass-img.jpg') }}" alt="">
         </div>
     </div>
     <div class="auth-right py-32 px-24 d-flex flex-column justify-content-center">
