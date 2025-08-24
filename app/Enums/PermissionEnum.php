@@ -36,6 +36,10 @@ enum PermissionEnum: string
     case CREATE_USER = 'create-user';
     case UPDATE_USER = 'update-user';
     case DELETE_USER = 'delete-user';
+    case ARCHIVE_USER = 'archive-user';
+    case BULK_CREATE_USER = 'bulk-create-user';
+    case BULK_UPDATE_USER = 'bulk-update-user';
+    case BULK_DELETE_USER = 'bulk-delete-user';
 
 /**
      * Bank Permissions
@@ -78,7 +82,27 @@ enum PermissionEnum: string
     case DELETE_ARTICLE = 'delete-article';
 
 /**
-     * Article Permissions
+     * Article Note Category Permissions
+     */
+
+    case LIST_ARTICLE_NOTE_CATEGORY = 'list-article_note_category';
+    case SHOW_ARTICLE_NOTE_CATEGORY = 'show-article_note_category';
+    case CREATE_ARTICLE_NOTE_CATEGORY = 'create-article_note_category';
+    case UPDATE_ARTICLE_NOTE_CATEGORY = 'update-article_note_category';
+    case DELETE_ARTICLE_NOTE_CATEGORY = 'delete-article_note_category';
+
+/**
+     * Article Note Permissions
+     */
+
+    case LIST_ARTICLE_NOTE = 'list-article_note';
+    case SHOW_ARTICLE_NOTE = 'show-article_note';
+    case CREATE_ARTICLE_NOTE = 'create-article_note';
+    case UPDATE_ARTICLE_NOTE = 'update-article_note';
+    case DELETE_ARTICLE_NOTE = 'delete-article_note';
+
+/**
+     * Notification Permissions
      */
 
     case LIST_NOTIFICATION = 'list-notification';

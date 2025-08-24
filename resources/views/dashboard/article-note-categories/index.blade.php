@@ -14,7 +14,7 @@
                 <x-table.filters.status :options="\App\Enums\Status::labels()" />
             </form>
 
-            @can('create-article-note-category')
+            @can('create-article_note_category')
             <x-button class="btn-primary-600" :href="route('dashboard.article-note-categories.create')">
                 <iconify-icon icon="ic:baseline-plus" class="icon text-xl line-height-1"></iconify-icon>
                 {{ __('dashboard.general.add_new') }}
@@ -51,19 +51,19 @@
 
                             <td class="text-center">
                                 <div class="d-flex align-items-center gap-10 justify-content-center">
-                                    @can('show-article-note-category')
+                                    @can('show-article_note_category')
                                     <x-table.actions.show
                                         route="{{ route('dashboard.article-note-categories.show', $category) }}"
                                         :model="$category" />
                                     @endif
 
-                                    @can('update-article-note-category')
+                                    @can('update-article_note_category')
                                     <x-table.actions.edit
                                         route="{{ route('dashboard.article-note-categories.edit', $category) }}"
                                         :model="$category" />
                                     @endif
 
-                                    @can('delete-article-note-category')
+                                    @can('delete-article_note_category')
                                     <x-table.actions.delete
                                         route="{{ route('dashboard.article-note-categories.destroy', $category) }}"
                                         :model="$category" />

@@ -16,7 +16,7 @@ class BankController extends Controller
      */
     public function index()
     {
-        Gate::authorize('list-bank');
+        Gate::authorize('viewAny', Bank::class);
 
         $banks = Bank::commonFilters([
             'search' => ['translation.title'],
@@ -31,7 +31,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-bank');
+        Gate::authorize('create', Bank::class);
 
         return view('dashboard.banks.create');
     }
@@ -41,7 +41,7 @@ class BankController extends Controller
      */
     public function store(StoreBankRequest $request)
     {
-        Gate::authorize('create-bank');
+        Gate::authorize('create', Bank::class);
 
         $bank = Bank::create($request->validated());
 
@@ -61,7 +61,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
-        Gate::authorize('show-bank');
+        Gate::authorize('view', $bank);
         // return view('dashboard.banks.show');
     }
 
@@ -70,7 +70,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        Gate::authorize('update-bank');
+        Gate::authorize('update', $bank);
 
         return view('dashboard.banks.edit', compact('bank'));
     }
@@ -80,7 +80,7 @@ class BankController extends Controller
      */
     public function update(UpdateBankRequest $request, Bank $bank)
     {
-        Gate::authorize('update-bank');
+        Gate::authorize('update', $bank);
 
         $bank->update($request->validated());
 
@@ -100,7 +100,7 @@ class BankController extends Controller
      */
     public function destroy(Bank $bank)
     {
-        Gate::authorize('delete-bank');
+        Gate::authorize('delete', $bank);
 
         $bank->delete();
         return redirect()->route('dashboard.banks.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $bank->title]));

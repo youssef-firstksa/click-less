@@ -62,4 +62,16 @@ class Bank extends Model implements HasMedia
             ->useDisk('media')
             ->singleFile();
     }
+
+    public function scopeWhereCanAccessDashboard(Builder $builder): void
+    {
+        $builder
+            ->whereActivated()
+            ->when(
+                auth()->user()->role->name !== 'super-admin',
+                function (Builder $builder) {
+                    $builder->whereIn('banks.id', auth()->user()->banks()->pluck('banks.id')->toArray());
+                }
+            );
+    }
 }

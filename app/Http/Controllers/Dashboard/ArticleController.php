@@ -19,12 +19,14 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        Gate::authorize('list-article');
+        Gate::authorize('viewAny', Article::class);
 
-        $articles = Article::commonFilters([
-            'search' => ['translation.title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $articles = Article::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['translation.title'],
+                'status' => 'status',
+            ])
+            ->commonPaginate();
 
         return view('dashboard.articles.index', compact('articles'));
     }
@@ -34,9 +36,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-article');
+        Gate::authorize('create', Article::class);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         return view('dashboard.articles.create', compact('bankOptions'));
     }
 
@@ -45,7 +47,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        Gate::authorize('create-article');
+        Gate::authorize('create', Article::class);
 
         $data = [...$request->validated(), 'author_id' => auth()->id()];
         $article = Article::create($data);
@@ -58,7 +60,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        Gate::authorize('show-article');
+        Gate::authorize('view', $article);
         // return view('dashboard.articles.show');
     }
 
@@ -67,9 +69,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        Gate::authorize('update-article');
+        Gate::authorize('update', $article);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         $productOptions = Product::where('bank_id', $article->bank_id)->whereActivated()->translatedPluck('title');
         $sectionOptions = Section::where('product_id', $article->product_id)->whereActivated()->translatedPluck('title');
 
@@ -81,7 +83,7 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        Gate::authorize('update-article');
+        Gate::authorize('update', $article);
 
         $article->update($request->validated());
 
@@ -93,7 +95,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        Gate::authorize('update-delete');
+        Gate::authorize('delete', $article);
 
         $article->delete();
         return redirect()->route('dashboard.articles.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $article->title]));

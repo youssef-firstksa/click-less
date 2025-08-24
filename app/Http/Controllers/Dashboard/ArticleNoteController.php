@@ -14,7 +14,7 @@ class ArticleNoteController extends Controller
      */
     public function index()
     {
-        Gate::authorize('list-article-note');
+        Gate::authorize('viewAny', ArticleNote::class);
 
         $notes = ArticleNote::commonFilters([
             'search' => ['title'],

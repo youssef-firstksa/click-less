@@ -17,7 +17,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function index()
     {
-        Gate::authorize('list-article-note-category');
+        Gate::authorize('viewAny', ArticleNoteCategory::class);
 
         $articleNoteCategories = ArticleNoteCategory::commonFilters([
             'search' => ['translation.title'],
@@ -32,7 +32,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-article-note-category');
+        Gate::authorize('create', ArticleNoteCategory::class);
 
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
         return view('dashboard.article-note-categories.create', compact('bankOptions'));
@@ -43,7 +43,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function store(StoreArticleNoteCategoryRequest $request)
     {
-        Gate::authorize('create-article-note-category');
+        Gate::authorize('create', ArticleNoteCategory::class);
 
         $articleNoteCategory = ArticleNoteCategory::create($request->validated());
 
@@ -55,7 +55,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function show(ArticleNoteCategory $articleNoteCategory)
     {
-        Gate::authorize('show-article-note-category');
+        Gate::authorize('view', $articleNoteCategory);
 
         // return view('dashboard.article-note-categories.show', compact('articleNoteCategory'));
     }
@@ -65,7 +65,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function edit(ArticleNoteCategory $articleNoteCategory)
     {
-        Gate::authorize('update-article-note-category');
+        Gate::authorize('update', $articleNoteCategory);
 
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
 
@@ -77,7 +77,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function update(UpdateArticleNoteCategoryRequest $request, ArticleNoteCategory $articleNoteCategory)
     {
-        Gate::authorize('update-article-note-category');
+        Gate::authorize('update', $articleNoteCategory);
 
         $articleNoteCategory->update($request->validated());
 
@@ -89,7 +89,7 @@ class ArticleNoteCategoryController extends Controller
      */
     public function destroy(ArticleNoteCategory $articleNoteCategory)
     {
-        Gate::authorize('delete-article-note-category');
+        Gate::authorize('delete', $articleNoteCategory);
 
         $articleNoteCategory->delete();
         return redirect()->route('dashboard.article-note-categories.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $articleNoteCategory->title]));

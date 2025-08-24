@@ -17,12 +17,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        Gate::authorize('list-product');
+        Gate::authorize('viewAny', Product::class);
 
-        $products = Product::commonFilters([
-            'search' => ['translation.title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $products = Product::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['translation.title'],
+                'status' => 'status',
+            ])->commonPaginate();
 
         return view('dashboard.products.index', compact('products'));
     }
@@ -32,9 +33,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-product');
+        Gate::authorize('create', Product::class);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         return view('dashboard.products.create', compact('bankOptions'));
     }
 
@@ -43,7 +44,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Gate::authorize('create-product');
+        Gate::authorize('create', Product::class);
 
         $product = Product::create($request->validated());
 
@@ -55,7 +56,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        Gate::authorize('show-product');
+        Gate::authorize('view', $product);
         // return view('dashboard.products.show');
     }
 
@@ -64,9 +65,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        Gate::authorize('update-product');
+        Gate::authorize('update', $product);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
 
         return view('dashboard.products.edit', compact('product', 'bankOptions'));
     }
@@ -76,7 +77,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        Gate::authorize('update-product');
+        Gate::authorize('update', $product);
 
         $product->update($request->validated());
 
@@ -88,7 +89,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        Gate::authorize('delete-product');
+        Gate::authorize('delete', $product);
 
         $product->delete();
         return redirect()->route('dashboard.products.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $product->title]));

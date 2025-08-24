@@ -46,19 +46,19 @@
 
                             <td class="text-center">
                                 <div class="d-flex align-items-center gap-10 justify-content-center">
-                                    @can('show-article-note')
+                                    @can('show-article_note')
                                     <x-table.actions.show
                                         route="{{ route('dashboard.article-notes.show', $note) }}"
                                         :model="$note" />
                                     @endif
 
-                                    {{-- @can('update-article-note')
+                                    {{-- @can('update-article_note')
                                     <x-table.actions.edit
                                         route="{{ route('dashboard.article-notes.edit', $note) }}"
                                         :model="$note" />
                                     @endif
 
-                                    @can('delete-article-note')
+                                    @can('delete-article_note')
                                     <x-table.actions.delete
                                         route="{{ route('dashboard.article-notes.destroy', $note) }}"
                                         :model="$note" />

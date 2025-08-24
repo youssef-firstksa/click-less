@@ -18,12 +18,13 @@ class SectionController extends Controller
      */
     public function index()
     {
-        Gate::authorize('list-section');
+        Gate::authorize('viewAny', Section::class);
 
-        $sections = Section::commonFilters([
-            'search' => ['translation.title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $sections = Section::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['translation.title'],
+                'status' => 'status',
+            ])->commonPaginate();
 
         return view('dashboard.sections.index', compact('sections'));
     }
@@ -33,7 +34,7 @@ class SectionController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create-section');
+        Gate::authorize('create', Section::class);
 
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
         return view('dashboard.sections.create', compact('bankOptions'));
@@ -44,7 +45,7 @@ class SectionController extends Controller
      */
     public function store(StoreSectionRequest $request)
     {
-        Gate::authorize('create-section');
+        Gate::authorize('create', Section::class);
 
         $section = Section::create($request->validated());
 
@@ -56,7 +57,7 @@ class SectionController extends Controller
      */
     public function show(Section $section)
     {
-        Gate::authorize('show-section');
+        Gate::authorize('view', $section);
         // return view('dashboard.sections.show');
     }
 
@@ -65,7 +66,7 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        Gate::authorize('update-section');
+        Gate::authorize('update', $section);
 
         $bankOptions = Bank::whereActivated()->translatedPluck('title');
         $productOptions = Product::where('bank_id', $section->bank_id)->whereActivated()->translatedPluck('title');
@@ -78,7 +79,7 @@ class SectionController extends Controller
      */
     public function update(UpdateSectionRequest $request, Section $section)
     {
-        Gate::authorize('update-section');
+        Gate::authorize('update', $section);
 
         $section->update($request->validated());
 
@@ -90,7 +91,7 @@ class SectionController extends Controller
      */
     public function destroy(Section $section)
     {
-        Gate::authorize('delete-section');
+        Gate::authorize('delete', $section);
 
         $section->delete();
         return redirect()->route('dashboard.sections.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $section->title]));
@@ -98,7 +99,14 @@ class SectionController extends Controller
 
     public function getProductSections(Request $request)
     {
-        if (Gate::denies('update-section') ||  Gate::denies('store-section')) abort(403);
+        if (
+            Gate::denies('create-product')
+            &&  Gate::denies('update-product')
+            &&  Gate::denies('create-section')
+            &&  Gate::denies('update-section')
+            &&  Gate::denies('create-article')
+            &&  Gate::denies('update-article')
+        ) abort(403);
 
         $productId = $request->get('id');
 

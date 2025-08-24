@@ -107,7 +107,7 @@
                             </li>
                         @endcan
 
-                        @can('list-article-note-category')
+                        @can('list-article_note_category')
                             <li>
                                 <a href="{{ route('dashboard.article-note-categories.index') }}">
                                     <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
@@ -116,7 +116,7 @@
                             </li>
                         @endcan
 
-                        @can('list-article-note')
+                        @can('list-article_note')
                             <li>
                                 <a href="{{ route('dashboard.article-notes.index') }}">
                                     <i class="ri-circle-fill circle-icon text-primary-600 w-auto"></i>

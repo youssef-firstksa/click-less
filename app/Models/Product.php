@@ -53,4 +53,16 @@ class Product extends Model
     {
         $builder->whereActivated()->where('bank_id', auth()->user()->activeBank()->id);
     }
+
+    public function scopeWhereCanAccessDashboard(Builder $builder): void
+    {
+        $builder
+            ->whereActivated()
+            ->when(
+                auth()->user()->role->name !== 'super-admin',
+                function (Builder $builder) {
+                    $builder->whereIn('bank_id', auth()->user()->banks()->pluck('banks.id')->toArray());
+                }
+            );
+    }
 }

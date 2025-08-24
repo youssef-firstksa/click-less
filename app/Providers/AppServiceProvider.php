@@ -30,7 +30,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function (User $user, string $ability) {
-            return $user->role->name === 'super-admin';
+            // Only return true for super-admin, let other checks continue
+            if ($user->role->name === 'super-admin') {
+                return true;
+            }
+
+            // Return null to allow normal policy checks to proceed
+            return null;
         });
 
         RouteServiceProvider::loadCachedRoutesUsing(fn() => $this->loadCachedRoutes());

@@ -15,7 +15,7 @@ class NotificationController extends Controller
 {
     public function index()
     {
-        Gate::authorize('list-notification');
+        Gate::authorize('viewAny', SystemNotification::class);
 
         $notifications = SystemNotification::commonFilters([
             'search' => ['translation.title'],
@@ -27,7 +27,7 @@ class NotificationController extends Controller
 
     public function create()
     {
-        Gate::authorize('create-notification');
+        Gate::authorize('create', SystemNotification::class);
 
         $bankOptions = Bank::whereActivated()->translatedPluck('title', 'id');
         return view('dashboard.notifications.create', compact('bankOptions'));
@@ -35,7 +35,7 @@ class NotificationController extends Controller
 
     public function store(StoreNotificationRequest $request)
     {
-        Gate::authorize('create-notification');
+        Gate::authorize('create', SystemNotification::class);
 
         $notification = SystemNotification::create($request->validated());
 
@@ -44,12 +44,12 @@ class NotificationController extends Controller
 
     public function show(SystemNotification $notification)
     {
-        Gate::authorize('show-notification');
+        Gate::authorize('view', $notification);
     }
 
     public function edit(SystemNotification $notification)
     {
-        Gate::authorize('update-notification');
+        Gate::authorize('update', $notification);
 
         $bankOptions = Bank::whereActivated()->translatedPluck('title', 'id');
         return view('dashboard.notifications.edit', compact('notification', 'bankOptions'));
@@ -57,7 +57,7 @@ class NotificationController extends Controller
 
     public function update(UpdateNotificationRequest $request, SystemNotification $notification)
     {
-        Gate::authorize('update-notification');
+        Gate::authorize('update', $notification);
 
         $data = $request->validated();
 
@@ -86,7 +86,7 @@ class NotificationController extends Controller
 
     public function destroy(SystemNotification $notification)
     {
-        Gate::authorize('delete-notification');
+        Gate::authorize('delete', $notification);
 
         $notification->delete();
         return redirect()->route('dashboard.notifications.index')->with('success', __('dashboard.messages.success.deleted', ['resource' => $notification->title]));
