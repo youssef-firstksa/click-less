@@ -96,7 +96,14 @@ class ProductController extends Controller
 
     public function getBankProducts(Request $request)
     {
-        if (Gate::denies('update-product') ||  Gate::denies('store-product')) abort(403);
+        if (
+            Gate::denies('create-product')
+            &&  Gate::denies('update-product')
+            &&  Gate::denies('create-section')
+            &&  Gate::denies('update-section')
+            &&  Gate::denies('create-article')
+            &&  Gate::denies('update-article')
+        ) abort(403);
 
         $bankId = $request->get('id');
 
