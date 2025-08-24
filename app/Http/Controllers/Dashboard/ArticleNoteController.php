@@ -16,10 +16,11 @@ class ArticleNoteController extends Controller
     {
         Gate::authorize('viewAny', ArticleNote::class);
 
-        $notes = ArticleNote::commonFilters([
-            'search' => ['title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $notes = ArticleNote::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['title'],
+                'status' => 'status',
+            ])->commonPaginate();
 
         return view('dashboard.article-notes.index', compact('notes'));
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\CommonFilters;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -46,5 +47,17 @@ class ArticleNote extends Model
     public function bank(): BelongsTo
     {
         return $this->belongsTo(Bank::class);
+    }
+
+    public function scopeWhereCanAccessDashboard(Builder $builder): void
+    {
+        $builder
+            // ->whereActivated()
+            ->when(
+                auth()->user()->role->name !== 'super-admin',
+                function (Builder $builder) {
+                    $builder->whereIn('bank_id', auth()->user()->banks()->pluck('banks.id')->toArray());
+                }
+            );
     }
 }

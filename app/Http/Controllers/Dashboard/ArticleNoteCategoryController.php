@@ -19,10 +19,11 @@ class ArticleNoteCategoryController extends Controller
     {
         Gate::authorize('viewAny', ArticleNoteCategory::class);
 
-        $articleNoteCategories = ArticleNoteCategory::commonFilters([
-            'search' => ['translation.title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $articleNoteCategories = ArticleNoteCategory::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['translation.title'],
+                'status' => 'status',
+            ])->commonPaginate();
 
         return view('dashboard.article-note-categories.index', compact('articleNoteCategories'));
     }
