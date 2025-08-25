@@ -62,7 +62,6 @@ class Section extends Model
     public function scopeWhereCanAccessDashboard(Builder $builder): void
     {
         $builder
-            ->whereActivated()
             ->when(
                 auth()->user()->role->name !== 'super-admin',
                 function (Builder $builder) {

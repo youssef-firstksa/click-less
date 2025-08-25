@@ -24,8 +24,12 @@ class AgentController extends Controller
 
         $userCanAccessBank = $user->banks()->where('banks.id', $bankId)->count();
 
-        if ($userCanAccessBank == 0) {
+        if ($userCanAccessBank == 0 && !$user->hasRole('super-admin')) {
             abort('403');
+        }
+
+        if ($userCanAccessBank == 0 && $user->hasRole('super-admin')) {
+            $user->banks()->attach($bankId);
         }
 
         $user->banks()->update(['active' => 0]);

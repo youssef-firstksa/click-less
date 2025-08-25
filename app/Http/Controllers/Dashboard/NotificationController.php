@@ -17,10 +17,11 @@ class NotificationController extends Controller
     {
         Gate::authorize('viewAny', SystemNotification::class);
 
-        $notifications = SystemNotification::commonFilters([
-            'search' => ['translation.title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $notifications = SystemNotification::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['translation.title'],
+                'status' => 'status',
+            ])->commonPaginate();
 
         return view('dashboard.notifications.index', compact('notifications'));
     }
@@ -29,7 +30,7 @@ class NotificationController extends Controller
     {
         Gate::authorize('create', SystemNotification::class);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title', 'id');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         return view('dashboard.notifications.create', compact('bankOptions'));
     }
 
@@ -51,7 +52,7 @@ class NotificationController extends Controller
     {
         Gate::authorize('update', $notification);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title', 'id');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         return view('dashboard.notifications.edit', compact('notification', 'bankOptions'));
     }
 

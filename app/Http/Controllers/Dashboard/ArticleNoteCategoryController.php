@@ -35,7 +35,7 @@ class ArticleNoteCategoryController extends Controller
     {
         Gate::authorize('create', ArticleNoteCategory::class);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         return view('dashboard.article-note-categories.create', compact('bankOptions'));
     }
 
@@ -68,7 +68,7 @@ class ArticleNoteCategoryController extends Controller
     {
         Gate::authorize('update', $articleNoteCategory);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
 
         return view('dashboard.article-note-categories.edit', compact('articleNoteCategory', 'bankOptions'));
     }

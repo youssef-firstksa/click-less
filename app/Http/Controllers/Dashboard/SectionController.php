@@ -36,7 +36,7 @@ class SectionController extends Controller
     {
         Gate::authorize('create', Section::class);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         return view('dashboard.sections.create', compact('bankOptions'));
     }
 
@@ -68,7 +68,7 @@ class SectionController extends Controller
     {
         Gate::authorize('update', $section);
 
-        $bankOptions = Bank::whereActivated()->translatedPluck('title');
+        $bankOptions = Bank::whereCanAccessDashboard()->translatedPluck('title');
         $productOptions = Product::where('bank_id', $section->bank_id)->whereActivated()->translatedPluck('title');
 
         return view('dashboard.sections.edit', compact('section', 'bankOptions', 'productOptions'));

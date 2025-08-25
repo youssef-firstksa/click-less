@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBankRequest;
 use App\Http\Requests\UpdateBankRequest;
 use App\Models\Bank;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Throwable;
 
 class BankController extends Controller
 {
@@ -18,10 +21,11 @@ class BankController extends Controller
     {
         Gate::authorize('viewAny', Bank::class);
 
-        $banks = Bank::commonFilters([
-            'search' => ['translation.title'],
-            'status' => 'status',
-        ])->commonPaginate();
+        $banks = Bank::whereCanAccessDashboard()
+            ->commonFilters([
+                'search' => ['translation.title'],
+                'status' => 'status',
+            ])->commonPaginate();
 
         return view('dashboard.banks.index', compact('banks'));
     }
@@ -43,14 +47,23 @@ class BankController extends Controller
     {
         Gate::authorize('create', Bank::class);
 
-        $bank = Bank::create($request->validated());
+        DB::beginTransaction();
 
-        if ($request->hasFile('image')) {
-            $bank->addMediaFromRequest('image')->toMediaCollection('image', 'media');
-        }
+        try {
+            $bank = Bank::create($request->validated());
 
-        if ($request->hasFile('logo')) {
-            $bank->addMediaFromRequest('logo')->toMediaCollection('logo', 'media');
+            if ($request->hasFile('image')) {
+                $bank->addMediaFromRequest('image')->toMediaCollection('image', 'media');
+            }
+
+            if ($request->hasFile('logo')) {
+                $bank->addMediaFromRequest('logo')->toMediaCollection('logo', 'media');
+            }
+
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+            return redirect()->route('dashboard.banks.index')->with('error', __('dashboard.messages.error.create'));
         }
 
         return redirect()->route('dashboard.banks.index')->with('success', __('dashboard.messages.success.created', ['resource' => $bank->title]));

@@ -109,4 +109,15 @@ class SystemNotification extends Model
         $builder->where('bank_id', auth()->user()->activeBank()->id);
         $builder->wherePublished();
     }
+
+    public function scopeWhereCanAccessDashboard(Builder $builder): void
+    {
+        $builder
+            ->when(
+                auth()->user()->role->name !== 'super-admin',
+                function (Builder $builder) {
+                    $builder->whereIn('bank_id', auth()->user()->banks()->pluck('banks.id')->toArray());
+                }
+            );
+    }
 }
