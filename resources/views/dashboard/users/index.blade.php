@@ -38,8 +38,11 @@
                     <thead>
                         <tr>
                             <th scope="col">{{ __('dashboard.general.table_id') }}</th>
+                            <th scope="col">{{ __('dashboard.users_management.form.hr_id') }}</th>
                             <th scope="col">{{ __('dashboard.users_management.form.name') }}</th>
+                            <th scope="col">{{ __('dashboard.users_management.form.phone') }}</th>
                             <th scope="col">{{ __('dashboard.users_management.form.email') }}</th>
+                            <th scope="col">{{ __('dashboard.users_management.form.banks') }}</th>
                             <th scope="col" class="text-center">{{ __('dashboard.general.status') }}</th>
                             <th scope="col" class="text-center">{{ __('dashboard.general.action') }}</th>
                         </tr>
@@ -48,8 +51,12 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
+                                <td>{{ $user->hr_id }}</td>
                                 <td>{{ $user->name }}</td>
+                                <td>{{ $user->phone }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ Str::limit($user->banks->pluck('title')->join(', '), 30) }}</td>
+
 
                                 <td class="text-center">
 
