@@ -34,9 +34,7 @@ return [
     'update-user'        => 'تحديث مستخدم',
     'delete-user'        => 'حذف مستخدم',
     'archive-user'       => 'أرشفة مستخدم',
-    'bulk-create-user'   => 'إنشاء مستخدمين دفعة واحدة',
-    'bulk-update-user'   => 'تحديث مستخدمين دفعة واحدة',
-    'bulk-delete-user'   => 'حذف مستخدمين دفعة واحدة',
+    'bulk-upload-user'   => 'رفع مستخدمين دفعة واحدة',
 
     'list-bank'          => 'عرض قائمة البنوك',
     'show-bank'          => 'عرض البنك',

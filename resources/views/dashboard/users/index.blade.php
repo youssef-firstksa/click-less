@@ -15,7 +15,7 @@
             </form>
 
             <div class="d-flex gap-1">
-                @can('bulk-create-user')
+                @can('bulk-upload-user')
                     <x-button class="btn-success-600" :href="route('dashboard.users.upload-excel.form')">
                         <iconify-icon icon="solar:upload-square-outline" class="icon text-xl line-height-1"></iconify-icon>
                         {{ __('dashboard.general.upload_file') }}

@@ -26,13 +26,10 @@ class UsersImport implements ToCollection, SkipsEmptyRows, WithHeadingRow, WithV
     {
         $action = request()->input('action');
 
-        if ($action === 'delete') {
-            User::whereIn('hr_id', $rows->pluck('hr_id')->toArray())->delete();
-            return;
-        }
-
-        if ($action === 'force_delete') {
-            User::whereIn('hr_id', $rows->pluck('hr_id')->toArray())->forceDelete();
+        if ($action === Status::DISABLED->value || $action === Status::ACTIVATED->value) {
+            User::whereIn('hr_id', $rows->pluck('hr_id')->toArray())->update([
+                'status' => $action
+            ]);
             return;
         }
 

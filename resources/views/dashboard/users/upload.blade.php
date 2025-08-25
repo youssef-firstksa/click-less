@@ -28,7 +28,7 @@
                     <div class="col-lg-6">
                         <x-form.label for="action">{{ __('dashboard.general.action') }}</x-form.label>
 
-                        <x-form.select2 id="action" name="action" :options="['create-update' => __('dashboard.general.create-update'), 'delete' => __('dashboard.general.delete'), 'force_delete' => __('dashboard.general.force_delete')]"
+                        <x-form.select2 id="action" name="action" :options="['create-update' => __('dashboard.general.create-update'), 'activated' => __('dashboard.general.activated'), 'disabled' => __('dashboard.general.disabled')]"
                             placeholder="{{ __('dashboard.general.select') }}" :selected="old('action')" />
 
                         <x-form.error :messages="$errors->get('action')" />

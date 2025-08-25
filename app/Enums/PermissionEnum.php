@@ -37,9 +37,7 @@ enum PermissionEnum: string
     case UPDATE_USER = 'update-user';
     case DELETE_USER = 'delete-user';
     case ARCHIVE_USER = 'archive-user';
-    case BULK_CREATE_USER = 'bulk-create-user';
-    case BULK_UPDATE_USER = 'bulk-update-user';
-    case BULK_DELETE_USER = 'bulk-delete-user';
+    case BULK_UPLOAD_USER = 'bulk-upload-user';
 
 /**
      * Bank Permissions
