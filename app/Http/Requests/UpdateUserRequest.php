@@ -28,7 +28,6 @@ class UpdateUserRequest extends FormRequest
             'hr_id' => ['required', 'string', Rule::unique('users', 'hr_id')->ignore($this->route('user'))],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->route('user'))],
             'password' => ['nullable', 'confirmed', 'min:8'],
-            'gender' => ['required', 'in:male,female'],
             'status' => ['required', Rule::in(Status::cases())],
             'role_id' => ['required', Rule::exists('roles', 'id')],
             'bank_ids' => ['required', 'array'],

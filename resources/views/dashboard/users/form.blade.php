@@ -41,15 +41,6 @@
     </div>
 
     <div class="col-lg-6">
-        <x-form.label for="gender">{{ __('dashboard.users_management.form.gender') }}</x-form.label>
-
-        <x-form.select2 id="gender" name="gender" :options="['male' => __('dashboard.general.male'), 'female' => __('dashboard.general.female')]"
-            placeholder="{{ __('dashboard.general.select') }}" :selected="old('gender', $user?->gender)" />
-
-        <x-form.error :messages="$errors->get('gender')" />
-    </div>
-
-    <div class="col-lg-6">
         <x-form.label for="role_id">{{ __('dashboard.users_management.form.role') }}</x-form.label>
         <x-form.select2 name="role_id" id="role_id" :options="$roles" :selected="old('role_id', $user?->role?->id)" />
 

@@ -28,7 +28,6 @@ class StoreUserRequest extends FormRequest
             'hr_id' => ['required', 'string', Rule::unique('users', 'hr_id')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => ['required', 'confirmed', 'min:8'],
-            'gender' => ['required', 'in:male,female'],
             'status' => ['required', Rule::in(Status::cases())],
             'role_id' => ['required', Rule::exists('roles', 'id')],
             'bank_ids' => ['required', 'array'],
