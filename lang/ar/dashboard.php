@@ -107,6 +107,7 @@ return [
             'banks' => 'البنوك',
             'active_bank' => 'البنك النشط',
             'status' => 'الحالة',
+            'group' => 'المجموعة',
         ],
     ],
     'bank_management' => [

@@ -31,6 +31,7 @@ class UpdateUserRequest extends FormRequest
             'password' => ['nullable', 'confirmed', 'min:8'],
             'status' => ['required', Rule::in(Status::cases())],
             'role_id' => ['required', Rule::exists('roles', 'id')],
+            'group' => ['required', 'string'],
             'bank_ids' => ['required', 'array'],
             'bank_ids.*' => [Rule::exists('banks', 'id')],
         ];

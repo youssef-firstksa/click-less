@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default(bcrypt('password'));
             $table->string('gender')->default('male');
+            $table->string('group')->default('general');
             $table->string('status')->default('activated');
             $table->rememberToken();
             $table->timestamps();

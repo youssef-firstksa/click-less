@@ -18,7 +18,7 @@
         <x-form.error :messages="$errors->get('hr_id')" />
     </div>
 
-        <div class="col-lg-6">
+    <div class="col-lg-6">
         <x-form.label for="phone">{{ __('dashboard.users_management.form.phone') }}</x-form.label>
         <x-form.input name="phone" id="phone" placeholder="{{ __('dashboard.users_management.form.phone') }}"
             value="{{ old('phone', $user->phone) }}" />
@@ -52,6 +52,13 @@
         <x-form.select2 name="role_id" id="role_id" :options="$roles" :selected="old('role_id', $user?->role?->id)" />
 
         <x-form.error :messages="$errors->get('role_id')" />
+    </div>
+
+    <div class="col-lg-6">
+        <x-form.label for="group">{{ __('dashboard.users_management.form.group') }}</x-form.label>
+        <x-form.input name="group" id="group" placeholder="{{ __('dashboard.users_management.form.group') }}"
+            value="{{ old('group', $user->group) }}" />
+        <x-form.error :messages="$errors->get('group')" />
     </div>
 
     <div class="col-lg-6">

@@ -36,7 +36,8 @@ class User extends Authenticatable
         'email',
         'password',
         'gender',
-        'status'
+        'group',
+        'status',
     ];
 
     public $translatedAttributes = ['name',];

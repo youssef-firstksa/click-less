@@ -27,10 +27,11 @@ class StoreUserRequest extends FormRequest
         $rules = [
             'hr_id' => ['required', 'string', Rule::unique('users', 'hr_id')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'phone' => ['required', 'phone', Rule::unique('users', 'phone')],
+            'phone' => ['required', 'numeric', Rule::unique('users', 'phone')],
             'password' => ['required', 'confirmed', 'min:8'],
             'status' => ['required', Rule::in(Status::cases())],
             'role_id' => ['required', Rule::exists('roles', 'id')],
+            'group' => ['required', 'string'],
             'bank_ids' => ['required', 'array'],
             'bank_ids.*' => [Rule::exists('banks', 'id')],
         ];

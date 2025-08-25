@@ -8,7 +8,10 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Bank;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
+use Throwable;
 
 class UserController extends Controller
 {
@@ -48,15 +51,26 @@ class UserController extends Controller
     {
         Gate::authorize('create-user');
 
-        $user = User::create($request->validated());
+        DB::beginTransaction();
 
-        $user->roles()->sync($request->role_id);
-        $user->banks()->sync($request->bank_ids);
+        try {
+            $data = $request->validated();
+            $data['group'] = Str::slug($data['group']);
 
-        $bank = $user->banks()->first();
-        $user->banks()->updateExistingPivot($bank->id, ['active' => 1]);
+            $user = User::create($data);
 
-        return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.created', ['resource' => $user->name]));
+            $user->roles()->sync($request->role_id);
+            $user->banks()->sync($request->bank_ids);
+
+            $bank = $user->banks()->first();
+            $user->banks()->updateExistingPivot($bank->id, ['active' => 1]);
+
+            DB::commit();
+            return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.created', ['resource' => $user->name]));
+        } catch (Throwable $e) {
+            DB::rollBack();
+            return redirect()->route('dashboard.users.index')->with('error', __('dashboard.messages.error.create', ['resource' => $data[app()->getLocale()]['name']]));
+        }
     }
 
     /**
@@ -90,21 +104,32 @@ class UserController extends Controller
     {
         Gate::authorize('update-user');
 
-        $data = $request->validated();
+        DB::beginTransaction();
 
-        if (is_null($data['password'])) unset($data['password']);
+        try {
+            $data = $request->validated();
 
-        $user->update($data);
+            $data['group'] = Str::slug($data['group']);
 
-        $user->roles()->sync($request->role_id);
-        $user->banks()->sync($request->bank_ids);
+            if (is_null($data['password'])) unset($data['password']);
 
-        if (!$user->activeBank()) {
-            $bank = $user->banks()->first();
-            $user->banks()->updateExistingPivot($bank->id, ['active' => 1]);
+            $user->update($data);
+
+            $user->roles()->sync($request->role_id);
+            $user->banks()->sync($request->bank_ids);
+
+            if (!$user->activeBank()) {
+                $bank = $user->banks()->first();
+                $user->banks()->updateExistingPivot($bank->id, ['active' => 1]);
+            }
+
+            DB::commit();
+
+            return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $user->name]));
+        } catch (Throwable $e) {
+            DB::rollBack();
+            return redirect()->route('dashboard.users.index')->with('error', __('dashboard.messages.error.update', ['resource' => $user->name]));
         }
-
-        return redirect()->route('dashboard.users.index')->with('success', __('dashboard.messages.success.updated', ['resource' => $user->name]));
     }
 
     /**

@@ -43,6 +43,8 @@
                             <th scope="col">{{ __('dashboard.users_management.form.phone') }}</th>
                             <th scope="col">{{ __('dashboard.users_management.form.email') }}</th>
                             <th scope="col">{{ __('dashboard.users_management.form.banks') }}</th>
+                            <th scope="col">{{ __('dashboard.users_management.form.role') }}</th>
+                            <th scope="col">{{ __('dashboard.users_management.form.group') }}</th>
                             <th scope="col" class="text-center">{{ __('dashboard.general.status') }}</th>
                             <th scope="col" class="text-center">{{ __('dashboard.general.action') }}</th>
                         </tr>
@@ -57,6 +59,13 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ Str::limit($user->banks->pluck('title')->join(', '), 30) }}</td>
 
+                                <td>
+                                    <x-status status="warning" :content="$user->role->title" />
+                                </td>
+
+                                <td>
+                                    <x-status status="info" :content="$user->group" />
+                                </td>
 
                                 <td class="text-center">
 

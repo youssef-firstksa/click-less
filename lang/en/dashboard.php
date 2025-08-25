@@ -107,6 +107,7 @@ return [
             'banks' => 'Banks',
             'active_bank' => 'Active Bank',
             'status' => 'Status',
+            'group' => 'Group',
         ],
     ],
     'bank_management' => [
