@@ -97,6 +97,7 @@ return [
 
         'form' => [
             'hr_id' => 'HR ID',
+            'phone' => 'Phone',
             'name' => 'Name',
             'email' => 'Email',
             'password' => 'Password',

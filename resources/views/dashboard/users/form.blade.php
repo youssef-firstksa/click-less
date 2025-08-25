@@ -18,6 +18,13 @@
         <x-form.error :messages="$errors->get('hr_id')" />
     </div>
 
+        <div class="col-lg-6">
+        <x-form.label for="phone">{{ __('dashboard.users_management.form.phone') }}</x-form.label>
+        <x-form.input name="phone" id="phone" placeholder="{{ __('dashboard.users_management.form.phone') }}"
+            value="{{ old('phone', $user->phone) }}" />
+        <x-form.error :messages="$errors->get('phone')" />
+    </div>
+
     <div class="col-lg-6">
         <x-form.label for="email">{{ __('dashboard.users_management.form.email') }}</x-form.label>
         <x-form.input type="email" name="email" id="email"
