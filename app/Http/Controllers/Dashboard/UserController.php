@@ -20,7 +20,7 @@ class UserController extends Controller
         Gate::authorize('list-user');
 
         $users = User::whereNot('id', auth()->id())->commonFilters([
-            'search' => ['name', 'email'],
+            'search' => ['translation.name', 'email', 'hr_id', 'phone'],
             'status' => 'status',
         ])->commonPaginate();
 
