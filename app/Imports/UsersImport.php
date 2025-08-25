@@ -2,10 +2,13 @@
 
 namespace App\Imports;
 
+use App\Enums\Status;
 use App\Models\Bank;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -38,6 +41,10 @@ class UsersImport implements ToCollection, SkipsEmptyRows, WithHeadingRow, WithV
                 'hr_id' => $row['hr_id'],
             ], [
                 'email' => $row['email'],
+                'password' => rand(111111111111111, 999999999999999),
+                'phone' => $row['phone'],
+                'status' => 'activated',
+                'group' => Str::slug($row['group']),
                 'en' => [
                     'name' => $row['name_en'],
                 ],
@@ -46,7 +53,9 @@ class UsersImport implements ToCollection, SkipsEmptyRows, WithHeadingRow, WithV
                 ]
             ]);
 
-            if ($user->roles()->count() == 0) {
+            if (Role::where('name', $row['role'])->exists()) {
+                $user->assignRole($row['role']);
+            } else {
                 $user->assignRole('agent');
             }
 
@@ -67,9 +76,14 @@ class UsersImport implements ToCollection, SkipsEmptyRows, WithHeadingRow, WithV
     public function rules(): array
     {
         return [
-            'hr_id' => [
-                'required',
-            ],
+            'hr_id' => ['required'],
+            'email' => ['required', 'email'],
+            'phone' => ['required', 'numeric'],
+            'password' => ['nullable'],
+            'status' => ['nullable', Rule::in(Status::cases())],
+            'role' => ['required', Rule::exists('roles', 'name')],
+            'group' => ['required', 'string'],
+            'bank_ids' => ['required'],
         ];
     }
 }
